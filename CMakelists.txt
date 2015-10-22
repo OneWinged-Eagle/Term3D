@@ -1,0 +1,11 @@
+cmake_minimum_required(VERSION 3.3)
+
+set_property(GLOBAL PROPERTY USE_FOLDERS ON)
+
+set(CMAKE_CPP_FLAGS "${CMAKE_CPP_FLAGS} /W4")
+
+message("cpp Flags: " ${CMAKE_CPP_FLAGS})
+
+add_subdirectory(core)
+add_subdirectory(graphic)
+add_subdirectory(network)
