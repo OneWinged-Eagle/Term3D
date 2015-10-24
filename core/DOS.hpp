@@ -7,7 +7,7 @@
 class DOS
 {
 private:
-	const std::map<const std::string, void (DOS::*)(void)> callMap;
+	std::map<const std::string, void (DOS::*)(void)> callMap;
 
 public:
 	DOS();

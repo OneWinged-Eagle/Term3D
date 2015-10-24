@@ -14,7 +14,7 @@ DOS::DOS()
 
 void DOS::call(const std::string &cmd)
 {
-	if (cmd.length > 0 && this->callMap[cmd])
+	if (cmd.length() > 0 && this->callMap[cmd])
 		(this->*(callMap[cmd]))();
 }
 
@@ -51,6 +51,8 @@ void DOS::pwd()
 void DOS::rm()
 {
 	std::cout << "rm" << std::endl;
+	if (remove("suppr.test"))
+		std::cout << "Y'a pas de fichier !" << std::endl;
 }
 
 void DOS::touch()
