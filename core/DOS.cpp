@@ -10,52 +10,96 @@ DOS::DOS()
 	this->callMap["pwd"] = &DOS::pwd;
 	this->callMap["rm"] = &DOS::rm;
 	this->callMap["touch"] = &DOS::touch;
+
+	try
+	{
+		this->current_path = fs::current_path();
+	}
+	catch (std::exception &e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
 }
 
-void DOS::call(const std::string &cmd)
+const void call(const std::string &cmd, const pathVector &paths)
 {
 	if (cmd.length() > 0 && this->callMap[cmd])
-		(this->*(callMap[cmd]))();
+	{
+		try
+		{
+			(this->*(callMap[cmd]))(paths);
+		}
+		catch (std::exception &e)
+		{
+			std::cerr << e.what() << std::endl;
+		}
+	}
 }
 
-void DOS::cat()
+const void DOS::cat(const pathVector &paths)
 {
-	std::cout << "cat" << std::endl;
+	const fs::path path(paths[0]);
+	const fs::ifstream file(path);
+
+	std::cout << file.rdbuf();
+	file.close();
+	std::cout << "\"" << path << "\" printed." << std::endl;
 }
 
-void DOS::cd()
+const void DOS::cd(const pathVector &paths)
 {
-	std::cout << "cd" << std::endl;
+	const fs::path path(paths[0]);
+
+	this->current_path = fs::current_path(path);
+	std::cout << "The current working directory is: \"" << this->current_path << "\"" << std::endl;
 }
 
-void DOS::cp()
+const void DOS::cp(const pathVector &paths)
 {
-	std::cout << "cp" << std::endl;
+	const fs::path oldPath(paths[0]), newPath(paths[1]);
+
+	fs::copy(oldPath, newPath);
+	std::cout << "\"" << oldPath << "\" copied to \"" << newPath << "\"." << std::endl;
 }
 
-void DOS::ls()
+const void DOS::ls(const pathVector &paths)
 {
-	std::cout << "ls" << std::endl;
+	const fs::path path(paths[0]);
+	const fs::directory_iterator endIter;
+
+	for (fs::directory_iterator dirIter(path); dirIter != endIter; ++dirIter)
+		std::cout << dirIter->path().filename() << std::endl;
+	std::cout << "\"" << path << "\" listed." << std::endl;
 }
 
-void DOS::mv()
+const void DOS::mv(const pathVector &paths)
 {
-	std::cout << "mv" << std::endl;
+	const fs::path oldPath(paths[0]), newPath(paths[1]);
+
+	fs::rename(oldPath, newPath);
+	std::cout << "\"" << oldPath << "\" renamed to \"" << newPath << "\"." << std::endl;
 }
 
-void DOS::pwd()
+const void DOS::pwd(const pathVector &paths)
 {
-	std::cout << "pwd" << std::endl;
+	std::cout << "The current working directory is: \"" << this->current_path << "\"" << std::endl;
 }
 
-void DOS::rm()
+const void DOS::rm(const pathVector &paths)
 {
-	std::cout << "rm" << std::endl;
-	if (remove("suppr.test"))
-		std::cout << "Y'a pas de fichier !" << std::endl;
+	const fs::path path(paths[0]);
+
+	if (!fs::remove(path))
+		std::cout << "\"" << path << "\" doesn't exists." << std::endl;
+	else
+		std::cout << "\"" << path << "\" deleted." << std::endl;
 }
 
-void DOS::touch()
+const void DOS::touch(const pathVector &paths)
 {
-	std::cout << "touch" << std::endl;
+	const fs::path path(paths[0]);
+	const fs::ofstream file(path);
+
+	file.close();
+	std::cout << "\"" << path << "\" created." << std::endl;
 }
