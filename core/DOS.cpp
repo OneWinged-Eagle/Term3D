@@ -2,15 +2,6 @@
 
 DOS::DOS()
 {
-	this->callMap["cat"] = &DOS::cat;
-	this->callMap["cd"] = &DOS::cd;
-	this->callMap["cp"] = &DOS::cp;
-	this->callMap["ls"] = &DOS::ls;
-	this->callMap["mv"] = &DOS::mv;
-	this->callMap["pwd"] = &DOS::pwd;
-	this->callMap["rm"] = &DOS::rm;
-	this->callMap["touch"] = &DOS::touch;
-
 	try
 	{
 		this->current_path = fs::current_path();
@@ -21,13 +12,13 @@ DOS::DOS()
 	}
 }
 
-const void call(const std::string &cmd, const pathVector &paths)
+void DOS::call(const std::string &cmd, const pathVector &paths)
 {
-	if (cmd.length() > 0 && this->callMap[cmd])
+  if (cmd.length() > 0 && this->callMap.at(cmd))
 	{
 		try
 		{
-			(this->*(callMap[cmd]))(paths);
+		  (this->*(callMap.at(cmd)))(paths);
 		}
 		catch (std::exception &e)
 		{

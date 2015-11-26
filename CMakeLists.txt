@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.3)
 
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
-set(CMAKE_CPP_FLAGS "${CMAKE_CPP_FLAGS} /W4")
+set(CMAKE_CPP_FLAGS "${CMAKE_CPP_FLAGS} /W4 /Wall /Wextra /Werror /O2")
 
 message("cpp Flags: " ${CMAKE_CPP_FLAGS})
 
