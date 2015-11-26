@@ -12,7 +12,7 @@ private:
 public:
 	Core();
 
-	const void exec(const std::str &cmd)
+	void exec(const std::string &cmd) const;
 private:
-	const void parse(const std::string &str, std::string &cmd, pathVector &paths)
+	void parse(const std::string &str, std::string &cmd, pathVector &paths) const;
 };
