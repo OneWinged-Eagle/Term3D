@@ -1,7 +1,7 @@
 #include "Core.hpp"
 
 Core::Core()
-	:	dos()
+ : commandHandler()
 {}
 
 void Core::exec(const std::string &str) const
@@ -9,8 +9,15 @@ void Core::exec(const std::string &str) const
 	std::string cmd;
 	pathVector paths;
 
-	this->parse(str, cmd, paths);
-	this->dos.call(cmd, paths);
+	try
+	{
+		this->parse(str, cmd, paths);
+		this->commandHandler.call(cmd, paths);
+	}
+	catch (std::exception &e)
+	{
+		std::cerr << "Core::exec raise: \"" << e.what() << "\"." << std::endl;
+	}
 }
 
 void Core::parse(const std::string &str, std::string &cmd, pathVector &paths) const

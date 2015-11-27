@@ -2,13 +2,13 @@ CC = g++
 
 CPPFLAGS = -std=c++11 -W -Wall -Werror -Wextra
 
-LIB = -lboost_filesystem -lboost_system
+LIB = -lboost_filesystem -lboost_system -lGL -lGLU -lglut -lSDL -lSDL_image `sdl-config --cflags --libs`
 
 NAME = Term3D
 
-SRC =	./core/main.cpp \
+SRC =	./graphic/main.cpp \
 			./core/Core.cpp \
-			./core/DOS.cpp
+			./core/CommandHandler.cpp
 
 OBJ = $(SRC:.cpp=.o)
 

@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.3)
 
-set(SRCS main.cpp DOS.cpp)
+set(SRCS main.cpp CommandHandler.cpp)
 
 add_executable(core ${SRCS})
 

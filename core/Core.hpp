@@ -1,13 +1,13 @@
 #pragma once
 
-#include "DOS.hpp"
+#include "CommandHandler.hpp"
 
 #include <boost/algorithm/string.hpp>
 
 class Core
 {
 private:
-	DOS dos;
+	CommandHandler commandHandler;
 
 public:
 	Core();

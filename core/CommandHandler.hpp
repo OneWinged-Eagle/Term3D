@@ -5,30 +5,31 @@
 #include <boost/filesystem/fstream.hpp>
 #include <iostream>
 #include <map>
+#include <stdexcept>
 #include <string>
 
 namespace fs = boost::filesystem;
 
 typedef std::vector<fs::path> pathVector;
 
-class DOS
+class CommandHandler
 {
-  typedef void (DOS::*commandPtr)(const pathVector &) const;
+  typedef void (CommandHandler::*commandPtr)(const pathVector &) const;
   typedef std::map<const std::string, commandPtr> commandMap;
 
 private:
   const commandMap callMap = boost::assign::map_list_of
-		("cat", &DOS::cat)
-		("cd", &DOS::cd)
-    ("cp", &DOS::cp)
-    ("ls", &DOS::ls)
-    ("mv", &DOS::mv)
-    ("pwd", &DOS::pwd)
-    ("rm", &DOS::rm)
-    ("touch", &DOS::touch);
+		("cat", &CommandHandler::cat)
+		("cd", &CommandHandler::cd)
+    ("cp", &CommandHandler::cp)
+    ("ls", &CommandHandler::ls)
+    ("mv", &CommandHandler::mv)
+    ("pwd", &CommandHandler::pwd)
+    ("rm", &CommandHandler::rm)
+    ("touch", &CommandHandler::touch);
 
 public:
-	DOS();
+	CommandHandler();
 
 	void call(const std::string &cmd, const pathVector &paths) const;
 
