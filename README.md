@@ -9,6 +9,11 @@ Si vous voulez un petit tuto sur comment faire des bails avec le git, vous êtes
 
 Hum, alors, tout simplement, quand vous bossez, vous bossez sur votre branche (wajisan pour Wadi, shirokai pour Adrien, etc).
 
+Pour avoir votre branche en local (faites ça que la première fois) :
+```bash
+git clone -b {votre_branche} https://github.com/Thuwa77/Term3D.git
+````
+
 Avant de bosser, faites un
 ```bash
 git pull origin {branche_au_dessus}
@@ -20,11 +25,13 @@ Une fois qu'vous avez fini de bosser, vous faites un
 git commit -am {petit message explicatif}
 ````
 Par pitié, prenez le temps de faire le fameux {petit message explicatif}.
+
 Ensuite
 ```bash
 git pull origin {branche_au_dessus}
 ````
 Et oui, on pull encore ! Pourquoi ? Eh bien, tout simplement pour que vous ne ratiez pas une update qui aurait été faite sur la {branche_au_dessus} pendant que vous bossiez.
+
 Là, git devrait merge vos bails. Si y'a des conflits, réglez-les. Puis
 ```bash
 git push
