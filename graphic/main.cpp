@@ -52,14 +52,23 @@ void buffering(std::string string)
 			//
 
     }
-  if (string == "space")
-    string = " ";
-  if (string.length() > 1 )
-    string = "";
+		if (string == "space")
+	    string = " ";
 
-  curr = curr + string;
-  renderBitmapString(sx, sy + 25, curr);
-  renderBitmapString(sx, sy, old);
+	  if (string == "backspace")
+	    {
+	      glClear(GL_COLOR_BUFFER_BIT);
+	      curr = curr.substr(0, curr.size()-1);
+	    }
+
+	  if (string.length() == 3 && string.at(0) == '[' && string.at(2) == ']')
+	    string = string.at(1);
+	  else if(string.length() > 1 )
+	    string = "";
+
+	  curr = curr + string;
+	  renderBitmapString(sx, sy + 25, curr);
+	  renderBitmapString(sx, sy, old);
 }
 
 void init(void)

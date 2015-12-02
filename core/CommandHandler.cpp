@@ -90,7 +90,7 @@ void CommandHandler::ls(const pathVector &paths) const
 		{
 			if (!fs::exists(path) || !fs::is_directory(path))
 			{
-				std::cerr << "the file \"" << path << "\" doesn't exist." << std::endl;
+				std::cerr << "the directory \"" << path << "\" doesn't exist." << std::endl;
 				continue;
 			}
 
@@ -128,7 +128,7 @@ void CommandHandler::pwd(const pathVector &paths) const
 void CommandHandler::rm(const pathVector &paths) const
 {
 	if (paths.size() == 0)
-		throw std::invalid_argument("\"rm\" command needs at least one file");
+		throw std::invalid_argument("\"rm\" command needs at least one file or repository");
 
 	for (const fs::path path : paths)
 	{
