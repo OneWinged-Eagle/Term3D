@@ -1,9 +1,9 @@
-#include "Window.h"
+#include "Window.hpp"
 
 int main(int ac, char **av)
 {
-  Window win;
+	Window win;
 
-  win.Start(ac, av);
-  return (0);
+	win.Start(ac, av);
+	return (0);
 }
