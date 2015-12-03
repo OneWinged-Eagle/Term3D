@@ -5,11 +5,11 @@ CommandHandler::CommandHandler()
 
 void CommandHandler::call(const std::string &cmd, const pathVector &paths) const
 {
-  if (cmd.length() > 0 && this->callMap.find(cmd) != this->callMap.end())
+	if (cmd.length() > 0 && this->callMap.find(cmd) != this->callMap.end())
 	{
 		try
 		{
-		  (this->*(callMap.at(cmd)))(paths);
+			(this->*(callMap.at(cmd)))(paths);
 		}
 		catch (std::exception &e)
 		{

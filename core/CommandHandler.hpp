@@ -3,6 +3,7 @@
 #include <boost/assign.hpp>
 #include <boost/filesystem.hpp>
 #include <boost/filesystem/fstream.hpp>
+
 #include <iostream>
 #include <map>
 #include <stdexcept>
@@ -14,19 +15,19 @@ typedef std::vector<fs::path> pathVector;
 
 class CommandHandler
 {
-  typedef void (CommandHandler::*commandPtr)(const pathVector &) const;
-  typedef std::map<const std::string, commandPtr> commandMap;
+	typedef void (CommandHandler::*commandPtr)(const pathVector &) const;
+	typedef std::map<const std::string, commandPtr> commandMap;
 
 private:
-  const commandMap callMap = boost::assign::map_list_of
+	const commandMap callMap = boost::assign::map_list_of
 		("cat", &CommandHandler::cat)
 		("cd", &CommandHandler::cd)
-    ("cp", &CommandHandler::cp)
-    ("ls", &CommandHandler::ls)
-    ("mv", &CommandHandler::mv)
-    ("pwd", &CommandHandler::pwd)
-    ("rm", &CommandHandler::rm)
-    ("touch", &CommandHandler::touch);
+		("cp", &CommandHandler::cp)
+		("ls", &CommandHandler::ls)
+		("mv", &CommandHandler::mv)
+		("pwd", &CommandHandler::pwd)
+		("rm", &CommandHandler::rm)
+		("touch", &CommandHandler::touch);
 
 public:
 	CommandHandler();

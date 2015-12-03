@@ -1,12 +1,14 @@
 CC = g++
 
-CPPFLAGS = -std=c++11 -W -Wall -Werror -Wextra
+CPPFLAGS = -std=c++11 -pedantic -W -Wall -Werror -Wextra
 
 LIB = -lboost_filesystem -lboost_system -lGL -lGLU -lglut -lSDL -lSDL_image `sdl-config --cflags --libs`
 
 NAME = Term3D
 
 SRC =	./graphic/main.cpp \
+			./graphic/Window.cpp \
+			./graphic/Prompt.cpp \
 			./core/Core.cpp \
 			./core/CommandHandler.cpp
 
