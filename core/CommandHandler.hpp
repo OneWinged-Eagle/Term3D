@@ -28,6 +28,7 @@ private:
 		("pwd", &CommandHandler::pwd)
 		("rm", &CommandHandler::rm)
 		("touch", &CommandHandler::touch);
+	const std::string baseDir = fs::current_path().string();
 
 public:
 	CommandHandler();

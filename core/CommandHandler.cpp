@@ -6,25 +6,25 @@ CommandHandler::CommandHandler()
 void CommandHandler::call(const std::string &cmd, const pathVector &paths) const
 {
 	if (cmd.length() > 0 && this->callMap.find(cmd) != this->callMap.end())
-	{
 		try
 		{
 			(this->*(callMap.at(cmd)))(paths);
 		}
+		catch (std::invalid_argument &e)
+		{
+			std::cerr << "Invalid argument(s): " << e.what() << std::endl;
+		}
 		catch (std::exception &e)
 		{
-			std::cerr << "CommandHandler::call raise: \"" << e.what() << "\" with command \"" << cmd << "\"." << std::endl;
+			std::cerr << "Exception raised: \"" << e.what() << "\" with command \"" << cmd << "\"." << std::endl;
 		}
-	}
 	else
-	{
 		std::cerr << "Command \"" << cmd << "\" unknown." << std::endl;
-	}
 }
 
 void CommandHandler::cat(const pathVector &paths) const
 {
-	if (paths.size() == 0)
+	if (paths.size() < 1)
 		throw std::invalid_argument("\"cat\" command needs at least one file");
 
 	for (const fs::path path : paths)
@@ -39,6 +39,7 @@ void CommandHandler::cat(const pathVector &paths) const
 
 		if (file.peek() != std::ifstream::traits_type::eof())
 			std::cout << file.rdbuf();
+
 		file.close();
 		std::cout << "\"" << path << "\" printed." << std::endl;
 	}
@@ -46,24 +47,29 @@ void CommandHandler::cat(const pathVector &paths) const
 
 void CommandHandler::cd(const pathVector &paths) const
 {
-	if (paths.size() != 1)
-		throw std::invalid_argument("\"cd\" command needs a directory");
+	if (paths.size() == 0)
+		{
+			fs::current_path(this->baseDir);
+			this->pwd(paths);
+		}
+	else
+	{
+		const fs::path path(paths.at(0));
 
-	const fs::path path(paths.at(0));
+		if (!fs::exists(path) || !fs::is_directory(path))
+			throw std::invalid_argument("the directory \"" + path.string() + "\" doesn't exist.");
 
-	if (!fs::exists(path) || !fs::is_directory(path))
-		throw std::invalid_argument("the directory \"" + path.string() + "\" doesn't exist.");
-
-	fs::current_path(path);
-	this->pwd(paths);
+		fs::current_path(path);
+		this->pwd(paths);
+	}
 }
 
 void CommandHandler::cp(const pathVector &paths) const // TODO: gèrer les directories !
 {
 	if (paths.size() != 2)
-		throw std::invalid_argument("\"cd\" command needs two files");
+		throw std::invalid_argument("\"cp\" command needs two files");
 
-	const fs::path oldPath(paths.at(0)), newPath(paths[1]);
+	const fs::path oldPath(paths.at(0)), newPath(paths.at(1));
 
 	if (!fs::exists(oldPath) || fs::is_directory(oldPath))
 		throw std::invalid_argument("the file \"" + oldPath.string() + "\" doesn't exist.");
@@ -83,7 +89,7 @@ void CommandHandler::ls(const pathVector &paths) const
 
 		for (fs::directory_iterator dirIter("."); dirIter != endIter; ++dirIter)
 			std::cout << dirIter->path().filename() << std::endl;
-			std::cout << "\".\" listed." << std::endl;
+		std::cout << "\".\" listed." << std::endl;
 	}
 	else
 		for (const fs::path path : paths)
@@ -98,14 +104,14 @@ void CommandHandler::ls(const pathVector &paths) const
 
 			for (fs::directory_iterator dirIter(path); dirIter != endIter; ++dirIter)
 				std::cout << dirIter->path().filename() << std::endl;
-				std::cout << "\"" << path << "\" listed." << std::endl;
+			std::cout << "\"" << path << "\" listed." << std::endl;
 		}
 }
 
 void CommandHandler::mv(const pathVector &paths) const
 {
 	if (paths.size() != 2)
-		throw std::invalid_argument("\"mv\" command needs two files");
+		throw std::invalid_argument("\"mv\" command needs two files or two directories");
 
 	const fs::path oldPath(paths.at(0)), newPath(paths[1]);
 
@@ -127,21 +133,19 @@ void CommandHandler::pwd(const pathVector &paths) const
 
 void CommandHandler::rm(const pathVector &paths) const
 {
-	if (paths.size() == 0)
-		throw std::invalid_argument("\"rm\" command needs at least one file or repository");
+	if (paths.size() < 1)
+		throw std::invalid_argument("\"rm\" command needs at least one file or one directory");
 
 	for (const fs::path path : paths)
-	{
 		if (!fs::remove(path))
 			std::cout << "\"" << path << "\" doesn't exists." << std::endl;
-			else
+		else
 			std::cout << "\"" << path << "\" deleted." << std::endl;
-	}
 }
 
 void CommandHandler::touch(const pathVector &paths) const
 {
-	if (paths.size() == 0)
+	if (paths.size() < 1)
 		throw std::invalid_argument("\"touch\" command needs at least one file");
 
 	for (const fs::path path : paths)
