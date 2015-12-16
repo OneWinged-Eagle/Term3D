@@ -9,6 +9,7 @@ tcp_server::tcp_server(boost::asio::io_service& io_service, int port)
 
 tcp_server::~tcp_server()
 {
+  m_acceptor.close();
 }
 
 void	tcp_server::start_accept()
