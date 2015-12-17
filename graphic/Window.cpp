@@ -1,11 +1,11 @@
 #include "Window.hpp"
 
 Window::Window()
- : running(true), height(640), width(480), core(), prompt(), event(), screen(SDL_SetVideoMode(this->width, this->height, 24, SDL_SWSURFACE | SDL_OPENGL)), start()
+ : running(true), height(640), width(480), /*core(),*/ prompt(), event(), screen(SDL_SetVideoMode(this->width, this->height, 24, SDL_SWSURFACE | SDL_OPENGL)), start()
 {}
 
 Window::Window(const unsigned int &height, const unsigned int &width)
-: running(true), height(height), width(width), core(), prompt(), event(), screen(SDL_SetVideoMode(this->width, this->height, 24, SDL_SWSURFACE | SDL_OPENGL)), start()
+: running(true), height(height), width(width), /*core(),*/ prompt(), event(), screen(SDL_SetVideoMode(this->width, this->height, 24, SDL_SWSURFACE | SDL_OPENGL)), start()
 {}
 
 unsigned int Window::getHeight()
@@ -28,7 +28,9 @@ void Window::setPrompt()
 {
 	if (this->prompt.getStatus())
 	{
-		this->core.exec(this->prompt.getOld()); //CORE STRING PROMPT
+		std::cout << "La commande est : \"" << this->prompt.getOld() << "\"" << std::endl;
+		this->Notify<WindowObservers::Exec>(this->prompt.getOld());
+//		this->core.exec(this->prompt.getOld()); //CORE STRING PROMPT
 		this->prompt.setOld("");
 	}
 	this->prompt.setStatus();
@@ -93,11 +95,19 @@ void Window::init() const
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
 
-void Window::launch(int &ac, char *av[])
+void Window::launch()
 {
-	glutInit(&ac, av);
+	int argcp = 0;
+	char **argv = NULL;
+
+	glutInit(&argcp, argv);
 	if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
 		this->stop("Error Init SDL");
 	this->init();
 	this->looper();
+}
+
+void Window::operator()()
+{
+	this->launch();
 }
