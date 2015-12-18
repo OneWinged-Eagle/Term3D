@@ -7,12 +7,11 @@ Core::Core()
 void Core::exec(const std::string &str) const
 {
 	std::string cmd;
-	pathVector paths;
-
+  std::vector<std::string> arguments;
 	try
 	{
-		this->parse(str, cmd, paths);
-		this->commandHandler.call(cmd, paths);
+		this->parse(str, cmd, arguments);
+		this->commandHandler.call(cmd, arguments);
 	}
 	catch (std::exception &e)
 	{
@@ -20,11 +19,9 @@ void Core::exec(const std::string &str) const
 	}
 }
 
-void Core::parse(const std::string &str, std::string &cmd, pathVector &paths) const
+void Core::parse(const std::string &str, std::string &cmd, std::vector<std::string> &arguments) const
 {
-	std::vector<std::string> strs;
-
-	boost::split(strs, str, boost::is_any_of(" ,\t"));
-	cmd = strs[0];
-	paths.assign(strs.begin() + 1, strs.end());
+	boost::split(arguments, str, boost::is_any_of(" ,\t"));
+	cmd = arguments[0];
+  arguments.erase(arguments.begin());
 }

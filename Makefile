@@ -6,9 +6,7 @@ LIB = -lboost_thread -lboost_filesystem -lboost_system -lGL -lGLU -lglut -lpthre
 
 NAME = Term3D
 
-SRC =	./main.cpp
-
-#			./graphic/main.cpp \
+SRC =			./graphic/main.cpp \
 			./graphic/Prompt.cpp \
 			./graphic/Window.cpp \
 			./core/CommandHandler.cpp \
