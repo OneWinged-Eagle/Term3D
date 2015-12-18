@@ -1,16 +1,19 @@
 #pragma once
 
-#include "Prompt.hpp"
+#include "core/signalsUtils.hpp"
 
-#include "../core/Core.hpp" // à enlever plus tard (threading, tout ça, toussa)
+#include "graphic/Prompt.hpp"
+//#include "core/Core.hpp" // à enlever plus tard (threading, tout ça, toussa)
 
-class Window
+#include <boost/signals2.hpp>
+
+class Window : public Observable<WindowObservers>
 {
 private:
 	bool running;
 	float height, width;
 
-	Core core; // Idem, à enlever
+//	Core core; // Idem, à enlever
 	Prompt prompt;
 
 	SDL_Event event;
@@ -30,5 +33,7 @@ public:
 	void draw() const;
 	void looper();
 	void init() const;
-	void launch(int &ac, char *av[]);
+	void launch();
+
+	void operator()();
 };

@@ -1,8 +1,29 @@
 #include "Core.hpp"
 
 Core::Core()
- : commandHandler()
-{}
+ : commandHandler(), window()
+{
+	this->window.Register<WindowObservers::Exec>([this](const std::string &str) {
+		this->exec(str);
+	});
+}
+
+void Core::launch()
+{
+/*	std::cout << "Creating signal..." << std::endl;
+	//
+	std::cout << "Signal 	created.\nCreating connection..." << std::endl;
+	boost::signals2::connection connectionTest = sigTest.connect([](const std::string &str){std::cout << "Le mot de passe est : \"" << str << "\"" << std::endl;});
+	std::cout << "Connection created.\nSending signal..." << std::endl;
+	sigTest("Coucou !");
+	std::cout << "Signal sended." << std::endl << std::endl;
+*/
+	std::cout << "Coucou..." << std::endl;
+	this->graphicThread = boost::thread(boost::ref(this->window));
+	std::cout << "On attends que le graphicThread finisse..." << std::endl;
+	this->graphicThread.join();
+	std::cout << "Allez, salut !" << std::endl;
+}
 
 void Core::exec(const std::string &str) const
 {
