@@ -3,11 +3,11 @@
 #include <iostream>
 #include <thread>
 #include <boost/asio.hpp>
-#include "../Include/chat_message.hpp"
+#include "../Include/data_package.hpp"
 
 using boost::asio::ip::tcp;
 
-typedef std::deque<chat_message> chat_message_queue;
+typedef std::deque<data_package> chat_message_queue;
 
 class chat_client
 {
@@ -20,7 +20,7 @@ public:
     do_connect(endpoint_iterator);
   }
 
-  void write(const chat_message& msg)
+  void write(const data_package& msg)
   {
     io_service_.post(
         [this, msg]()
@@ -55,7 +55,7 @@ private:
   void do_read_header()
   {
     boost::asio::async_read(socket_,
-        boost::asio::buffer(read_msg_.data(), chat_message::header_length),
+        boost::asio::buffer(read_msg_.data(), data_package::header_length),
         [this](boost::system::error_code ec, std::size_t /*length*/)
         {
           if (!ec && read_msg_.decode_header())
@@ -113,7 +113,7 @@ private:
 private:
   boost::asio::io_service& io_service_;
   tcp::socket socket_;
-  chat_message read_msg_;
+  data_package read_msg_;
   chat_message_queue write_msgs_;
 };
 
@@ -123,7 +123,7 @@ int main(int argc, char* argv[])
   {
     if (argc != 3)
     {
-      std::cerr << "Usage: chat_client <host> <port>\n";
+      std::cerr << "Usage: client <host> <port>\n";
       return 1;
     }
 
@@ -135,10 +135,10 @@ int main(int argc, char* argv[])
 
     std::thread t([&io_service](){ io_service.run(); });
 
-    char line[chat_message::max_body_length + 1];
-    while (std::cin.getline(line, chat_message::max_body_length + 1))
+    char line[data_package::max_body_length + 1];
+    while (std::cin.getline(line, data_package::max_body_length + 1))
     {
-      chat_message msg;
+      data_package msg;
       msg.body_length(std::strlen(line));
       std::memcpy(msg.body(), line, msg.body_length());
       msg.encode_header();
