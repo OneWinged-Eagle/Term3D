@@ -9,7 +9,6 @@ NAME = Term3D
 SRC =	./main.cpp \
 			./core/CommandHandler.cpp \
 			./core/Core.cpp \
-			./core/signalsUtils.cpp \
 			./graphic/Prompt.cpp \
 			./graphic/Window.cpp
 

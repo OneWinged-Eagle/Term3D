@@ -1,4 +1,4 @@
-# TODO for the network
+# network TODO
 
 * Des bails
 

@@ -1,21 +1,21 @@
 #include "Window.hpp"
 
 Window::Window()
- : running(true), height(640), width(480), /*core(),*/ prompt(), event(), screen(SDL_SetVideoMode(this->width, this->height, 24, SDL_SWSURFACE | SDL_OPENGL)), start()
+ : running(true), width(640), height(480), /*core(),*/ prompt(), event(), screen(SDL_SetVideoMode(this->width, this->height, 24, SDL_SWSURFACE | SDL_OPENGL)), start()
 {}
 
-Window::Window(const unsigned int &height, const unsigned int &width)
-: running(true), height(height), width(width), /*core(),*/ prompt(), event(), screen(SDL_SetVideoMode(this->width, this->height, 24, SDL_SWSURFACE | SDL_OPENGL)), start()
+Window::Window(const unsigned int &width, const unsigned int &height)
+: running(true), width(width), height(height), /*core(),*/ prompt(), event(), screen(SDL_SetVideoMode(this->width, this->height, 24, SDL_SWSURFACE | SDL_OPENGL)), start()
 {}
-
-unsigned int Window::getHeight()
-{
-	return this->height;
-}
 
 unsigned int Window::getWidth()
 {
 	return this->width;
+}
+
+unsigned int Window::getHeight()
+{
+	return this->height;
 }
 
 void Window::stop(const std::string &error)
@@ -72,7 +72,7 @@ void Window::draw() const
 
 void Window::looper(void)
 {
-	while(this->running)
+	while (this->running)
 	{
 		this->start = SDL_GetTicks();
 		this->draw();
@@ -97,10 +97,10 @@ void Window::init() const
 
 void Window::launch()
 {
-	int argcp = 0;
+	int argc = 0;
 	char **argv = NULL;
 
-	glutInit(&argcp, argv);
+	glutInit(&argc, argv);
 	if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
 		this->stop("Error Init SDL");
 	this->init();

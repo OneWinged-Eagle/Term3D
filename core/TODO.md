@@ -1,5 +1,7 @@
-# TODO for the core
+# core TODO
 
 * Gèrer les répertoires avec "cp" dans CommandHandler.cpp ligne 67
 
-* Voir signalsUtils.*
+* "Finaliser" liaison avec partie graphique
+
+* Débuter liaison avec partie réseau

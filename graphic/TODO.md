@@ -1,4 +1,4 @@
-# TODO for the graphic
+# graphic TODO
 
 * Des bails
 

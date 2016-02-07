@@ -1,30 +1,20 @@
 #include "CommandHandler.hpp"
 
 CommandHandler::CommandHandler()
-{
-}
+{}
 
 void CommandHandler::call(const std::string &cmd, const std::vector<std::string> &arguments) const
 {
 	if (cmd.length() > 0 && this->callMap.find(cmd) != this->callMap.end())
-		try
-		{
-			std::pair <optionVector, pathVector> p = this->parseArguments(arguments);
-			(this->*(callMap.at(cmd)))(p.second, p.first);
-		}
-		catch (std::invalid_argument &e)
-		{
-			std::cerr << "Invalid argument(s): " << e.what() << std::endl;
-		}
-		catch (std::exception &e)
-		{
-			std::cerr << "Exception raised: \"" << e.what() << "\" with command \"" << cmd << "\"." << std::endl;
-		}
+	{
+		std::pair <std::vector<std::string>, pathVector> p = this->parseArguments(arguments);
+		(this->*(callMap.at(cmd)))(p.first, p.second);
+	}
 	else
 		std::cerr << "Command \"" << cmd << "\" unknown." << std::endl;
 }
 
-std::pair <optionVector, pathVector> CommandHandler::parseArguments(const std::vector<std::string> &arguments) const
+std::pair <std::vector<std::string>, pathVector> CommandHandler::parseArguments(const std::vector<std::string> &arguments) const
 {
 	std::vector<std::string> options;
 	std::vector<fs::path> paths;
@@ -39,7 +29,7 @@ std::pair <optionVector, pathVector> CommandHandler::parseArguments(const std::v
 	return std::make_pair(options, paths);
 }
 
-void CommandHandler::cat(const pathVector &paths, const optionVector &options) const
+void CommandHandler::cat(const std::vector<std::string> &options, const pathVector &paths) const
 {
 	(void) options;
 	if (paths.size() < 1)
@@ -63,7 +53,7 @@ void CommandHandler::cat(const pathVector &paths, const optionVector &options) c
 	}
 }
 
-void CommandHandler::cd(const pathVector &paths, const optionVector &options) const
+void CommandHandler::cd(const std::vector<std::string> &options, const pathVector &paths) const
 {
 	(void) options;
 	if (paths.size() == 0)
@@ -83,7 +73,7 @@ void CommandHandler::cd(const pathVector &paths, const optionVector &options) co
 	}
 }
 
-void CommandHandler::cp(const pathVector &paths, const optionVector &options) const // TODO: gèrer les directories !
+void CommandHandler::cp(const std::vector<std::string> &options, const pathVector &paths) const // TODO: gèrer les directories !
 {
 	(void) options;
 	if (paths.size() != 2)
@@ -101,7 +91,7 @@ void CommandHandler::cp(const pathVector &paths, const optionVector &options) co
 	std::cout << "\"" << oldPath << "\" copied to \"" << newPath << "\"." << std::endl;
 }
 
-void CommandHandler::ls(const pathVector &paths, const optionVector &options) const
+void CommandHandler::ls(const std::vector<std::string> &options, const pathVector &paths) const
 {
 	(void) options;
 	if (paths.size() == 0)
@@ -129,7 +119,7 @@ void CommandHandler::ls(const pathVector &paths, const optionVector &options) co
 		}
 }
 
-void CommandHandler::mv(const pathVector &paths, const optionVector &options) const
+void CommandHandler::mv(const std::vector<std::string> &options, const pathVector &paths) const
 {
 	(void) options;
 	if (paths.size() != 2)
@@ -147,14 +137,14 @@ void CommandHandler::mv(const pathVector &paths, const optionVector &options) co
 	std::cout << "\"" << oldPath << "\" renamed to \"" << newPath << "\"." << std::endl;
 }
 
-void CommandHandler::pwd(const pathVector &paths, const optionVector &options) const
+void CommandHandler::pwd(const std::vector<std::string> &options, const pathVector &paths) const
 {
-	(void) paths;
 	(void) options;
+	(void) paths;
 	std::cout << "The current working directory is: \"" << fs::current_path() << "\"" << std::endl;
 }
 
-void CommandHandler::rm(const pathVector &paths, const optionVector &options) const
+void CommandHandler::rm(const std::vector<std::string> &options, const pathVector &paths) const
 {
 	(void) options;
 	if (paths.size() < 1)
@@ -167,7 +157,7 @@ void CommandHandler::rm(const pathVector &paths, const optionVector &options) co
 			std::cout << "\"" << path << "\" deleted." << std::endl;
 }
 
-void CommandHandler::touch(const pathVector &paths, const optionVector &options) const
+void CommandHandler::touch(const std::vector<std::string> &options, const pathVector &paths) const
 {
 	(void) options;
 	if (paths.size() < 1)

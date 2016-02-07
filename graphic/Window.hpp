@@ -11,7 +11,7 @@ class Window : public Observable<WindowObservers>
 {
 private:
 	bool running;
-	float height, width;
+	float width, height;
 
 //	Core core; // Idem, à enlever
 	Prompt prompt;
@@ -22,10 +22,10 @@ private:
 
 public:
 	Window();
-	Window(const unsigned int &height, const unsigned int &width);
+	Window(const unsigned int &width, const unsigned int &height);
 
-	unsigned int getHeight();
 	unsigned int getWidth();
+	unsigned int getHeight();
 
 	void stop(const std::string &error);
 	void setPrompt();
