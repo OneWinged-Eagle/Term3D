@@ -20,6 +20,7 @@ public:
 
   static pointer				create(boost::asio::io_service& io_service);
   boost::asio::ip::tcp::socket&			socket();
+  std::string					make_daytime_string();
   void						start();
   void						handle_write(const boost::system::error_code& error);
   
