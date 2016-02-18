@@ -10,6 +10,7 @@
 #include <map>
 #include <stdexcept>
 #include <string>
+#include <cstdlib>
 
 namespace fs = boost::filesystem;
 
@@ -18,11 +19,13 @@ typedef std::vector<std::string> optionVector;
 
 class CommandHandler
 {
-	typedef void (CommandHandler::*commandPtr)(const pathVector &, const optionVector &) const;
+	typedef void (CommandHandler::*commandPtr)(const pathVector &, const optionVector &);
 	typedef std::map<const std::string, commandPtr> commandMap;
 
 private:
 	const commandMap callMap = boost::assign::map_list_of
+		("whoami", &CommandHandler::whoami)
+		("tree", &CommandHandler::tree)
 		("cat", &CommandHandler::cat)
 		("cd", &CommandHandler::cd)
 		("cp", &CommandHandler::cp)
@@ -35,16 +38,21 @@ private:
 
 public:
 	CommandHandler();
-	void call(const std::string &cmd, const std::vector<std::string> &arguments) const;
+	bool call(const std::string &cmd, const std::vector<std::string> &arguments);
+	fs::path getPreviousPath(void);
 
 private:
-	std::pair <optionVector, pathVector> parseArguments(const std::vector<std::string> &arguments) const;
-	void cat(const pathVector &paths, const optionVector &options) const;
-	void cd(const pathVector &paths, const optionVector &options) const;
-	void cp(const pathVector &paths, const optionVector &options) const;
-	void ls(const pathVector &paths, const optionVector &options) const;
-	void mv(const pathVector &paths, const optionVector &options) const;
-	void pwd(const pathVector &paths, const optionVector &options) const;
-	void rm(const pathVector &paths, const optionVector &options) const;
-	void touch(const pathVector &paths, const optionVector &options) const;
+	fs::path previousPath;
+
+	std::pair <optionVector, pathVector> parseArguments(const std::vector<std::string> &arguments);
+	void whoami(const pathVector &paths, const optionVector &options);
+	void tree(const pathVector &paths, const optionVector &options);
+ 	void cat(const pathVector &paths, const optionVector &options);
+	void cd(const pathVector &paths, const optionVector &options);
+	void cp(const pathVector &paths, const optionVector &options);
+	void ls(const pathVector &paths, const optionVector &options);
+	void mv(const pathVector &paths, const optionVector &options);
+	void pwd(const pathVector &paths, const optionVector &options);
+	void rm(const pathVector &paths, const optionVector &options);
+	void touch(const pathVector &paths, const optionVector &options);
 };

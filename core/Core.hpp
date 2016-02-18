@@ -27,6 +27,6 @@ public:
 	void launch();
 
 private:
-	void exec(const std::string &cmd) const;
+	void exec(const std::string &cmd);
 	void parse(const std::string &str, std::string &cmd, std::vector<std::string> &paths) const;
 };

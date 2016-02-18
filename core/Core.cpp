@@ -25,7 +25,7 @@ void Core::launch()
 	std::cout << "Allez, salut !" << std::endl;
 }
 
-void Core::exec(const std::string &str) const
+void Core::exec(const std::string &str)
 {
 	std::string cmd;
   std::vector<std::string> arguments;

@@ -77,7 +77,7 @@ void Window::looper(void)
 		this->start = SDL_GetTicks();
 		this->draw();
 		while (SDL_PollEvent(&this->event) && this->checkEvent());
-		SDL_GL_SwapBuffers();
+//		SDL_GL_SwapBuffers(); // Fait Segfault Willy
 		if (1000 / 60 > (SDL_GetTicks() - start)) //KEYWORD 1000 = SPEED
 			SDL_Delay(1000 / 60 - (SDL_GetTicks() - start));
 	}
