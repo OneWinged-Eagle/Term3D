@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Smap xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <name>base</name>
+  <rooms>
+    <XRoom>
+      <sizex>0</sizex>
+      <sizey>0</sizey>
+      <sizez>0</sizez>
+      <models>
+        <XModel>
+          <name>salut je suis l'object</name>
+        </XModel>
+      </models>
+    </XRoom>
+  </rooms>
+</Smap>

@@ -1,9 +1,0 @@
-cmake_minimum_required(VERSION 3.3)
-
-set(SRCS main.cpp CommandHandler.cpp)
-
-add_executable(core ${SRCS})
-
-set_property(TARGET core PROPERTY FOLDER "executables")
-
-install (TARGETS core RUNTIME DESTINATION ${PROJECT_BINARY_DIR}/bin)
