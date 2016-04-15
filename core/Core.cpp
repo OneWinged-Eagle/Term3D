@@ -18,7 +18,7 @@ void Core::launch()
 	std::cout << "graphicThread terminé" << std::endl;
 }
 
-void Core::exec(const std::string &str) const
+void Core::exec(const std::string &str)
 {
 	std::string cmd;
   std::vector<std::string> arguments;

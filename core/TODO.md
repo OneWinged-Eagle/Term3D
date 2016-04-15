@@ -2,6 +2,11 @@
 
 * Gèrer les répertoires avec "cp" dans CommandHandler.cpp ligne 67
 
-* "Finaliser" liaison avec partie graphique
+* Voir signalsUtils.*
 
-* Débuter liaison avec partie réseau
+* Ajouter des commandes :
+*  - chmod      TO DO
+*  - tree       TO DO
+*  - find       TO DO
+*  - ip         TO DO
+*  - whoami     DONE
