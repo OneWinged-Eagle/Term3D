@@ -11,9 +11,12 @@ public class NetworkCallbacks : Bolt.GlobalEventListener
     public override void OnEvent(EventLog evnt)
     {
         logMessages.Insert(0, evnt.Message);
-        base.OnEvent(evnt);
+        base.OnEvent(evnt); // késako ?
     }
 
+
+
+	//a decommenter pour afficher le debug de bolt
     void OnGUI()
     {
         int maxMsg = Mathf.Min(5, logMessages.Count);
