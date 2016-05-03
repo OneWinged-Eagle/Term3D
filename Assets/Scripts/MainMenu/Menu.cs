@@ -1,34 +1,58 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
-public class Menu : Bolt.GlobalEventListener
-{
-    void OnGUI()
-    {
-        GUILayout.BeginArea(new Rect(10, 10, Screen.width - 20, Screen.height - 20));
+public class MenuTemp : Bolt.GlobalEventListener {
+	public GameObject mainMenu;
+	public GameObject joinMenu;
+	public InputField ip;
 
-        if (GUILayout.Button("Start Server", GUILayout.ExpandWidth(true), GUILayout.ExpandHeight(true)))
-        {
-            // START SERVER
-            BoltLauncher.StartServer(UdpKit.UdpEndPoint.Parse("127.0.0.1:27000"));
-        }
+	// Use this for initialization
+	void Start () {
+	
+	}
+	
+	// Update is called once per frame
+	void Update () {
+	
+	}
 
-        if (GUILayout.Button("Start Client", GUILayout.ExpandWidth(true), GUILayout.ExpandHeight(true)))
-        {
-            // START CLIENT
-            BoltLauncher.StartClient();
-        }
+	public void LaunchServerButton()
+	{
+		BoltLauncher.StartServer(UdpKit.UdpEndPoint.Parse("127.0.0.1:27000"));
+	}
 
-        GUILayout.EndArea();
-    }
+	public void JoinServerButton()
+	{
+		mainMenu.SetActive (false);
+		joinMenu.SetActive(true);
 
-  /*  public override void BoltStartDone()
-    {
-        if (BoltNetwork.isServer)
-        //    BoltNetwork.LoadScene("Tutorial1");
-			BoltNetwork.LoadScene("Term3D");
-        else BoltNetwork.Connect(UdpKit.UdpEndPoint.Parse("127.0.0.1:27000"));
+	}
 
-    }
-*/
+	public void ExitButton()
+	{
+		Application.Quit ();
+	}
+
+
+
+	public void ConnectButton()
+	{
+		Debug.Log (ip.text);
+		BoltLauncher.StartClient ();
+	}
+
+	public void backButton()
+	{
+		joinMenu.SetActive (false);
+		mainMenu.SetActive (true);
+	}
+
+	public override void BoltStartDone ()
+	{
+		if (BoltNetwork.isServer)
+			BoltNetwork.LoadScene ("Term3D");
+		else
+			BoltNetwork.Connect(UdpKit.UdpEndPoint.Parse(ip.text));
+	}
 }
