@@ -11,6 +11,11 @@ public class Chat : Bolt.GlobalEventListener {
 	public Scrollbar scrollBar;
 
 
+
+	//chat entre clients ou non
+	public bool reseau = false;
+
+
 	List<string> logChat;
 
 	private string display = "";
@@ -19,12 +24,10 @@ public class Chat : Bolt.GlobalEventListener {
 
 
 
-	// Use this for initialization
 	void Start () {
 		logChat = new List<string> ();
 	}
 	
-	// Update is called once per frame
 	void Update () {
 		if (addText) {
 			displayMsg ();
@@ -45,13 +48,17 @@ public class Chat : Bolt.GlobalEventListener {
 
 	public void sendMsg()
 	{
-		var chatLogEvent = messageEvent.Create ();
-		chatLogEvent.message = ip.text;
-		chatLogEvent.Send ();
-		/*logChat.Add(ip.text);
-		ip.text = "";
-		addText = true;*/
-		ip.text = "";
+
+		if (reseau == true) {
+			var chatLogEvent = messageEvent.Create ();
+			chatLogEvent.message = ip.text;
+			chatLogEvent.Send ();
+		} else {
+		scrollBar.value = 0.0f;
+		logChat.Add(ip.text);
+		addText = true;
+		}
+			ip.text = "";
 	}
 
 	 
