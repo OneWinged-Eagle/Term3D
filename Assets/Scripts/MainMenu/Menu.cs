@@ -6,7 +6,8 @@ public class Menu : Bolt.GlobalEventListener {
 	public GameObject mainMenu;
 	public GameObject joinMenu;
 	public InputField ip;
-
+	public string servPublicIP;
+	public ushort port = 27000;
 	// Use this for initialization
 	void Start () {
 	
@@ -17,9 +18,17 @@ public class Menu : Bolt.GlobalEventListener {
 	
 	}
 
+	public static string GetPublicIP()
+	{
+		return (new System.Net.WebClient().DownloadString("https://api.ipify.org"));
+	}
+
 	public void LaunchServerButton()
 	{
-		BoltLauncher.StartServer(UdpKit.UdpEndPoint.Parse("127.0.0.1:27000"));
+		BoltLauncher.StartServer(new UdpKit.UdpEndPoint(UdpKit.UdpIPv4Address.Any, port));
+		//DISPLAY THE PUBLIC IP IN UI
+		servPublicIP = GetPublicIP();
+		Debug.Log(servPublicIP + ":" + port);
 	}
 
 	public void JoinServerButton()
@@ -33,9 +42,7 @@ public class Menu : Bolt.GlobalEventListener {
 	{
 		Application.Quit ();
 	}
-
-
-
+		
 	public void ConnectButton()
 	{
 		Debug.Log (ip.text);
@@ -50,8 +57,12 @@ public class Menu : Bolt.GlobalEventListener {
 
 	public override void BoltStartDone ()
 	{
-		if (BoltNetwork.isServer)
+		if (BoltNetwork.isServer) {
 			BoltNetwork.LoadScene ("Term3D");
+			//MAKE UPNP WORK
+			/*BoltNetwork.EnableUPnP();
+			BoltNetwork.OpenPortUPnP(27000);*/
+		}
 		else
 			BoltNetwork.Connect(UdpKit.UdpEndPoint.Parse(ip.text));
 	}
