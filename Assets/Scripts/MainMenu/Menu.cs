@@ -8,18 +8,13 @@ public class Menu : Bolt.GlobalEventListener {
 	public InputField ip;
 	public string servPublicIP;
 	public ushort port = 27000;
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
+	void Start () {}
+
+	void Update () {}
 
 	public static string GetPublicIP()
-	{
+	{ 
 		return (new System.Net.WebClient().DownloadString("https://api.ipify.org"));
 	}
 
@@ -33,20 +28,22 @@ public class Menu : Bolt.GlobalEventListener {
 
 	public void JoinServerButton()
 	{
-		mainMenu.SetActive (false);
+		mainMenu.SetActive(false);
 		joinMenu.SetActive(true);
 
 	}
 
 	public void ExitButton()
 	{
+		BoltNetwork.ClosePortUPnP(port);
+		BoltLauncher.Shutdown ();
 		Application.Quit ();
 	}
 		
 	public void ConnectButton()
 	{
 		Debug.Log (ip.text);
-		BoltLauncher.StartClient ();
+		BoltLauncher.StartClient();
 	}
 
 	public void backButton()
@@ -57,13 +54,16 @@ public class Menu : Bolt.GlobalEventListener {
 
 	public override void BoltStartDone ()
 	{
-		if (BoltNetwork.isServer) {
+		if (BoltNetwork.isServer) 
+		{
 			BoltNetwork.LoadScene ("Term3D");
-			//MAKE UPNP WORK
-			/*BoltNetwork.EnableUPnP();
-			BoltNetwork.OpenPortUPnP(27000);*/
+			//BOLT UPNP PORT FORWARDING
+			BoltNetwork.EnableUPnP ();
+			BoltNetwork.OpenPortUPnP (port);
+		} 
+		else 
+		{
+			BoltNetwork.Connect (UdpKit.UdpEndPoint.Parse (ip.text));
 		}
-		else
-			BoltNetwork.Connect(UdpKit.UdpEndPoint.Parse(ip.text));
 	}
 }
