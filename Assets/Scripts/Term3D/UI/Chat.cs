@@ -4,51 +4,54 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 
 [BoltGlobalBehaviour]
-public class Chat : Bolt.GlobalEventListener {
-
+public class Chat : Bolt.GlobalEventListener
+{
 	public InputField ip;
 	public Text content;
 	public Scrollbar scrollBar;
-
-
+	private CommandHandler commandHandler;
 
 	//chat entre clients ou non
 	public bool reseau = false;
 
-
 	List<string> logChat;
-
-	private string display = "";
-
+//	private string display = "";
 	bool addText = false;
 
-
-
-	void Start () {
+	void Start ()
+	{
+		this.commandHandler = new CommandHandler();
 		logChat = new List<string> ();
 	}
-	
+
 	void Update () {
 		if (addText) {
 			displayMsg ();
 		}
-
 	}
 
 	void displayMsg()
 	{
-		display = "";
-		foreach (string msg in logChat) {
-			display = display.ToString () + msg.ToString () + "\n";
+		string display = "";
+		string lastCommand = "";
+
+		foreach (string msg in logChat)
+		{
+			display += msg.ToString () + "\n";
+			lastCommand = msg;
 		}
+
+		List<string> cmdline = new List<string>(lastCommand.Split(' '));
+		string result = this.commandHandler.callFunction(cmdline);
+		display += result;
+		logChat.Add(result);
+
 		content.text = display;
-		display = "";
 		addText = false;
 	}
 
 	public void sendMsg()
 	{
-
 		if (reseau == true) {
 			var chatLogEvent = messageEvent.Create ();
 			chatLogEvent.message = ip.text;
@@ -61,7 +64,6 @@ public class Chat : Bolt.GlobalEventListener {
 			ip.text = "";
 	}
 
-	 
 	public override void OnEvent(messageEvent evnt)
 	{
 		Debug.Log (evnt.message);
