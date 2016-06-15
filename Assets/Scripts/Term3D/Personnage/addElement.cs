@@ -26,7 +26,8 @@ public class addElement : MonoBehaviour {
 	{
 		if (Input.GetKeyDown (KeyCode.E)) {
 			Debug.Log ("obj spawn");
-			Instantiate (spawnObject, spawnPoint.position, spawnPoint.rotation);
+			BoltNetwork.Instantiate(spawnObject, spawnPoint.position, Quaternion.identity);
+			//Instantiate (spawnObject, spawnPoint.position, spawnPoint.rotation);
 		}
 
 		RaycastHit hit;
