@@ -20,9 +20,7 @@ public class StreamCallbacks : Bolt.GlobalEventListener
         if (BoltNetwork.isServer)
         {
             byte[] data = Encoding.ASCII.GetBytes("Testing");
-            var log = EventLog.Create();
-            log.Message = string.Format("LOG SCENE DONE");
-            log.Send();
+            BoltLog.Info("DATA TEST"+data.ToString());
             c.StreamBytes(testChannel, data);
         }
     }
