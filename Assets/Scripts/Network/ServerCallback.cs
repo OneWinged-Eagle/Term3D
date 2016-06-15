@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.IO;
 using System.Text;
 using UdpKit;
 using Bolt;
@@ -12,7 +13,7 @@ public class ServerCallback : Bolt.GlobalEventListener
         var log = EventLog.Create();
         log.Message = string.Format("{0} connected", connection.RemoteEndPoint);
         log.Send();
-        connection.SetStreamBandwidth(1024 * 20);
+        connection.SetStreamBandwidth(4092 * 20);
     }
 
     public override void Disconnected(BoltConnection connection)
@@ -20,29 +21,5 @@ public class ServerCallback : Bolt.GlobalEventListener
         var log = EventLog.Create();
         log.Message = string.Format("{0} disconnected", connection.RemoteEndPoint);
         log.Send();
-    }
-}
-
-[BoltGlobalBehaviour()]
-public class StreamCallbacks : Bolt.GlobalEventListener
-{
-    public static UdpKit.UdpChannelName testChannel;
-    public override void BoltStartBegin()
-    {
-        testChannel = BoltNetwork.CreateStreamChannel("test", UdpKit.UdpChannelMode.Reliable, 1);
-    }
-
-    public override void SceneLoadRemoteDone(BoltConnection c)
-    {
-        if (BoltNetwork.isServer)
-        {
-            byte[] data = Encoding.ASCII.GetBytes("Testing");
-            c.StreamBytes(testChannel, data);
-        }
-    }
-
-    public override void StreamDataReceived(BoltConnection connection, UdpStreamData data)
-    {
-        BoltLog.Info(data);
     }
 }
