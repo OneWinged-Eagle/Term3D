@@ -8,7 +8,7 @@ using Bolt;
 public class StreamCallbacks : Bolt.GlobalEventListener
 {
     public static UdpKit.UdpChannelName testChannel;
-   // public AudioSource stingSource;
+    // public AudioSource stingSource;
 
     public override void BoltStartBegin()
     {
@@ -19,8 +19,9 @@ public class StreamCallbacks : Bolt.GlobalEventListener
     {
         if (BoltNetwork.isServer)
         {
+            AudioPlay audio = new AudioPlay();
             byte[] data = Encoding.ASCII.GetBytes("Testing");
-            BoltLog.Info("DATA TEST"+data.ToString());
+            BoltLog.Info("DATA TEST" + data.ToString());
             c.StreamBytes(testChannel, data);
         }
     }
@@ -28,5 +29,6 @@ public class StreamCallbacks : Bolt.GlobalEventListener
     public override void StreamDataReceived(BoltConnection connection, UdpStreamData data)
     {
         BoltLog.Info(data);
-    }
+        
+    } 
 }
