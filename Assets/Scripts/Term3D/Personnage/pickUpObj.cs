@@ -29,4 +29,9 @@ public class pickUpObj : MonoBehaviour {
 
 		picked = pickedUp;
 	}
+
+	public void Destroy()
+	{
+		Destroy (gameObject);
+	}
 }

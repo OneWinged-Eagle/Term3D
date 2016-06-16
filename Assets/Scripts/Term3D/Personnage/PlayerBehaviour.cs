@@ -1,25 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class addElement : MonoBehaviour {
+public class PlayerBehaviour : Bolt.EntityBehaviour<IRobotState> {
+
 	public Transform spawnPoint;
 	public GameObject spawnObject;
 	public GameObject spawnObject2;
-
-
 	public float lenghtRay;
 
-
-
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update ()
+	public override void Attached ()
 	{
+		state.Transform.SetTransforms (transform);
 
+		base.Attached ();
+	}
+
+	public override void SimulateOwner ()
+	{
 		if (Input.GetKeyDown (KeyCode.E)) {
 			Debug.Log ("obj spawn");
 			//BoltNetwork.Instantiate(spawnObject, spawnPoint.position, Quaternion.identity);
@@ -46,6 +43,8 @@ public class addElement : MonoBehaviour {
 				}
 			}
 		}
+
+
 		//pas propre ici a refaire
 		else if (Input.GetMouseButtonDown (1)) {
 			if (Physics.Raycast (intersectionRay, out hit, lenghtRay)) {
@@ -54,9 +53,10 @@ public class addElement : MonoBehaviour {
 					hit.transform.SendMessage ("pickUp", false, SendMessageOptions.DontRequireReceiver);
 				}
 			}
-		} else if (Input.GetKey (KeyCode.O))
-			if (Physics.Raycast (intersectionRay, out hit, lenghtRay))
-				if (hit.collider.tag == "NonStaticObject")
-					hit.transform.SendMessage ("Destroy", true, SendMessageOptions.DontRequireReceiver);
+		}
+
+		base.SimulateOwner ();
 	}
+
+
 }
