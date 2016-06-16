@@ -21,6 +21,9 @@ public class CommandHandler
 		this.commands.Add("ls", new Func<List<string>, string>(ls));
 		this.commands.Add("exit", new Func<List<string>, string>(exit));
 		this.commands.Add("cd", new Func<List<string>, string>(cd));
+		this.commands.Add("touch", new Func<List<string>, string>(touch));
+		this.commands.Add("mkdir", new Func<List<string>, string>(mkdir));
+		this.commands.Add("rmdir", new Func<List<string>, string>(rmdir));
 //		this.commands.Add("ps", new Func<string>(ps));
 	}
 
@@ -35,6 +38,52 @@ public class CommandHandler
 		Delegate del = this.commands[command];
 		cmdline.RemoveAt(0);
 		return (del.DynamicInvoke(cmdline).ToString());
+	}
+
+	private string touch(List<string> args)
+	{
+		int i;
+
+		if (args.Count != 1)
+			return ("Touch command needs 2 arguments.\n");
+		else
+			if (File.Exists(args[0]))
+				return ("Such file already exists : " + args[0] + "\n");
+			if ((i = args[0].LastIndexOf('/')) != -1)
+				if (!Directory.Exists(args[0].Substring(0, i)))
+					return (args[0].Substring(0, i) + " : No such directory.\n");
+			File.Create(args[0]);
+		return ("");
+	}
+
+	private string mkdir(List<string> args)
+	{
+		int i;
+
+		if (args.Count != 1)
+			return ("Touch command needs 2 arguments.\n");
+		else
+			if (Directory.Exists(args[0]))
+				return ("Such directory already exists : " + args[0] + "\n");
+			if ((i = args[0].LastIndexOf('/')) != -1)
+				if (!Directory.Exists(args[0].Substring(0, i)))
+					return (args[0].Substring(0, i) + " : No such directory.\n");
+			Directory.CreateDirectory(args[0]);
+		return ("");
+	}
+
+	private string rmdir(List<string> args)
+	{
+		if (args.Count != 1)
+			return ("Rmdir command needs only 1 argument.\n");
+		else
+		{
+			if (!Directory.Exists(args[0]))
+				return (args[0] + " : Directory not found.\n");
+			else
+				Directory.Delete(args[0]);
+		}
+		return("");
 	}
 
 	private string exit(List<string> args)
@@ -79,7 +128,15 @@ public class CommandHandler
 
 	private string cd(List<string> args)
 	{
-		return ("cd\n");
+		if (args.Count == 0)
+			return ("CD home a faire !\n");
+		else
+			{
+				if(!Directory.Exists(args[0]))
+					return (args[0] + " : No such file or directory.");
+				Directory.SetCurrentDirectory(args[0]);
+				return ("cd done!\n");
+			}
 	}
 
 	private string cat(List<string> args)

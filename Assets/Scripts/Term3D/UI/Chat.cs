@@ -34,6 +34,7 @@ public class Chat : Bolt.GlobalEventListener
 	{
 		string display = "";
 		string lastCommand = "";
+		string result = "";
 
 		foreach (string msg in logChat)
 		{
@@ -42,8 +43,14 @@ public class Chat : Bolt.GlobalEventListener
 		}
 
 		List<string> cmdline = new List<string>(lastCommand.Split(' '));
-		string result = this.commandHandler.callFunction(cmdline);
-		display += result;
+
+		if (lastCommand == "clear")
+			display = result;
+		else
+		{
+			result = this.commandHandler.callFunction(cmdline);
+			display += result;
+		}
 		logChat.Add(result);
 
 		content.text = display;
