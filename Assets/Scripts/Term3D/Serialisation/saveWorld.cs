@@ -36,10 +36,9 @@ public class saveWorld : MonoBehaviour {
 	public void save()
 	{
 //		test = BoltEntity.FindObjectOfType<ICubeVert> ();
-		lelel = GameObject.Find("Cube vert(Clone)");
+		//lelel = GameObject.Find("Cube vert(Clone)");
 		//test = GameObject.Find("Cube vert(clone)");
 		all = GameObject.FindGameObjectsWithTag("NonStaticObject");
-
 
 
 

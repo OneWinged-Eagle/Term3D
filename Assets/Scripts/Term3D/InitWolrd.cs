@@ -19,8 +19,8 @@ public class testCallbacks : Bolt.GlobalEventListener
 		Vector3 pos = new Vector3(Random.Range(-16, 16), 0, Random.Range(-16, 16));
 
 
-		//BoltNetwork.Instantiate(BoltPrefabs.Robot, pos, Quaternion.identity);
-		BoltNetwork.Instantiate(BoltPrefabs.Player, pos, Quaternion.identity);
+		BoltNetwork.Instantiate(BoltPrefabs.Robot, pos, Quaternion.identity);
+		//BoltNetwork.Instantiate(BoltPrefabs.Player, pos, Quaternion.identity);
 
 		if (BoltNetwork.isServer)
 			instantiateWorld ();

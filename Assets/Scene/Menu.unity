@@ -734,7 +734,6 @@ MonoBehaviour:
   joinMenu: {fileID: 436517447}
   ip: {fileID: 57804159}
   servPublicIP: 
-  port: 27000
 --- !u!1 &908748722
 GameObject:
   m_ObjectHideFlags: 0

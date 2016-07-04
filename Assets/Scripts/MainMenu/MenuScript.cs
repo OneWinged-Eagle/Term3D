@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class Menu : Bolt.GlobalEventListener {
+public class MenuScript : Bolt.GlobalEventListener {
 	public GameObject mainMenu;
 	public GameObject joinMenu;
 	public InputField ip;

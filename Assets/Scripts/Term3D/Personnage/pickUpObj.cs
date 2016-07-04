@@ -7,13 +7,11 @@ public class pickUpObj : MonoBehaviour {
 
 	private bool picked;
 
-	// Use this for initialization
 	void Start () {
 		
 		hook = GameObject.Find ("Hook");
 	}
 	
-	// Update is called once per frame
 	void Update () {
 
 		if (picked == true) {
@@ -25,7 +23,6 @@ public class pickUpObj : MonoBehaviour {
 
 	public void pickUp(bool pickedUp)
 	{
-		Debug.Log ("coucou ça otuche ici hihi");
 
 		picked = pickedUp;
 	}
