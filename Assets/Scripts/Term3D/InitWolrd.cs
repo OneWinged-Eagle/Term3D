@@ -22,7 +22,6 @@ public class testCallbacks : Bolt.GlobalEventListener
 
 		// instantiate cube
 		//BoltNetwork.Instantiate(BoltPrefabs.Robot, pos, Quaternion.identity);
-		//BoltNetwork.Instantiate(BoltPrefabs.Player, pos, Quaternion.identity);
 
 		if (BoltNetwork.isServer)
 			instantiateWorld ();
@@ -80,7 +79,7 @@ public class testCallbacks : Bolt.GlobalEventListener
 
 /*
 
-
+	
 
 
 		objs [0] = GameObject.Find("Cube vert");
