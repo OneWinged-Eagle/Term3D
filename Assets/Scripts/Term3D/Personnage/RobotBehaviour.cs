@@ -3,7 +3,7 @@ using System.Collections;
 
 public class RobotBehaviour : Bolt.EntityBehaviour<IRobotState>
 {
-    public override void Attached()
+    public override void Attached() //equivalent du start
     {
         state.Transform.SetTransforms(transform);
         state.SetAnimator(GetComponent<Animator>());
@@ -11,7 +11,7 @@ public class RobotBehaviour : Bolt.EntityBehaviour<IRobotState>
         base.Attached();
     }
 
-    public override void SimulateOwner()
+    public override void SimulateOwner()//equivalent du update
     {
         var speed = state.Speed;
         var angularSpeed = state.AngularSpeed;
