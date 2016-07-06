@@ -46,7 +46,7 @@ public class Chat : Bolt.GlobalEventListener {
 		}
 
 		List<string> cmdline = new List<string>(lastCommand.Split(' '));
-		string result = this.commandHandler.callFunction(cmdline);
+		result = this.commandHandler.callFunction(cmdline);
 		display += result;
 
 		if (lastCommand == "clear")
