@@ -1,15 +1,17 @@
-﻿using UnityEngine;
 using System.Collections;
+﻿using UnityEngine;
 
 [BoltGlobalBehaviour]
-public class changeColor : Bolt.EntityBehaviour<ICubeRougeState>
+public class ChangeColor : Bolt.EntityBehaviour<ICubeRougeState>
 {
-	public override void Attached() {
+	public override void Attached()
+	{
 		state.CubeColor = new Color(Random.value, Random.value, Random.value);
-		state.AddCallback("CubeColor", ColorChanged);
+		state.AddCallback("CubeColor", colorChanged);
 	}
 
-	void ColorChanged() {
+	private void colorChanged()
+	{
 		GetComponent<Renderer>().material.color = state.CubeColor;
 	}
 }

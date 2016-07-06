@@ -1,69 +1,69 @@
+using System.Collections;
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
-public class MenuScript : Bolt.GlobalEventListener {
-	public GameObject mainMenu;
-	public GameObject joinMenu;
-	public InputField ip;
-	public string servPublicIP;
-	public ushort port = 27000;
+public class MenuScript : Bolt.GlobalEventListener
+{
+	public GameObject _mainMenu;
+	public GameObject _joinMenu;
+	public InputField _ip;
+	public string _servPublicIP; // TODO: variable utilisée uniquement dans LaunchServerButton : à passer en variable locale ?
+	public ushort _port = 27000;
+	// TODO: toutes les variables ci-dessus sont publiques, normal ? Peut-être à passer en properties ?
 
-	void Start () {}
+	private void Start() {}
 
-	void Update () {}
+	private void Update() {}
 
 	public static string GetPublicIP()
-	{ 
-		return (new System.Net.WebClient().DownloadString("https://api.ipify.org"));
+	{
+		return new System.Net.WebClient().DownloadString("https://api.ipify.org");
 	}
 
 	public void LaunchServerButton()
 	{
-		BoltLauncher.StartServer(new UdpKit.UdpEndPoint(UdpKit.UdpIPv4Address.Any, port));
-		//DISPLAY THE PUBLIC IP IN UI
-		servPublicIP = GetPublicIP();
-		Debug.Log(servPublicIP + ":" + port);
+		BoltLauncher.StartServer(new UdpKit.UdpEndPoint(UdpKit.UdpIPv4Address.Any, _port));
+		// DISPLAY THE PUBLIC IP IN UI
+		_servPublicIP = GetPublicIP();
+		Debug.Log(_servPublicIP + ": " + _port);
 	}
 
 	public void JoinServerButton()
 	{
-		mainMenu.SetActive(false);
-		joinMenu.SetActive(true);
+		_mainMenu.SetActive(false);
+		_joinMenu.SetActive(true);
 
 	}
 
 	public void ExitButton()
 	{
-		BoltNetwork.ClosePortUPnP(port);
-		BoltLauncher.Shutdown ();
-		Application.Quit ();
+		BoltNetwork.ClosePortUPnP(_port);
+		BoltLauncher.Shutdown();
+		Application.Quit();
 	}
-		
+
 	public void ConnectButton()
 	{
-		Debug.Log (ip.text);
+		Debug.Log(_ip.text);
 		BoltLauncher.StartClient();
 	}
 
-	public void backButton()
+	public void BackButton()
 	{
-		joinMenu.SetActive (false);
-		mainMenu.SetActive (true);
+		_mainMenu.SetActive(true);
+		_joinMenu.SetActive(false);
 	}
 
-	public override void BoltStartDone ()
+	public override void BoltStartDone()
 	{
-		if (BoltNetwork.isServer) 
+		if (BoltNetwork.isServer)
 		{
-			BoltNetwork.LoadScene ("Term3D");
-			//BOLT UPNP PORT FORWARDING
-			BoltNetwork.EnableUPnP ();
-			BoltNetwork.OpenPortUPnP (port);
-		} 
-		else 
-		{
-			BoltNetwork.Connect (UdpKit.UdpEndPoint.Parse (ip.text));
+			BoltNetwork.LoadScene("Term3D");
+			// BOLT UPNP PORT FORWARDING
+			BoltNetwork.EnableUPnP();
+			BoltNetwork.OpenPortUPnP(_port);
 		}
+		else
+			BoltNetwork.Connect(UdpKit.UdpEndPoint.Parse(_ip.text));
 	}
 }

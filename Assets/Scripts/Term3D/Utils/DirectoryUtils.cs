@@ -8,26 +8,30 @@ public class DirectoryUtils
 	{
 		public Directory(string path) : base(path) {}
 
-		public string getDirName()
+		public string GetDirName()
 		{
-			return this._path;
+			return RealPath;
 		}
 
-		public FileUtils.File[] getFiles()
+		public FileUtils.File[] GetFiles()
 		{
 			List<FileUtils.File> filesList = new List<FileUtils.File>();
-			String[] files = System.IO.Directory.GetFiles(this._path);
+			String[] files = System.IO.Directory.GetFiles(RealPath);
+
 			foreach (string file in files)
 				filesList.Add(new FileUtils.File(file));
+
 			return filesList.ToArray();
 		}
 
-		public Directory[] getDirectories()
+		public Directory[] GetDirectories()
 		{
 			List<Directory> directoriesList = new List<Directory>();
-			String[] directories = System.IO.Directory.GetDirectories(this._path);
+			String[] directories = System.IO.Directory.GetDirectories(RealPath);
+
 			foreach (string directory in directories)
 				directoriesList.Add(new Directory(directory));
+
 			return directoriesList.ToArray();
 		}
 	}
