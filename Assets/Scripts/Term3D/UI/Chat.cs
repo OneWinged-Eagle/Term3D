@@ -4,8 +4,8 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 
 [BoltGlobalBehaviour]
-public class Chat : Bolt.GlobalEventListener
-{
+public class Chat : Bolt.GlobalEventListener {
+
 	public InputField ip;
 	public Text content;
 	public Scrollbar scrollBar;
@@ -15,8 +15,11 @@ public class Chat : Bolt.GlobalEventListener
 	public bool reseau = false;
 
 	List<string> logChat;
-//	private string display = "";
+
+	//private string display = "";
+
 	bool addText = false;
+
 
 	void Start ()
 	{
@@ -43,6 +46,8 @@ public class Chat : Bolt.GlobalEventListener
 		}
 
 		List<string> cmdline = new List<string>(lastCommand.Split(' '));
+		result = this.commandHandler.callFunction(cmdline);
+		display += result;
 
 		if (lastCommand == "clear")
 			display = result;
@@ -68,8 +73,9 @@ public class Chat : Bolt.GlobalEventListener
 		logChat.Add(ip.text);
 		addText = true;
 		}
-			ip.text = "";
+		ip.text = "";
 	}
+
 
 	public override void OnEvent(messageEvent evnt)
 	{
