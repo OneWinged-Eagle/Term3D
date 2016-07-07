@@ -109,12 +109,12 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 198790}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.7}
+  m_LocalPosition: {x: 0, y: -0.8, z: 1.699997}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
-  m_Father: {fileID: 441624}
-  m_RootOrder: 1
+  m_Father: {fileID: 417430}
+  m_RootOrder: 0
 --- !u!4 &417430
 Transform:
   m_ObjectHideFlags: 1
@@ -125,7 +125,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
+  m_Children:
+  - {fileID: 410250}
+  - {fileID: 455618}
   m_Father: {fileID: 441624}
   m_RootOrder: 0
 --- !u!4 &424954
@@ -154,8 +156,6 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 417430}
-  - {fileID: 410250}
-  - {fileID: 455618}
   - {fileID: 459366}
   m_Father: {fileID: 424954}
   m_RootOrder: 0
@@ -166,12 +166,12 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 134314}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.79, z: 1.699997}
+  m_LocalPosition: {x: 0, y: -0.00999999, z: 1.699997}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
-  m_Father: {fileID: 441624}
-  m_RootOrder: 2
+  m_Father: {fileID: 417430}
+  m_RootOrder: 1
 --- !u!4 &459366
 Transform:
   m_ObjectHideFlags: 1
@@ -184,7 +184,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 441624}
-  m_RootOrder: 3
+  m_RootOrder: 1
 --- !u!20 &2055998
 Camera:
   m_ObjectHideFlags: 1
@@ -475,7 +475,7 @@ MonoBehaviour:
     smooth: 0
     smoothTime: 5
     lockCursor: 1
-  m_UseFovKick: 1
+  m_UseFovKick: 0
   m_FovKick:
     Camera: {fileID: 0}
     originalFov: 0
@@ -498,7 +498,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  m_UseHeadBob: 1
+  m_UseHeadBob: 0
   m_HeadBob:
     HorizontalBobRange: 0.1
     VerticalBobRange: 0.1

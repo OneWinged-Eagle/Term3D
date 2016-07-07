@@ -6,15 +6,6 @@ using System.IO;
 [BoltGlobalBehaviour]
 public class testCallbacks : Bolt.GlobalEventListener
 {
-
-	//public GameObject[] objs;
-	//public GameObject test;
-
-
-	public BoltEntity[] lelele;
-	public BoltEntity test;
-
-
 	public override void SceneLoadLocalDone(string map)
 	{
 		// randomize a position
@@ -23,8 +14,15 @@ public class testCallbacks : Bolt.GlobalEventListener
 		//BoltNetwork.Instantiate(BoltPrefabs.Robot, pos, Quaternion.identity);
 		//BoltNetwork.Instantiate(BoltPrefabs.Player, pos, Quaternion.identity);
 
+
+
 		if (BoltNetwork.isServer)
+			//PlayerObjectRegistry.CreateServerPlayer ();
 			instantiateWorld ();
+		if (BoltNetwork.isClient) 
+		{
+			//PlayerObjectRegistry.CreateClientPlayer(
+		}
 	}
 
 	private bool init(string root)
@@ -59,38 +57,5 @@ public class testCallbacks : Bolt.GlobalEventListener
 			Debug.Log("Everything OK!");
 		else
 			Debug.Log("init failed...");
-
-		//BoltEntity test= BoltNetwork.Instantiate (BoltPrefabs.Cube_rouge, new Vector3 (10f, 0.5f, 10f), Quaternion.identity);
-
-
-
-
-
-
-
-/*		test = GameObject.Find("Terrain(Clone)");    //pourquoi ça marche ?
-
-		lelele[0] = GameObject.Find ("Terrain(Clone)"); // et la putain de non ?
-
-
-/*
-
-
-
-
-		objs [0] = GameObject.Find("Cube vert");
-		objs [1] = GameObject.Find ("Cube vert(clone)");
-		objs [2] = GameObject.Find ("Cube rouge(clone)");
-		objs [3] = GameObject.Find ("Sphere(clone)");
-		objs [4] = GameObject.Find ("Cylindre(clone)");
-
-			/*
-			Debug.Log (Application.persistentDataPath);
-
-		BinaryFormatter bf = new BinaryFormatter ();
-		FileStream file = File.Open (Application.persistentDataPath + "/roomInfo.dat", FileMode.Open);
-
-		bf.Serialize (file, obj);
-		file.Close();*/
 	}
 }
