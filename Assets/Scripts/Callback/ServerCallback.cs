@@ -37,6 +37,7 @@ public class ServerCallback : Bolt.GlobalEventListener
 		var log = EventLog.Create();
 		log.Message = string.Format("{0} connected", connection.RemoteEndPoint);
 		log.Send();
+		connection.SetStreamBandwidth(4092 * 20);
 	}
 
 	public void onDisconnect(BoltConnection connection)
@@ -45,6 +46,5 @@ public class ServerCallback : Bolt.GlobalEventListener
 		log.Message = string.Format("{0} disconnected", connection.RemoteEndPoint);
 		log.Send();
 	}
-
 }
 
