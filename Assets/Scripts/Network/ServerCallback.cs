@@ -13,7 +13,7 @@ public class ServerCallback : Bolt.GlobalEventListener
         var log = EventLog.Create();
         log.Message = string.Format("{0} connected", connection.RemoteEndPoint);
         log.Send();
-        connection.SetStreamBandwidth(4092 * 20);
+        connection.SetStreamBandwidth(1024 * 1500);
     }
 
     public override void Disconnected(BoltConnection connection)
