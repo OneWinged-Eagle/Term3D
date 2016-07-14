@@ -1,7 +1,0 @@
-1. Add the bolt/sample/bolt_sample/scenes/Level1 to 'Build Settings'.
-   If you skip this, Bolt's Scene window won't show any scene.
-2. Edit the Player Settings to make sure "Run in Background" is enabled!
-   The demo is set to authoritative server, so it must run in background.
-   If you can't control the standalone client, "Run in Background" is not set.
-3. Open 'Window/Bolt/Scenes' and click 'Debug Start' to start the sample.
-   This will build and run the demo in Editor and (at least) 1 client.
