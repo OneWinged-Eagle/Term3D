@@ -16,6 +16,7 @@ public class testCallbacks : Bolt.GlobalEventListener
 
 
 
+
 		if (BoltNetwork.isServer) {
 			//PlayerObjectRegistry.CreateServerPlayer ();
 			instantiateWorld ();
