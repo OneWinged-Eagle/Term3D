@@ -22,14 +22,14 @@ public class addElement : MonoBehaviour {
 
 		if (Input.GetKeyDown (KeyCode.E)) {
 			Debug.Log ("obj spawn");
-			//BoltNetwork.Instantiate(spawnObject, spawnPoint.position, Quaternion.identity);
-			Instantiate (spawnObject, spawnPoint.position, spawnPoint.rotation);
+			BoltNetwork.Instantiate(spawnObject, spawnPoint.position, Quaternion.identity);
+			//Instantiate (spawnObject, spawnPoint.position, spawnPoint.rotation);
 		}
 
 		if (Input.GetKeyDown (KeyCode.T)) {
 			Debug.Log ("obj spawn");
-			//BoltNetwork.Instantiate(BoltPrefabs.Cylindre, spawnPoint.position, Quaternion.identity);
-			Instantiate (spawnObject2, spawnPoint.position, spawnPoint.rotation);
+			BoltNetwork.Instantiate(BoltPrefabs.Cylindre, spawnPoint.position, Quaternion.identity);
+			//Instantiate (spawnObject2, spawnPoint.position, spawnPoint.rotation);
 		}
 
 		RaycastHit hit;

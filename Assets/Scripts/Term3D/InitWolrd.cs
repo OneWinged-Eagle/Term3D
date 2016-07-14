@@ -16,6 +16,9 @@ public class testCallbacks : Bolt.GlobalEventListener
 
 
 
+		BoltNetwork.Instantiate(BoltPrefabs.Player, new Vector3(30, 0, 30), Quaternion.identity);
+
+
 		if (BoltNetwork.isServer) {
 			//PlayerObjectRegistry.CreateServerPlayer ();
 			instantiateWorld ();
