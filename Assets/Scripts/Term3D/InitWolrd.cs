@@ -9,19 +9,20 @@ public class testCallbacks : Bolt.GlobalEventListener
 	public override void SceneLoadLocalDone(string map)
 	{
 		// randomize a position
-		//Vector3 pos = new Vector3(UnityEngine.Random.Range(-16, 16), 0, UnityEngine.Random.Range(-16, 16));
+		//Vector3 pos = new Vector3(UnityEngine.Random.Range(0, 10), 0, UnityEngine.Random.Range(0, 10));
 
 		//BoltNetwork.Instantiate(BoltPrefabs.Robot, pos, Quaternion.identity);
 		//BoltNetwork.Instantiate(BoltPrefabs.Player, pos, Quaternion.identity);
 
 
 
-		if (BoltNetwork.isServer)
+		if (BoltNetwork.isServer) {
 			//PlayerObjectRegistry.CreateServerPlayer ();
 			instantiateWorld ();
+		}
 		if (BoltNetwork.isClient) 
 		{
-			//PlayerObjectRegistry.CreateClientPlayer(
+			//PlayerObjectRegistry.CreateClientPlayer ();
 		}
 	}
 

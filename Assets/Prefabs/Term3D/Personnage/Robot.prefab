@@ -1714,7 +1714,7 @@ MonoBehaviour:
   m_Script: {fileID: -36112512, guid: 5b00bf8b25851d440940a40ec23344f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sceneGuid: 
+  _sceneGuid: 813ed4be-5aee-4b46-a44d-23856a6f10d8
   _serializerGuid: 5aed71e7-c81f-40a2-966f-730a57a47cc4
   _prefabId: 7
   _updateRate: 1

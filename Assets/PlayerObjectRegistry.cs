@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using System.Collections;
 
+
 public static class PlayerObjectRegistry
 {
 	static List<PlayerObject> players = new List<PlayerObject>();

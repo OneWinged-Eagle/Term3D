@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
 public class PlayerObject {
 	public BoltEntity character;
 	public BoltConnection connection;
@@ -16,13 +17,18 @@ public class PlayerObject {
 	public void Spawn()
 	{
 		Debug.Log ("coucouocucoucoucoucoucoucoucoucocuocucoucououcoucocuocuocucoucoucoucuoc");
-		if (!character)
-		{
-			character = BoltNetwork.Instantiate (BoltPrefabs.Player);
-			if (isServer)
+		if (!character) {
+			character = BoltNetwork.Instantiate (BoltPrefabs.Robot);
+			if (isServer) 
+			{
+				Debug.Log ("pouet serveru   s" + connection);
 				character.TakeControl ();
-			else
+			} 
+			else 
+			{
+				Debug.Log ("apoepazoepzaoepzaoepazoepzoepoazpea   " + connection);
 				character.AssignControl (connection);
+			}
 		}
 		character.transform.position = RandomPosition();
 	}

@@ -492,13 +492,14 @@ GameObject:
   - 124: {fileID: 1976613053}
   - 92: {fileID: 1976613052}
   - 81: {fileID: 1976613051}
+  - 114: {fileID: 1976613056}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!81 &1976613051
 AudioListener:
   m_ObjectHideFlags: 0
@@ -560,10 +561,23 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1976613050}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 104.4, y: 29.9, z: 19.9}
+  m_LocalRotation: {x: 0.38722548, y: 0.00080146897, z: -0.0032771335, w: 0.9219789}
+  m_LocalPosition: {x: 71, y: 55, z: -19}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 45.564, y: -0.0867, z: -0.4438}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
+--- !u!114 &1976613056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1976613050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 527d631afc46ca44a873c7702be0bd6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+  spacing: 1
