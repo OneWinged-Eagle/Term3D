@@ -36,6 +36,8 @@ public class addElementBehaviour : Bolt.EntityBehaviour<IPlayerState>
 			//Instantiate (spawnObject2, spawnPoint.position, spawnPoint.rotation);
 		}
 
+
+
 		RaycastHit hit;
 		Ray intersectionRay = Camera.main.ScreenPointToRay(new Vector3(Screen.width * 0.5f, Screen.height * 0.5f, 0.0f));
 

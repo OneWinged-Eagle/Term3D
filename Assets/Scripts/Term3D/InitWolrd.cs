@@ -8,7 +8,7 @@ public class testCallbacks : Bolt.GlobalEventListener // TODO: pourquoi la class
 {
 	public override void SceneLoadLocalDone(string map) // TODO: à quoi sert le string map ?
 	{
-		BoltNetwork.Instantiate(BoltPrefabs.Player, new Vector3(30, 0.5f, 30), Quaternion.identity);
+		BoltNetwork.Instantiate(BoltPrefabs.Player, new Vector3(-110, 15, -60), Quaternion.identity);
 
 		if (BoltNetwork.isServer)
 		{
@@ -30,7 +30,9 @@ public class testCallbacks : Bolt.GlobalEventListener // TODO: pourquoi la class
 		PathUtils.CurrPath = root;
 		DirectoryUtils.Directory rootDir = new DirectoryUtils.Directory(root);
 
-		FileUtils.File[] files = rootDir.GetFiles();
+        BoltNetwork.Instantiate(BoltPrefabs.Room, new Vector3(0, 0, 0), Quaternion.identity);
+
+        FileUtils.File[] files = rootDir.GetFiles();
 		for (uint i = 0; i < files.Length; ++i)
 			BoltNetwork.Instantiate(BoltPrefabs.Cube_vert, new Vector3 (20f, 0.5f, 5.0f * (2 + i)), Quaternion.identity); // TODO: à gérer mieux que ça !
 
