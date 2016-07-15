@@ -1,36 +1,37 @@
-﻿using UnityEngine;
 using System.Collections;
-using UnityEngine.UI;
 using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
 
 [BoltGlobalBehaviour]
-public class Chat : Bolt.GlobalEventListener {
-
-	public InputField ip;
-	public Text content;
-	public Scrollbar scrollBar;
-	private CommandHandler commandHandler;
+public class Chat : Bolt.GlobalEventListener
+{
+	public InputField _ip; // TODO: variable utilisée uniquement dans sendMsg : à passer en variable locale ?
+	public Text _content; // TODO: variable utilisée uniquement dans displayMsg : à passer en variable locale ?
+	public Scrollbar _scrollBar;
+	// TODO: toutes les variables ci-dessus sont publiques, normal ? Peut-être à passer en properties ?
+	private CommandHandler _commandHandler;
 
 	//chat entre clients ou non
-	public bool reseau = false;
+	public bool _reseau = false; // TODO: variable utilisée uniquement dans sendMsg : à passer en variable locale ?
+	// TODO: pourquoi en public ? Property ?
 
-	List<string> logChat;
+	private List<string> _logChat;
 
 	//private string display = "";
 
-	bool addText = false;
+	private bool _addText = false;
 
-
-	void Start ()
+	private void Start()
 	{
-		this.commandHandler = new CommandHandler();
-		logChat = new List<string> ();
+		_commandHandler = new CommandHandler();
+		_logChat = new List<string>();
 	}
 
-	void Update () {
-		if (addText) {
-			displayMsg ();
-		}
+	private void Update()
+	{
+		if (_addText)
+			displayMsg();
 	}
 
 	void displayMsg()
@@ -39,50 +40,52 @@ public class Chat : Bolt.GlobalEventListener {
 		string lastCommand = "";
 		string result = "";
 
-		foreach (string msg in logChat)
+		foreach (string msg in _logChat)
 		{
-			display += msg.ToString () + "\n";
+			display += msg.ToString() + "\n";
 			lastCommand = msg;
 		}
 
 		List<string> cmdline = new List<string>(lastCommand.Split(' '));
-		result = this.commandHandler.callFunction(cmdline);
+		result = _commandHandler.CallFunction(cmdline);
 		display += result;
 
 		if (lastCommand == "clear")
 			display = result;
 		else
 		{
-			result = this.commandHandler.callFunction(cmdline);
+			result = _commandHandler.CallFunction(cmdline);
 			display += result;
 		}
-		logChat.Add(result);
+		_logChat.Add(result);
 
-		content.text = display;
-		addText = false;
+		_content.text = display;
+		_addText = false;
 	}
 
 	public void sendMsg()
 	{
-		if (reseau == true) {
-			var chatLogEvent = messageEvent.Create ();
-			chatLogEvent.message = ip.text;
-			chatLogEvent.Send ();
-		} else {
-		scrollBar.value = 0.0f;
-		logChat.Add(ip.text);
-		addText = true;
+		if (_reseau == true)
+		{
+			var chatLogEvent = messageEvent.Create();
+			chatLogEvent.message = _ip.text;
+			chatLogEvent.Send();
 		}
-		ip.text = "";
+		else
+		{
+			_scrollBar.value = 0.0f;
+			_logChat.Add(_ip.text);
+			_addText = true;
+		}
+		_ip.text = "";
 	}
 
-
-	public override void OnEvent(messageEvent evnt)
+	public override void OnEvent(messageEvent e)
 	{
-		Debug.Log (evnt.message);
-		scrollBar.value = 0.0f;
-		logChat.Add (evnt.message);
-		addText = true;
-		//base.OnEvent (evnt); // késako ?
+		Debug.Log(e.message);
+		_scrollBar.value = 0.0f;
+		_logChat.Add(e.message);
+		_addText = true;
+		base.OnEvent(e); // TODO: utile ?
 	}
 }
