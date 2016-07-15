@@ -10,15 +10,21 @@ public class addElementBehaviour : Bolt.EntityBehaviour<IPlayerState>
 	public float lenghtRay;
 
 
-	public GameObject modelsMenu;
+	private GameObject modelsMenu;
 
+
+	public override void Attached()
+	{
+		modelsMenu = GameObject.Find("ModelsMenu");
+		modelsMenu.SetActive(false);
+	}
 
 	public override void SimulateOwner()
 	{
 		if (Input.GetKeyDown(KeyCode.E))
 		{
+			Debug.Log ("E des barres");
 			modelsMenu.SetActive(true);
-			//Debug.Log ("obj spawn");
 			//BoltNetwork.Instantiate(spawnObject, spawnPoint.position, Quaternion.identity);
 			//Instantiate (spawnObject, spawnPoint.position, spawnPoint.rotation);
 		}

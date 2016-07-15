@@ -8,7 +8,7 @@ public class testCallbacks : Bolt.GlobalEventListener // TODO: pourquoi la class
 {
 	public override void SceneLoadLocalDone(string map) // TODO: à quoi sert le string map ?
 	{
-		// BoltNetwork.Instantiate(BoltPrefabs.Player, new Vector3(30, 0, 30), Quaternion.identity);
+		BoltNetwork.Instantiate(BoltPrefabs.Player, new Vector3(30, 0.5f, 30), Quaternion.identity);
 
 		if (BoltNetwork.isServer)
 		{
