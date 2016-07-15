@@ -18,10 +18,10 @@ public class PlayerObject {
 	{
 		Debug.Log ("coucouocucoucoucoucoucoucoucoucocuocucoucououcoucocuocuocucoucoucoucuoc");
 		if (!character) {
-			character = BoltNetwork.Instantiate (BoltPrefabs.Player);
+			character = BoltNetwork.Instantiate (BoltPrefabs.Robot);
 			if (isServer) 
 			{
-				Debug.Log ("pouet serveru   s" + connection);
+				Debug.Log (connection);
 				character.TakeControl ();
 			} 
 			else 
