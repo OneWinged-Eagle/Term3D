@@ -1,0 +1,27 @@
+fileFormatVersion: 2
+guid: 5b00bf8b25851d440940a40ec23344f4
+timeCreated: 1436529810
+licenseType: Store
+PluginImporter:
+  serializedVersion: 1
+  iconMap: {}
+  executionOrder:
+    BoltEntity: -2500
+    BoltPoll: -10000
+    BoltSend: 10000
+  isPreloaded: 0
+  platformData:
+    Any:
+      enabled: 1
+      settings: {}
+    Editor:
+      enabled: 0
+      settings:
+        DefaultValueInitialized: true
+    WindowsStoreApps:
+      enabled: 0
+      settings:
+        CPU: AnyCPU
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
