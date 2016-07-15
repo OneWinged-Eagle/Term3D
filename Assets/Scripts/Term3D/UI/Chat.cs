@@ -80,12 +80,12 @@ public class Chat : Bolt.GlobalEventListener
 		_ip.text = "";
 	}
 
-	public override void OnEvent(messageEvent evnt)
+	public override void OnEvent(messageEvent e)
 	{
-		Debug.Log(evnt.message);
+		Debug.Log(e.message);
 		_scrollBar.value = 0.0f;
-		_logChat.Add(evnt.message);
+		_logChat.Add(e.message);
 		_addText = true;
-		//base.OnEvent(evnt); // késako ?
+		base.OnEvent(e); // TODO: utile ?
 	}
 }

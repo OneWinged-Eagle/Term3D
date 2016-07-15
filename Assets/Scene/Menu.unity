@@ -41,7 +41,7 @@ RenderSettings:
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 6
-  m_GIWorkflowMode: 1
+  m_GIWorkflowMode: 0
   m_LightmapsMode: 1
   m_GISettings:
     serializedVersion: 2
@@ -722,11 +722,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03c476ad7f0bef24a85aa550ef553860, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainMenu: {fileID: 1991745242}
-  joinMenu: {fileID: 436517447}
-  ip: {fileID: 57804159}
-  servPublicIP: 
-  port: 27000
+  _mainMenu: {fileID: 0}
+  _joinMenu: {fileID: 0}
+  _ip: {fileID: 0}
+  _servPublicIP: 
+  _port: 27000
 --- !u!1 &908748722
 GameObject:
   m_ObjectHideFlags: 0

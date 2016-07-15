@@ -10,20 +10,23 @@ public class addElement : MonoBehaviour {
 	public float lenghtRay;
 
 
+	public GameObject modelsMenu;
+
 
 	// Use this for initialization
 	void Start () {
-	
+
 	}
-	
+
 	// Update is called once per frame
 	void Update ()
 	{
 
 		if (Input.GetKeyDown (KeyCode.E)) {
-			Debug.Log ("obj spawn");
+			modelsMenu.SetActive(true);
+			/*Debug.Log ("obj spawn");
 			//BoltNetwork.Instantiate(spawnObject, spawnPoint.position, Quaternion.identity);
-			Instantiate (spawnObject, spawnPoint.position, spawnPoint.rotation);
+			Instantiate (spawnObject, spawnPoint.position, spawnPoint.rotation);*/
 		}
 
 		if (Input.GetKeyDown (KeyCode.T)) {

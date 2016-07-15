@@ -32,7 +32,6 @@ public class MenuScript : Bolt.GlobalEventListener
 	{
 		_mainMenu.SetActive(false);
 		_joinMenu.SetActive(true);
-
 	}
 
 	public void ExitButton()
