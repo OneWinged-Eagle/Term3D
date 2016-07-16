@@ -10,7 +10,7 @@ public class movement : Bolt.EntityBehaviour<IPlayerState> {
 
 	public override void Attached ()
 	{
-
+		Debug.Log ("ciaehaisjq haihe  oejazo ehjzai hzeui rhiea ohriaohu iao lolololollol"); 
 		state.Transform.SetTransforms(transform);
 		state.Speed = 10f;
 		base.Attached ();
