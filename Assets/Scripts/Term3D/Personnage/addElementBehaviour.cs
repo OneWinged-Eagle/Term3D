@@ -4,20 +4,22 @@ using System.Collections;
 public class addElementBehaviour : Bolt.EntityBehaviour<IPlayerState>
 {
 	public Transform spawnPoint;
-	public GameObject spawnObject;
-	public GameObject spawnObject2;
 	public Transform hook;
 
 	public float lenghtRay;
 
 
+
 	private GameObject modelsMenu;
+	private GameObject filesMenu;
 
 
 	public override void Attached()
 	{
 		modelsMenu = GameObject.Find("ModelsMenu");
 		modelsMenu.SetActive(false);
+		filesMenu = GameObject.Find ("FilesMenu");
+		filesMenu.SetActive (false);
 	}
 
 	public override void SimulateOwner()
@@ -26,51 +28,68 @@ public class addElementBehaviour : Bolt.EntityBehaviour<IPlayerState>
 		{
 			Debug.Log ("E des barres");
 			modelsMenu.SetActive(true);
-			//BoltNetwork.Instantiate(spawnObject, spawnPoint.position, Quaternion.identity);
-			//Instantiate (spawnObject, spawnPoint.position, spawnPoint.rotation);
 		}
-
-		if (Input.GetKeyDown(KeyCode.T))
-		{
-			Debug.Log("obj spawn");
-			BoltNetwork.Instantiate(BoltPrefabs.Cylindre, spawnPoint.position, Quaternion.identity);
-			//Instantiate (spawnObject2, spawnPoint.position, spawnPoint.rotation);
-		}
-
-
 
 		RaycastHit hit;
 		Ray intersectionRay = Camera.main.ScreenPointToRay(new Vector3(Screen.width * 0.5f, Screen.height * 0.5f, 0.0f));
 
-		if (Input.GetMouseButtonDown(0))
-		{
-			Debug.Log("ça appuie");
-			if (Physics.Raycast(intersectionRay, out hit, lenghtRay))
+		if (filesMenu.activeSelf == false)
+			if (Input.GetMouseButtonDown(0))
 			{
-				if (hit.collider.tag == "Environment")
-					Debug.Log("ça otuche" + hit.collider.tag);
-				if (hit.collider.tag == "NonStaticObject")
+				Debug.Log("ça appuie");
+				if (Physics.Raycast(intersectionRay, out hit, lenghtRay))
 				{
-					Debug.Log("ça otuche" + hit.collider.tag);
-					hit.transform.SendMessage("pickUp", true, SendMessageOptions.DontRequireReceiver);
+					if (hit.collider.tag == "Environment")
+						Debug.Log("ça otuche" + hit.collider.tag);
+					if (hit.collider.tag == "OtherObject")
+					{
+						Debug.Log("ça otuche" + hit.collider.tag);
+						hit.transform.SendMessage("pickUp", true, SendMessageOptions.DontRequireReceiver);
+					}
 				}
 			}
-		}
 		//pas propre ici a refaire
 		else if (Input.GetMouseButtonDown(1))
 		{
 			if (Physics.Raycast(intersectionRay, out hit, lenghtRay))
 			{
-				if (hit.collider.tag == "NonStaticObject")
+				switch (hit.collider.tag)
 				{
+				case "OtherObject":
 					Debug.Log("ça otuche" + hit.collider.tag);
 					hit.transform.SendMessage("pickUp", false, SendMessageOptions.DontRequireReceiver);
+					break;
+				case "AudioObject":
+					filesMenu.SetActive (true);
+					filesMenu.GetComponent<FilesMenu> ().Model = hit.collider.gameObject;
+					filesMenu.GetComponent<FilesMenu> ().CreateFileList (ModelsUtils.FilesTypes.Audio);
+					break;
+				case "TextObject":
+					filesMenu.SetActive (true);
+					filesMenu.GetComponent<FilesMenu> ().Model = hit.collider.gameObject;
+					filesMenu.GetComponent<FilesMenu> ().CreateFileList (ModelsUtils.FilesTypes.Text);
+					break;
+				case "VideoObject":
+					filesMenu.SetActive (true);
+					filesMenu.GetComponent<FilesMenu> ().Model = hit.collider.gameObject;
+					filesMenu.GetComponent<FilesMenu> ().CreateFileList (ModelsUtils.FilesTypes.Video);
+					break;
+				case "ImageObject":
+					filesMenu.SetActive (true);
+					filesMenu.GetComponent<FilesMenu> ().Model = hit.collider.gameObject;
+					filesMenu.GetComponent<FilesMenu> ().CreateFileList (ModelsUtils.FilesTypes.Image);
+					break;
+				case "LinkObject":
+					filesMenu.SetActive (true);
+					filesMenu.GetComponent<FilesMenu> ().Model = hit.collider.gameObject;
+					filesMenu.GetComponent<FilesMenu> ().CreateFileList (ModelsUtils.FilesTypes.Link);
+					break;
 				}
 			}
 		}
 		else if (Input.GetKey(KeyCode.O))
 			if (Physics.Raycast(intersectionRay, out hit, lenghtRay))
-				if (hit.collider.tag == "NonStaticObject")
+				if (hit.collider.tag == "OtherObject")
 					hit.transform.SendMessage("Destroy", true, SendMessageOptions.DontRequireReceiver);
 		base.SimulateOwner();
 	}
