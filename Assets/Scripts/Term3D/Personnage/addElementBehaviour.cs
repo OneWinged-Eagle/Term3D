@@ -6,6 +6,7 @@ public class addElementBehaviour : Bolt.EntityBehaviour<IPlayerState>
 	public Transform spawnPoint;
 	public GameObject spawnObject;
 	public GameObject spawnObject2;
+	public Transform hook;
 
 	public float lenghtRay;
 
