@@ -69,6 +69,10 @@ public class addElementBehaviour : Bolt.EntityBehaviour<IPlayerState>
 			if (Physics.Raycast(intersectionRay, out hit, lenghtRay))
 				if (hit.collider.tag == "NonStaticObject")
 					hit.transform.SendMessage("Destroy", true, SendMessageOptions.DontRequireReceiver);
-		base.SimulateOwner();
+        else if (Input.GetKey(KeyCode.J))
+            if (Physics.Raycast(intersectionRay, out hit, lenghtRay))
+                if (hit.collider.tag == "NonStaticObject")
+                    hit.transform.SendMessage("Play", true, SendMessageOptions.DontRequireReceiver);
+        base.SimulateOwner();
 	}
 }
