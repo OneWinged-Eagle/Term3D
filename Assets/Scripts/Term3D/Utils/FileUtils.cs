@@ -7,14 +7,19 @@ public class FileUtils
 	{
 		public File(string path) : base(path) {}
 
-		public string GetExtension()
+		public string GetName()
 		{
-			return Path.GetExtension(RealPath);
+			return Path.GetFileName(RealPath);
 		}
 
 		public string GetFileName()
 		{
-			return Path.GetFileName(RealPath);
+			return GetName();
+		}
+
+		public string GetExtension()
+		{
+			return Path.GetExtension(RealPath);
 		}
 
 		public string GetFileNameWithoutExtension()

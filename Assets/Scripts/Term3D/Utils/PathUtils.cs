@@ -8,6 +8,25 @@ public class PathUtils
 		public string RealPath { get; private set; }
 		public string ProjectPath { get; private set; }
 
+		public bool IsFile()
+		{
+			return File.Exists(RealPath);
+		}
+
+		public bool IsDirectory()
+		{
+			return Directory.Exists(RealPath);
+		}
+
+		public string GetName()
+		{
+			if (IsFile())
+				return System.IO.Path.GetFileName(RealPath);
+			else if (IsDirectory())
+				return System.IO.Path.GetDirectoryName(RealPath);
+			return (RealPath);
+		}
+
 		protected Path(string path)
 		{
 			RealPath = PathUtils.GetPathFrom(path);
