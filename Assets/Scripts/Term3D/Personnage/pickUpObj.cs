@@ -23,7 +23,7 @@ public class pickUpObj : MonoBehaviour {
 
 	public void pickUp(bool pickedUp)
 	{
-
+		Debug.Log ("coucou c'est sensé ramasser");
 		picked = pickedUp;
 	}
 
