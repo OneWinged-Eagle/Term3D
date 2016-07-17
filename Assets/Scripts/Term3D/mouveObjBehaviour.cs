@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class mouveObjBehaviour : Bolt.EntityBehaviour<IOtherObjectState> {
+public class mouveObjBehaviour : Bolt.EntityBehaviour<IOtherObjectState>{
 	public GameObject _hook;
 
 	private bool picked;
+
 	public override void Attached()
 	{
 		//_hook = GameObject.Find ("Hook");
@@ -41,4 +42,5 @@ public class mouveObjBehaviour : Bolt.EntityBehaviour<IOtherObjectState> {
 	{
 		Destroy (gameObject);
 	}
+		
 }

@@ -8,7 +8,7 @@ using Bolt;
 [BoltGlobalBehaviour()]
 public class StreamCallbacks : Bolt.GlobalEventListener
 {
-	public static UdpKit.UdpChannelName audioChannel;
+	/*public static UdpKit.UdpChannelName audioChannel;
 	public override void BoltStartBegin()
 	{
 		audioChannel = BoltNetwork.CreateStreamChannel("audio", UdpKit.UdpChannelMode.Reliable, 1);
@@ -28,5 +28,5 @@ public class StreamCallbacks : Bolt.GlobalEventListener
 	{
 		BoltLog.Info("CLIENT GOT DATA ! :)");
 		System.IO.File.WriteAllBytes(@"c:\testout.mp3", data.Data);
-	} 
+	} */
 }

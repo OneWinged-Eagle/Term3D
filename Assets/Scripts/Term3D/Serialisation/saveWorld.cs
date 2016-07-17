@@ -8,8 +8,6 @@ using System.Runtime.Serialization;
 
 public class saveWorld : MonoBehaviour {
 
-	public BoltEntity test;
-	public GameObject lelel;
 	public GameObject[] all;
 	//public serializableObj[] objs;
 
@@ -35,14 +33,44 @@ public class saveWorld : MonoBehaviour {
 
 	public void save()
 	{
-//		test = BoltEntity.FindObjectOfType<ICubeVert> ();
-		//lelel = GameObject.Find("Cube vert(Clone)");
-		//test = GameObject.Find("Cube vert(clone)");
-		all = GameObject.FindGameObjectsWithTag("NonStaticObject");
+		var other = GameObject.FindGameObjectsWithTag("OtherObject");
+		var audio = GameObject.FindGameObjectsWithTag("AudioObject");
+		var video = GameObject.FindGameObjectsWithTag("VideoObject");
+		var text = GameObject.FindGameObjectsWithTag("TextObject");
+		var link = GameObject.FindGameObjectsWithTag("LinkObject");
+		var image = GameObject.FindGameObjectsWithTag("ImageObject");
+
+		//désolé c'est pas beau, faut tout passer en liste pour pouvoir append une liste à l'autre...
+		for (int i = 0; i < other.Length; i++)
+		{
+			all.AddFirst<GameObject>(other[i]);
+		}
+		for (int i = 0; i < audio.Length; i++)
+		{
+			all.AddFirst<GameObject>(audio[i]);
+		}
+		for (int i = 0; i < video.Length; i++)
+		{
+			all.AddFirst<GameObject>(video[i]);
+		}
+		for (int i = 0; i < text.Length; i++)
+		{
+			all.AddFirst<GameObject>(text[i]);
+		}
+		for (int i = 0; i < link.Length; i++)
+		{
+			all.AddFirst<GameObject>(link[i]);
+		}
+		for (int i = 0; i < image.Length; i++)
+		{
+			all.AddFirst<GameObject>(image[i]);
+		}
+
+		serializableObj[] objs = new serializableObj[all.Length];
 
 
 
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < all.Length; i++) {
 			objs [i].x = all [i].transform.position.x;
 			objs [i].y = all [i].transform.position.y;
 			objs [i].z = all [i].transform.position.z;
