@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class AudioPlayer : Bolt.EntityBehaviour<ICubeVert> {
+public class AudioPlayer : Bolt.EntityBehaviour<IAudioObjectState> {
 	bool isListen = false;
 	AudioSource audio;
 
