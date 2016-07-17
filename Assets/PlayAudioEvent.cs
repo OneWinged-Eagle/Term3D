@@ -25,7 +25,7 @@ public class PlayAudioEvent : Bolt.GlobalEventListener {
 		test.Played = true;
 
 		if (BoltNetwork.isServer) {
-			byte[] data = File.ReadAllBytes(@"d:\testin.mp3");
+			byte[] data = File.ReadAllBytes(@"c:\testin.mp3");
 			BoltLog.Info("DATA TEST");
 			foreach (var connection in BoltNetwork.connections) {
 				connection.StreamBytes(audioChannel, data);
