@@ -3,29 +3,39 @@ using System.Collections;
 
 public class pickUpObj : MonoBehaviour {
 
-	public GameObject hook;
+	public GameObject _hook;
 
 	private bool picked;
 
 	void Start () {
 		
-		hook = GameObject.Find ("Hook");
+		//hook = GameObject.Find ("Hook");
 	}
 	
 	void Update () {
 
 		if (picked == true) {
-			transform.position = hook.transform.position;
-			transform.rotation = hook.transform.rotation;
+			transform.position = _hook.transform.position;
+			transform.rotation = _hook.transform.rotation;
 		}
 	
 	}
 
-	public void pickUp(bool pickedUp)
+	public void pickUp(GameObject hook)
 	{
-
-		picked = pickedUp;
+		//Debug.Log ("coucou c'est sensé ramasser");
+		_hook = hook;
+		picked = true;
+		gameObject.GetComponent<Rigidbody> ().useGravity = false;
 	}
+
+	public void throwObj()
+	{
+		picked = false;
+		gameObject.GetComponent<Rigidbody> ().useGravity = true;
+
+	}
+
 
 	public void Destroy()
 	{

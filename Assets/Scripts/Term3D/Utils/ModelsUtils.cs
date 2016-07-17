@@ -6,6 +6,7 @@ public class ModelsUtils
 	public class ModelList
 	{
 		public GameObject[] Models;
+
 	}
 
 	public enum FilesTypes
@@ -18,23 +19,31 @@ public class ModelsUtils
 		Other
 	}
 
-	public static readonly string[] ImagesExtension =
+	public static readonly string[] ImagesExtensions =
 	{
 		".jpg", ".jpeg", ".png"
 	};
 
-	public static readonly string[] AudiosExtension =
+	public static readonly string[] AudiosExtensions =
 	{
 		".mp3", ".ogg"
 	};
 
-	public static readonly string[] VideosExtension =
+	public static readonly string[] VideosExtensions =
 	{
 		".mp4"
 	};
 
-	public static readonly string[] TextsExtension =
+	public static readonly string[] TextsExtensions =
 	{
 		".txt"
+	};
+
+	public static readonly string[][] Extensions =
+	{
+		ImagesExtensions,
+		AudiosExtensions,
+		VideosExtensions,
+		TextsExtensions
 	};
 }

@@ -9,9 +9,10 @@ public class loadWorld : MonoBehaviour {
 
 	public GameObject cubeVert;
 	public GameObject cylindre;
+	public GameObject audioObj;
 
 
-	public serializableObj[] objs = new serializableObj [10];
+	public serializableObj[] objs;
 	// Use this for initializatio
 	void Start () {
 	}
@@ -41,8 +42,12 @@ public class loadWorld : MonoBehaviour {
 					Instantiate (cubeVert, new Vector3 (objs [i].x, objs [i].y, objs [i].z), rotate);
 				} else if (objs [i].objName == "Cylindre(Clone)") {
 					Debug.Log ("coucou");
-				  	rotate = Quaternion.Euler (objs [i].xRotate, objs [i].yRotate, objs [i].zRotate);
+					rotate = Quaternion.Euler (objs [i].xRotate, objs [i].yRotate, objs [i].zRotate);
 					Instantiate (cylindre, new Vector3 (objs [i].x, objs [i].y, objs [i].z), rotate);
+				}else if (objs [i].objName == "Audio(Clone)") {
+					Debug.Log ("coucou");
+					rotate = Quaternion.Euler (objs [i].xRotate, objs [i].yRotate, objs [i].zRotate);
+					Instantiate (audioObj, new Vector3 (objs [i].x, objs [i].y, objs [i].z), rotate);
 				}
 			}
 		}

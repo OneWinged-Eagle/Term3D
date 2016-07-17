@@ -1,0 +1,26 @@
+﻿using UnityEngine;
+using System.Collections;
+
+[BoltGlobalBehaviour]
+public class askControlToHost : Bolt.GlobalEventListener {
+	
+	public void AskControl()
+	{
+		var test = askControl.Create ();
+
+		//test.protocolToken = null;
+		//test.networkId = null;
+
+
+		test.Send ();
+
+	}
+
+	public override void OnEvent(askControl e)
+	{
+		Debug.Log (e.prefabId);
+		Debug.Log (e.protocolToken);
+		Debug.Log (e.networkId);
+	}
+
+}

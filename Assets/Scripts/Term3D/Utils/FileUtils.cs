@@ -7,14 +7,19 @@ public class FileUtils
 	{
 		public File(string path) : base(path) {}
 
-		public string GetExtension()
+		public string GetName()
 		{
-			return Path.GetExtension(RealPath);
+			return GetFileName();
 		}
 
 		public string GetFileName()
 		{
 			return Path.GetFileName(RealPath);
+		}
+
+		public string GetExtension()
+		{
+			return Path.GetExtension(RealPath);
 		}
 
 		public string GetFileNameWithoutExtension()
@@ -25,6 +30,11 @@ public class FileUtils
 		public string GetContent()
 		{
 			return System.IO.File.ReadAllText(RealPath);
+		}
+
+		public byte[] GetData()
+		{
+			return System.IO.File.ReadAllBytes(RealPath);
 		}
 	}
 }
