@@ -54,24 +54,29 @@ public class CommandHandler
 			return "Command's syntax is incorrect.\n"; // TODO: plus verbose
 		else
 		{
-			if (File.Exists(args[0]))
-				return File.ReadAllText(args[0]);
-			else
+			FileUtils.File file = new FileUtils.File(args[0]);
+
+			if (!file.IsFile())
 				return "File not found\n"; // TODO: plus verbose
+
+			return file.GetContent();
 		}
 	}
 
 	private string cd(List<string> args)
 	{
 		if (args.Count == 0)
-			return ("CD home a faire !\n"); // TODO: à faire
+			PathUtils.CurrPath = PathUtils.RootPath;
 		else
 		{
-			if (!Directory.Exists(args[0]))
-				return args[0] + " : No such file or directory."; // TODO: plus verbose
-			Directory.SetCurrentDirectory(args[0]);
-			return "cd done!\n"; // TODO: plus verbose
+			DirectoryUtils.Directory dir = new DirectoryUtils.Directory(args[0]);
+
+			if (!dir.IsDirectory())
+				return dir.ProjectPath + " : No such file or directory."; // TODO: plus verbose
+
+			PathUtils.CurrPath = dir.RealPath;
 		}
+		return (null); // TODO: ???
 	}
 
 	private string cp(List<string> args) // TODO: à pousser ?

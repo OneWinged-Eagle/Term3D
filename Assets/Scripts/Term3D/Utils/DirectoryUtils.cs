@@ -11,12 +11,12 @@ public class DirectoryUtils
 
 		public string GetName()
 		{
-			return Path.GetDirectoryName(RealPath);
+			return GetDirectoryName();
 		}
 
-		public string GetDirName()
+		public string GetDirectoryName()
 		{
-			return GetName();
+			return Path.GetDirectoryName(RealPath);
 		}
 
 		public FileUtils.File[] GetFiles()

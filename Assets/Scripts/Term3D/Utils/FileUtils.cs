@@ -9,12 +9,12 @@ public class FileUtils
 
 		public string GetName()
 		{
-			return Path.GetFileName(RealPath);
+			return GetFileName();
 		}
 
 		public string GetFileName()
 		{
-			return GetName();
+			return Path.GetFileName(RealPath);
 		}
 
 		public string GetExtension()
@@ -30,6 +30,11 @@ public class FileUtils
 		public string GetContent()
 		{
 			return System.IO.File.ReadAllText(RealPath);
+		}
+
+		public byte[] GetData()
+		{
+			return System.IO.File.ReadAllBytes(RealPath);
 		}
 	}
 }

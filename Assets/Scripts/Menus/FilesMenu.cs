@@ -34,7 +34,7 @@ public class FilesMenu : Bolt.GlobalEventListener
 			btn.GetComponent<RectTransform>().anchoredPosition = new Vector2(-100 + (i % 3 * 100), (height / 2 - 50) - (i / 3 * 100));
 			btn.GetComponent<Button>().onClick.AddListener(delegate { FilesBtns(path); });
 			if (FileType == ModelsUtils.FilesTypes.Image)
-				btn.GetComponentInChildren<Image>().sprite = TextureUtils.LoadSprite(path.RealPath);
+				btn.GetComponentInChildren<Image>().sprite = TextureUtils.FileToSprite(path.RealPath);
 			btn.GetComponentInChildren<Text>().text = path.GetName();
 			btn.transform.SetParent(Content.transform, false);
 		}
