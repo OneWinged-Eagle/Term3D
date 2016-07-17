@@ -12,13 +12,14 @@ public class addElementBehaviour : Bolt.EntityBehaviour<IPlayerState>
 
 	private GameObject modelsMenu;
 	private GameObject filesMenu;
-
+	private FilesMenu filesMenuScript;
 
 	public override void Attached()
 	{
 		modelsMenu = GameObject.Find("ModelsMenu");
 		modelsMenu.SetActive(false);
 		filesMenu = GameObject.Find ("FilesMenu");
+		filesMenuScript = filesMenu.GetComponent<FilesMenu>();
 		filesMenu.SetActive (false);
 	}
 
@@ -55,34 +56,39 @@ public class addElementBehaviour : Bolt.EntityBehaviour<IPlayerState>
 			{
 				switch (hit.collider.tag)
 				{
+				case "ImageObject":
+					filesMenu.SetActive(true);
+					filesMenuScript.Model = hit.collider.gameObject;
+					filesMenuScript.FileType = ModelsUtils.FilesTypes.Image;
+					filesMenuScript.CreateFileList();
+					break;
+				case "AudioObject":
+					filesMenu.SetActive(true);
+					filesMenuScript.Model = hit.collider.gameObject;
+					filesMenuScript.FileType = ModelsUtils.FilesTypes.Audio;
+					filesMenuScript.CreateFileList();
+					break;
+				case "VideoObject":
+					filesMenu.SetActive(true);
+					filesMenuScript.Model = hit.collider.gameObject;
+					filesMenuScript.FileType = ModelsUtils.FilesTypes.Video;
+					filesMenuScript.CreateFileList();
+					break;
+				case "TextObject":
+					filesMenu.SetActive(true);
+					filesMenuScript.Model = hit.collider.gameObject;
+					filesMenuScript.FileType = ModelsUtils.FilesTypes.Text;
+					filesMenuScript.CreateFileList();
+					break;
+				case "LinkObject":
+					filesMenu.SetActive(true);
+					filesMenuScript.Model = hit.collider.gameObject;
+					filesMenuScript.FileType = ModelsUtils.FilesTypes.Link;
+					filesMenuScript.CreateFileList();
+					break;
 				case "OtherObject":
 					Debug.Log("ça otuche" + hit.collider.tag);
 					hit.transform.SendMessage("pickUp", false, SendMessageOptions.DontRequireReceiver);
-					break;
-				case "AudioObject":
-					filesMenu.SetActive (true);
-					filesMenu.GetComponent<FilesMenu> ().Model = hit.collider.gameObject;
-					filesMenu.GetComponent<FilesMenu> ().CreateFileList (ModelsUtils.FilesTypes.Audio);
-					break;
-				case "TextObject":
-					filesMenu.SetActive (true);
-					filesMenu.GetComponent<FilesMenu> ().Model = hit.collider.gameObject;
-					filesMenu.GetComponent<FilesMenu> ().CreateFileList (ModelsUtils.FilesTypes.Text);
-					break;
-				case "VideoObject":
-					filesMenu.SetActive (true);
-					filesMenu.GetComponent<FilesMenu> ().Model = hit.collider.gameObject;
-					filesMenu.GetComponent<FilesMenu> ().CreateFileList (ModelsUtils.FilesTypes.Video);
-					break;
-				case "ImageObject":
-					filesMenu.SetActive (true);
-					filesMenu.GetComponent<FilesMenu> ().Model = hit.collider.gameObject;
-					filesMenu.GetComponent<FilesMenu> ().CreateFileList (ModelsUtils.FilesTypes.Image);
-					break;
-				case "LinkObject":
-					filesMenu.SetActive (true);
-					filesMenu.GetComponent<FilesMenu> ().Model = hit.collider.gameObject;
-					filesMenu.GetComponent<FilesMenu> ().CreateFileList (ModelsUtils.FilesTypes.Link);
 					break;
 				}
 			}
