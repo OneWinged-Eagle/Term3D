@@ -45,10 +45,12 @@ public class addElementBehaviour : Bolt.EntityBehaviour<IPlayerState>
 				case "OtherObject":
 					Debug.Log("ça otuche" + hit.collider.tag);
 					hit.transform.SendMessage("pickUp", hook, SendMessageOptions.DontRequireReceiver);
+					hit.transform.SendMessage("AskControl", SendMessageOptions.DontRequireReceiver);
 					break;
 				case "AudioObject":
 					Debug.Log("ça otuche" + hit.collider.tag);
 					hit.transform.SendMessage("PlayAndPause",SendMessageOptions.DontRequireReceiver);
+					hit.transform.SendMessage("sendPlayPauseSignal", SendMessageOptions.DontRequireReceiver);
 					break;
 				case "TextObject":
 					break;
