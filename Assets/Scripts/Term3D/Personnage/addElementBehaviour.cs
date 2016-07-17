@@ -40,13 +40,25 @@ public class addElementBehaviour : Bolt.EntityBehaviour<IPlayerState>
 				Debug.Log("ça appuie");
 				if (Physics.Raycast(intersectionRay, out hit, lenghtRay))
 				{
-					if (hit.collider.tag == "Environment")
-						Debug.Log("ça otuche" + hit.collider.tag);
-					if (hit.collider.tag == "OtherObject")
-					{
-						Debug.Log("ça otuche" + hit.collider.tag);
-						hit.transform.SendMessage("pickUp", true, SendMessageOptions.DontRequireReceiver);
-					}
+				switch (hit.collider.tag)
+				{
+				case "OtherObject":
+					Debug.Log("ça otuche" + hit.collider.tag);
+					hit.transform.SendMessage("pickUp", true, SendMessageOptions.DontRequireReceiver);
+					break;
+				case "AudioObject":
+					Debug.Log("ça otuche" + hit.collider.tag);
+					hit.transform.SendMessage("PlayAndPause",SendMessageOptions.DontRequireReceiver);
+					break;
+				case "TextObject":
+					break;
+				case "VideoObject":
+					break;
+				case "ImageObject":
+					break;
+				case "LinkObject":
+					break;
+				}
 				}
 			}
 		//pas propre ici a refaire
