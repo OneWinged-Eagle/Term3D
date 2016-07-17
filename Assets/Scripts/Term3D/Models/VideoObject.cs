@@ -1,4 +1,4 @@
-public class VideoObject : Bolt.EntityBehaviour<ICubeVert>
+public class VideoObject : Bolt.EntityBehaviour<IVideoObjectState>
 {
 	public FileUtils.File Video;
 }

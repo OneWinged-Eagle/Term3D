@@ -1,4 +1,4 @@
-public class AudioObject : Bolt.EntityBehaviour<ICubeVert>
+public class AudioObject : Bolt.EntityBehaviour<IAudioObjectState>
 {
 	public FileUtils.File Audio;
 }

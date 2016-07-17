@@ -1,4 +1,4 @@
-public class LinkObject : Bolt.EntityBehaviour<ICubeVert>
+public class LinkObject : Bolt.EntityBehaviour<ILinkObjectState>
 {
 	public DirectoryUtils.Directory Link;
 }

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class mouveObjBehaviour : Bolt.EntityBehaviour<ICubeVert> {
+public class mouveObjBehaviour : Bolt.EntityBehaviour<IOtherObjectState> {
 	public GameObject _hook;
 
 	private bool picked;
@@ -9,7 +9,7 @@ public class mouveObjBehaviour : Bolt.EntityBehaviour<ICubeVert> {
 	{
 		//_hook = GameObject.Find ("Hook");
 
-		state.CubeVertTransform.SetTransforms(transform);
+		state.OtherObjectTransform.SetTransforms(transform);
 		base.Attached();
 	}
 
