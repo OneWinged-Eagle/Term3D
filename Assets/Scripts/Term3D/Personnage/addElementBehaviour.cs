@@ -4,7 +4,7 @@ using System.Collections;
 public class addElementBehaviour : Bolt.EntityBehaviour<IPlayerState>
 {
 	public Transform spawnPoint;
-	public Transform hook;
+	public GameObject hook;
 
 	public float lenghtRay;
 
@@ -44,7 +44,7 @@ public class addElementBehaviour : Bolt.EntityBehaviour<IPlayerState>
 				{
 				case "OtherObject":
 					Debug.Log("ça otuche" + hit.collider.tag);
-					hit.transform.SendMessage("pickUp", true, SendMessageOptions.DontRequireReceiver);
+					hit.transform.SendMessage("pickUp", hook, SendMessageOptions.DontRequireReceiver);
 					break;
 				case "AudioObject":
 					Debug.Log("ça otuche" + hit.collider.tag);
@@ -100,7 +100,7 @@ public class addElementBehaviour : Bolt.EntityBehaviour<IPlayerState>
 					break;
 				case "OtherObject":
 					Debug.Log("ça otuche" + hit.collider.tag);
-					hit.transform.SendMessage("pickUp", false, SendMessageOptions.DontRequireReceiver);
+					hit.transform.SendMessage("throwObj", SendMessageOptions.DontRequireReceiver);
 					break;
 				}
 			}

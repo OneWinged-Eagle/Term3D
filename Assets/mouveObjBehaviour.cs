@@ -2,11 +2,13 @@
 using System.Collections;
 
 public class mouveObjBehaviour : Bolt.EntityBehaviour<ICubeVert> {
-	public Transform _hook;
+	public GameObject _hook;
 
 	private bool picked;
 	public override void Attached()
 	{
+		//_hook = GameObject.Find ("Hook");
+
 		state.CubeVertTransform.SetTransforms(transform);
 		base.Attached();
 	}
@@ -14,17 +16,25 @@ public class mouveObjBehaviour : Bolt.EntityBehaviour<ICubeVert> {
 	public override void SimulateOwner()
 	{
 		if (picked == true) {
-			transform.position = _hook.position;
-			transform.rotation = _hook.rotation;
+			transform.position = _hook.transform.position;
+			transform.rotation = _hook.transform.rotation;
 		}
 		base.SimulateOwner ();
 	}
 		
-	public void pickUp(Transform hook)
+	public void pickUp(GameObject hook)
 	{
 		Debug.Log ("coucou c'est sensé ramasser");
-		picked = true;
 		_hook = hook;
+		picked = true;
+		gameObject.GetComponent<Rigidbody> ().useGravity = false;
+
+	}
+
+	public void throwObj()
+	{
+		picked = false;
+		gameObject.GetComponent<Rigidbody> ().useGravity = true;
 	}
 
 	public void Destroy()

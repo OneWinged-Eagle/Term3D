@@ -44,7 +44,7 @@ public class ModelsMenu : Bolt.GlobalEventListener
 		BoltNetwork.Instantiate(ModelsList [fileType].Models [nb], spawnPoint.position, spawnPoint.rotation);
 
 
-		Instantiate(ModelsList[fileType].Models[nb], spawnPoint.position, spawnPoint.rotation);
+		//Instantiate(ModelsList[fileType].Models[nb], spawnPoint.position, spawnPoint.rotation);
 
 
 		CloseBtn();
