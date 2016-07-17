@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -36,17 +37,21 @@ public class Chat : Bolt.GlobalEventListener
 
 	void displayMsg()
 	{
-		string display = "";
-		string lastCommand = "";
-		string result = "";
+		string display = String.Empty;
 
 		foreach (string msg in _logChat)
+			display += msg + "\n";
+
+		string cmd = _logChat[_logChat.Count - 1];
+		if (cmd[0] == '/')
 		{
-			display += msg.ToString() + "\n";
-			lastCommand = msg;
+			string result = _commandHandler.CallFunction(new List<string>(cmd.Split(' ')));
+
+			display += result;
+			_logChat.Add(result);
 		}
 
-		List<string> cmdline = new List<string>(lastCommand.Split(' '));
+		/*List<string> cmdline = new List<string>(lastCommand.Split(' '));
 		result = _commandHandler.CallFunction(cmdline);
 		display += result;
 
@@ -57,7 +62,7 @@ public class Chat : Bolt.GlobalEventListener
 			result = _commandHandler.CallFunction(cmdline);
 			display += result;
 		}
-		_logChat.Add(result);
+		_logChat.Add(result);*/
 
 		_content.text = display;
 		_addText = false;

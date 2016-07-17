@@ -2,7 +2,6 @@ using UnityEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 
 public class CommandHandler
@@ -15,7 +14,7 @@ public class CommandHandler
 		_commands.Add("cat", new Func<List<string>, string>(cat));
 		_commands.Add("cd", new Func<List<string>, string>(cd));
 		_commands.Add("cp", new Func<List<string>, string>(cp));
-		_commands.Add("exit", new Func<List<string>, string>(exit));
+		//_commands.Add("exit", new Func<List<string>, string>(exit));
 		_commands.Add("ls", new Func<List<string>, string>(ls));
 		_commands.Add("mkdir", new Func<List<string>, string>(mkdir));
 		_commands.Add("mv", new Func<List<string>, string>(mv));
@@ -24,7 +23,7 @@ public class CommandHandler
 		_commands.Add("rm", new Func<List<string>, string>(rm));
 		_commands.Add("rmdir", new Func<List<string>, string>(rmdir));
 		_commands.Add("touch", new Func<List<string>, string>(touch));
-		_commands.Add("whoami", new Func<List<string>, string>(whoami));
+		//_commands.Add("whoami", new Func<List<string>, string>(whoami));
 	}
 
 	public string CallFunction(List<string> cmdLine)
@@ -32,7 +31,7 @@ public class CommandHandler
 		if (cmdLine == null)
 			return String.Empty;
 
-		string command = cmdLine[0];
+		string command = cmdLine[0].Substring(1);
 
 		if (String.IsNullOrEmpty(command))
 			return String.Empty;
@@ -45,8 +44,6 @@ public class CommandHandler
 
 		return del.DynamicInvoke(cmdLine).ToString();
 	}
-
-	// TODO: retaper un peu toutes les fonctions avec les Utils, si besoin
 
 	private string cat(List<string> args)
 	{
@@ -72,41 +69,41 @@ public class CommandHandler
 			DirectoryUtils.Directory dir = new DirectoryUtils.Directory(args[0]);
 
 			if (!dir.IsDirectory())
-				return dir.ProjectPath + " : No such file or directory."; // TODO: plus verbose
+				return dir.ProjectPath + " : No such file or directory.\n"; // TODO: plus verbose
 
 			PathUtils.CurrPath = dir.RealPath;
 		}
-		return (null); // TODO: ???
+		return ("Now in " + (new DirectoryUtils.Directory(PathUtils.CurrPath)).ProjectPath + "\n"); // TODO: ???
 	}
 
 	private string cp(List<string> args) // TODO: à pousser ?
 	{
-		if (args.Count != 2)
-			return "Cp command needs 2 arguments.\n"; // TODO: plus verbose
+		if (args.Count == 0)
+			return "cp command needs 1 argument.\n"; // TODO: plus verbose
 		else
 		{
-			if (!File.Exists(args[0]))
-				return args[0] + " : No such file or directory.\n"; // TODO: plus verbose
-			else if (!Directory.Exists(args[1]))
-				return args[1] + " : No such file or directory.\n"; // TODO: plus verbose
-			else
-				File.Copy(args[0], args[1] + "\\" + args[0]);
+			FileUtils.File file = new FileUtils.File(args[0]);
+
+			if (!file.IsFile())
+				return file.ProjectPath + " : No such file or directory.\n"; // TODO: plus verbose
+
+			File.Copy(file.ProjectPath, PathUtils.CurrPath + "\\" + file.ProjectPath); // TODO: à mettre dans les utils
+			return file.ProjectPath + "copied.\n"; // TODO: plus verbose
 		}
-		return String.Empty; // TODO: plus verbose
 	}
 
-	private string exit(List<string> args) // TODO: wut?
+	/*private string exit(List<string> args) // TODO: wut?
 	{
 		return "exit";
-	}
+	}*/
 
-	private string ls(List<string> args)  // TODO: à pousser ?
+	private string ls(List<string> args)  // TODO: à pousser ? Changer les utils ?
 	{
 		string result = "";
 		DirectoryInfo dir;
 
 		if (args.Count == 0)
-			dir = new DirectoryInfo(Directory.GetCurrentDirectory());
+			dir = new DirectoryInfo(PathUtils.CurrPath);
 		else
 			dir = new DirectoryInfo(args[0]);
 
@@ -121,29 +118,47 @@ public class CommandHandler
 
 	private string mkdir(List<string> args)
 	{
+		if (args.Count == 0)
+			return "mkdir command needs 1 argument.\n"; // TODO: plus verbose
+
+		DirectoryUtils.Directory dir = new DirectoryUtils.Directory(args[0]);
+		if (dir.IsDirectory())
+			return "Such directory already exists : " + dir.ProjectPath + "\n"; // TODO: plus verbose
+
+		/*
 		int i;
-
-		if (args.Count != 1)
-			return "Touch command needs 2 arguments.\n"; // TODO: plus verbose
-
-		if (Directory.Exists(args[0]))
-			return "Such directory already exists : " + args[0] + "\n"; // TODO: plus verbose
-
 		if ((i = args[0].LastIndexOf('/')) != -1)													//
 			if (!Directory.Exists(args[0].Substring(0, i)))									// TODO: wut?
 				return (args[0].Substring(0, i) + " : No such directory.\n");	//
+		*/
 
-		Directory.CreateDirectory(args[0]);
+		Directory.CreateDirectory(dir.RealPath);
 
-		return String.Empty;
+		return "Directory " + dir.ProjectPath + " created\n";
 	}
 
 	private string mv(List<string> args) // TODO: à faire
 	{
-		return ("mv\n");
+		if (args.Count < 2)
+			return "mv command needs 2 arguments.\n"; // TODO: plus verbose
+		else
+		{
+			FileUtils.File file1 = new FileUtils.File(args[0]);
+
+			if (!file1.IsFile())
+				return file1.ProjectPath + " : No such file or directory.\n"; // TODO: plus verbose
+
+			FileUtils.File file2 = new FileUtils.File(args[1]);
+
+			if (file2.IsFile())
+				return file2.ProjectPath + " : already exists.\n"; // TODO: plus verbose
+
+			File.Move(file1.RealPath, file2.RealPath); // TODO: à mettre dans les utils
+			return file1.ProjectPath + " moved to " + file2.ProjectPath + "\n"; // TODO: plus verbose
+		}
 	}
 
-	private void ps()
+	/*private void ps()
 	{
 		Process[] processes = Process.GetProcesses();
 
@@ -160,62 +175,64 @@ public class CommandHandler
       {
         continue; // TODO: gérer les exception, stp
       }
-	}
+	}*/
 
 	private string pwd(List<string> args)
 	{
-		return Directory.GetCurrentDirectory() + "\n";
+		return PathUtils.CurrPath + "\n";
 	}
 
 	private string rm(List<string> args)
 	{
-		if (args.Count != 1)
-			return "Rm command needs only 1 argument.\n"; // TODO: plus verbose
+		if (args.Count == 0)
+			return "rm command needs 1 argument.\n"; // TODO: plus verbose
 		else
 		{
-			if (!File.Exists(args[0]))
-				return args[0] + " : File not found.\n"; // TODO: plus verbose
-			else
-				File.Delete(args[0]);
+			FileUtils.File file = new FileUtils.File(args[0]);
+			if (!file.IsFile())
+				return file.ProjectPath + " : File not found.\n"; // TODO: plus verbose
+			File.Delete(file.RealPath);
+			return String.Empty;
 		}
-		return String.Empty;
 	}
 
 	private string rmdir(List<string> args)
 	{
-		if (args.Count != 1)
-			return "Rmdir command needs only 1 argument.\n"; // TODO: plus verbose
+		if (args.Count == 0)
+			return "rmdir command needs 1 argument.\n"; // TODO: plus verbose
 		else
 		{
-			if (!Directory.Exists(args[0]))
-				return args[0] + " : Directory not found.\n"; // TODO: plus verbose
-			else
-				Directory.Delete(args[0]);
+			DirectoryUtils.Directory dir = new DirectoryUtils.Directory(args[0]);
+			if (!dir.IsDirectory())
+				return dir.ProjectPath + " : Directory not found.\n"; // TODO: plus verbose
+			Directory.Delete(dir.RealPath);
+			return String.Empty;
 		}
-		return String.Empty;
 	}
 
 	private string touch(List<string> args)
 	{
+		if (args.Count == 0)
+			return "Touch command needs 1 arguments.\n"; // TODO: plus verbose
+
+		FileUtils.File file = new FileUtils.File(args[0]);
+		if (file.IsFile())
+			return "Such file already exists : " + file.ProjectPath + "\n"; // TODO: plus verbose
+
+		/*
 		int i;
-
-		if (args.Count != 1)
-			return "Touch command needs 2 arguments.\n"; // TODO: plus verbose
-
-		if (File.Exists(args[0]))
-			return "Such file already exists : " + args[0] + "\n"; // TODO: plus verbose
-
 		if ((i = args[0].LastIndexOf('/')) != -1)												//
 			if (!Directory.Exists(args[0].Substring(0, i)))								// TODO: wut?
 				return args[0].Substring(0, i) + " : No such directory.\n";	//
+		*/
 
-		File.Create(args[0]);
+		File.Create(file.RealPath);
 
-		return String.Empty;
+		return "File " + file.ProjectPath + " created\n";
 	}
 
-	private string whoami(List<string> args)
+	/*private string whoami(List<string> args)
 	{
 		return Environment.UserName + "\n";
-	}
+	}*/
 }
