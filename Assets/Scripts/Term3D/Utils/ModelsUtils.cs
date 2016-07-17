@@ -6,6 +6,7 @@ public class ModelsUtils
 	public class ModelList
 	{
 		public GameObject[] Models;
+
 	}
 
 	public enum FilesTypes
