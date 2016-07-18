@@ -12,7 +12,7 @@ public class movement : Bolt.EntityBehaviour<IPlayerState> {
 	{
 		Debug.Log ("ciaehaisjq haihe  oejazo ehjzai hzeui rhiea ohriaohu iao lolololollol"); 
 		state.Transform.SetTransforms(transform);
-		state.Speed = 10f;
+		//state.Speed = 10f;
 		base.Attached ();
 	}
 

@@ -7,25 +7,44 @@ public class AudioPlayer : Bolt.EntityBehaviour<IAudioObjectState> {
 
 	public override void Attached()
 	{
-		audio.Pause ();
+		//audio.Pause ();
 		//gameObject.GetComponent<Renderer> ().material.color = Color.red;
-		this.GetComponent<Renderer> ().material.color = Color.red;
+
+		state.isPlayed = false;
+		state.AddCallback ("isPlayed", colorPlayed);
+		Debug.Log (state.isPlayed);
+		//this.GetComponent<Renderer> ().material.color = Color.red;
 		base.Attached ();
-		Debug.Log ("zpas loué");
+
 
 	}
+
+	void colorPlayed()
+	{
+		if (state.isPlayed == true) {
+			this.GetComponent<Renderer> ().material.color = Color.green;
+		} else if (state.isPlayed == false) {
+			this.GetComponent<Renderer> ().material.color = Color.red;
+		}
+	}
+
+
 
 	public void PlayAndPause()
 	{
 		audio = GetComponent<AudioSource> ();
+
+
 		if (!isListen) {
 			isListen = true;
+			state.isPlayed = true;
 			audio.Play ();
-			this.GetComponent<Renderer> ().material.color = Color.green;
+		//	this.GetComponent<Renderer> ().material.color = Color.green;
 		} else {
 			isListen = false;
+			state.isPlayed = false;
 			audio.Pause ();
-			this.GetComponent<Renderer> ().material.color = Color.red;
+		//	this.GetComponent<Renderer> ().material.color = Color.red;
 
 		}
 	}
