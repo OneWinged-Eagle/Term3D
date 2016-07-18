@@ -7,7 +7,7 @@ public class AudioPlayer : Bolt.EntityBehaviour<IAudioObjectState> {
 
 	public override void Attached()
 	{
-		//audio.Pause ();
+		audio.Pause ();
 		//gameObject.GetComponent<Renderer> ().material.color = Color.red;
 
 		state.isPlayed = false;
@@ -21,10 +21,14 @@ public class AudioPlayer : Bolt.EntityBehaviour<IAudioObjectState> {
 
 	void colorPlayed()
 	{
+		audio = GetComponent<AudioSource> ();
+
 		if (state.isPlayed == true) {
+			audio.Play ();
 			this.GetComponent<Renderer> ().material.color = Color.green;
 		} else if (state.isPlayed == false) {
 			this.GetComponent<Renderer> ().material.color = Color.red;
+			audio.Pause ();
 		}
 	}
 
@@ -33,7 +37,7 @@ public class AudioPlayer : Bolt.EntityBehaviour<IAudioObjectState> {
 	public void PlayAndPause()
 	{
 		audio = GetComponent<AudioSource> ();
-
+		//audio.clip = GetComponent<AudioObject> ().GetComponent<AudioSource>();
 
 		if (!isListen) {
 			isListen = true;
