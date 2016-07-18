@@ -1,15 +1,18 @@
+using UnityEngine;
+
 public class LinkObject : Bolt.EntityBehaviour<ILinkObjectState>
 {
 	public DirectoryUtils.Directory Link;
+	private GameObject room;
 
-	public void Go()
+	public void Go(GameObject player)
 	{
 		PathUtils.CurrPath = Link.RealPath;
-		// se TP dans la room
+		player.transform.position = room.transform.Find("Spawn").transform.position;
 	}
 
 	public void Apply()
 	{
-		RoomUtils.CreateNewRoom();
+		room = RoomUtils.CreateNewRoom();
 	}
 }

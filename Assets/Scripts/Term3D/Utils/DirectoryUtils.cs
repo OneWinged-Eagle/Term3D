@@ -16,7 +16,7 @@ public class DirectoryUtils
 
 		public string GetDirectoryName()
 		{
-			return Path.GetDirectoryName(RealPath);
+			return ProjectPath;
 		}
 
 		public FileUtils.File[] GetFiles()
