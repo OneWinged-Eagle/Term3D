@@ -69,6 +69,8 @@ public class FilesMenu : Bolt.GlobalEventListener
 
 	public void CloseBtn()
 	{
+		foreach (Transform child in Content.transform)
+			GameObject.Destroy(child.gameObject);
 		gameObject.SetActive(false);
 	}
 }
