@@ -7,8 +7,8 @@ public class AudioPlayer : Bolt.EntityBehaviour<IAudioObjectState> {
 
 	public override void Attached()
 	{
-		audio.Pause ();
-		//gameObject.GetComponent<Renderer> ().material.color = Color.red;
+//		audio.Pause ();
+		gameObject.GetComponent<Renderer> ().material.color = Color.red;
 
 		state.isPlayed = false;
 		state.AddCallback ("isPlayed", colorPlayed);
