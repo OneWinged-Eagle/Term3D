@@ -38,6 +38,18 @@ public class AudioPlayer : Bolt.EntityBehaviour<IAudioObjectState> {
 	{
 		audio = GetComponent<AudioSource> ();
 		//audio.clip = GetComponent<AudioObject> ().GetComponent<AudioSource>();
+		string path = gameObject.GetComponent<AudioObject>().Audio.RealPath;
+
+
+
+		WWW testwww = new WWW ("file://" + path);
+		Debug.Log ("file://" + path);
+
+		AudioClip monSon = testwww.audioClip;
+		audio.clip = monSon;
+
+
+
 
 		if (!isListen) {
 			isListen = true;

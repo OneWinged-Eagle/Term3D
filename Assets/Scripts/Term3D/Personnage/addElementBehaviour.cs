@@ -28,7 +28,7 @@ public class addElementBehaviour : Bolt.EntityBehaviour<IPlayerState>
 
 	public override void SimulateOwner()
 	{
-		if (Input.GetKeyDown(KeyCode.E))
+		if (Input.GetKeyDown(KeyCode.Escape))
 		{
 			Debug.Log ("E des barres");
 			modelsMenu.SetActive(true);
