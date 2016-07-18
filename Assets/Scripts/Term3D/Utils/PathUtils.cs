@@ -22,9 +22,8 @@ public class PathUtils
 		{
 			if (IsFile())
 				return System.IO.Path.GetFileName(RealPath);
-			else if (IsDirectory())
-				return System.IO.Path.GetDirectoryName(RealPath);
-			return (RealPath);
+			else
+				return (ProjectPath);
 		}
 
 		protected Path(string path)

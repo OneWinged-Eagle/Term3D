@@ -11,15 +11,17 @@ public class addElementBehaviour : Bolt.EntityBehaviour<IPlayerState>
 
 
 	private GameObject modelsMenu;
+	private ModelsMenu modelsMenuScript;
 	private GameObject filesMenu;
 	private FilesMenu filesMenuScript;
 
 	public override void Attached()
 	{
 		modelsMenu = GameObject.Find("ModelsMenu");
+		modelsMenuScript = modelsMenu.GetComponent<ModelsMenu>();
+		modelsMenuScript.Player = gameObject;
 		modelsMenu.SetActive(false);
 		filesMenu = GameObject.Find ("FilesMenu");
-		filesMenuScript = filesMenu.GetComponent<FilesMenu>();
 		filesMenu.SetActive (false);
 	}
 
@@ -46,7 +48,7 @@ public class addElementBehaviour : Bolt.EntityBehaviour<IPlayerState>
 					break;
 				case "AudioObject":
 					Debug.Log("ça otuche" + hit.collider.tag);
-					hit.transform.SendMessage("PlayAndPause",SendMessageOptions.DontRequireReceiver);
+					hit.transform.SendMessage("PlayAndPause", SendMessageOptions.DontRequireReceiver);
 					hit.transform.SendMessage("sendPlayPauseSignal", SendMessageOptions.DontRequireReceiver);
 					break;
 				case "VideoObject":
@@ -54,7 +56,7 @@ public class addElementBehaviour : Bolt.EntityBehaviour<IPlayerState>
 				case "TextObject":
 					break;
 				case "LinkObject":
-					hit.transform.SendMessage("Go", SendMessageOptions.DontRequireReceiver);
+					hit.transform.SendMessage("Go", gameObject, SendMessageOptions.DontRequireReceiver);
 					break;
 				case "OtherObject":
 					Debug.Log("ça otuche" + hit.collider.tag);

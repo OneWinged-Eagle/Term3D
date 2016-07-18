@@ -1,5 +1,5 @@
 #if UNITY_EDITOR
-using UnityEditor; 
+using UnityEditor;
 #endif
 ﻿using UnityEngine;
 using UnityEngine.UI;
@@ -34,18 +34,11 @@ public class ModelsMenu : Bolt.GlobalEventListener
 	{
 		int fileType = int.Parse(datas.Substring(0, datas.IndexOf(',')));
 		int nb = int.Parse(datas.Substring(datas.IndexOf(',') + 1));
-		Transform spawnPoint = Player.GetComponentInChildren<addElementBehaviour>().spawnPoint;
+		Transform spawn = Player.GetComponentInChildren<addElementBehaviour>().spawnPoint;
 
-		Debug.Log (ModelsList [fileType].Models [nb]);
-
-
-
-
-		BoltNetwork.Instantiate(ModelsList [fileType].Models [nb], spawnPoint.position, spawnPoint.rotation);
-
+		BoltNetwork.Instantiate(ModelsList[fileType].Models[nb], spawn.position, spawn.rotation);
 
 		//Instantiate(ModelsList[fileType].Models[nb], spawnPoint.position, spawnPoint.rotation);
-
 
 		CloseBtn();
 	}
