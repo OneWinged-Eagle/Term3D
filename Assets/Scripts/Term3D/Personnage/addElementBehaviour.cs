@@ -22,6 +22,7 @@ public class addElementBehaviour : Bolt.EntityBehaviour<IPlayerState>
 		modelsMenuScript.Player = gameObject;
 		modelsMenu.SetActive(false);
 		filesMenu = GameObject.Find ("FilesMenu");
+		filesMenuScript = filesMenu.GetComponent<FilesMenu>();
 		filesMenu.SetActive (false);
 	}
 
@@ -75,6 +76,8 @@ public class addElementBehaviour : Bolt.EntityBehaviour<IPlayerState>
 				{
 				case "ImageObject":
 					filesMenu.SetActive(true);
+					Debug.Log(filesMenuScript.Model);
+					Debug.Log(hit.collider.gameObject);
 					filesMenuScript.Model = hit.collider.gameObject;
 					filesMenuScript.FileType = ModelsUtils.FilesTypes.Image;
 					filesMenuScript.CreateFileList();
@@ -114,6 +117,10 @@ public class addElementBehaviour : Bolt.EntityBehaviour<IPlayerState>
 			if (Physics.Raycast(intersectionRay, out hit, lenghtRay))
 				if (hit.collider.tag == "OtherObject")
 					hit.transform.SendMessage("Destroy", true, SendMessageOptions.DontRequireReceiver);
-		base.SimulateOwner();
+        else if (Input.GetKey(KeyCode.J))
+            if (Physics.Raycast(intersectionRay, out hit, lenghtRay))
+                if (hit.collider.tag == "NonStaticObject")
+                    hit.transform.SendMessage("Play", true, SendMessageOptions.DontRequireReceiver);
+        base.SimulateOwner();
 	}
 }
