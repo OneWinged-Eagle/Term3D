@@ -16,6 +16,7 @@ public class mouveObjBehaviour : Bolt.EntityBehaviour<IOtherObjectState>{
 
 	public override void SimulateOwner()
 	{
+		
 		if (picked == true) {
 			transform.position = _hook.transform.position;
 			transform.rotation = _hook.transform.rotation;
