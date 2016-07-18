@@ -16,7 +16,7 @@ public class movementPure : Bolt.EntityBehaviour<IPlayerState> {
 		//rotateSpeed = 1.0f;
 
 		state.Transform.SetTransforms (transform);
-		state.Speed = moveSpeed;
+		//state.Speed = moveSpeed;
 		base.Attached ();
 
 
