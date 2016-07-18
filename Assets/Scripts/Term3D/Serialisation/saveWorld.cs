@@ -4,17 +4,10 @@ using System.Collections;
 using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Runtime.Serialization; 
+using System.Runtime.Serialization;
+using System.Collections.Generic;
 
 public class saveWorld : MonoBehaviour {
-
-	public GameObject[] all;
-	//public serializableObj[] objs;
-
-
-	public serializableObj[] objs = new serializableObj[10];
-
-
 
 	// Use this for initialization
 	void Start () {
@@ -33,57 +26,51 @@ public class saveWorld : MonoBehaviour {
 
 	public void save()
 	{
-		var other = GameObject.FindGameObjectsWithTag("OtherObject");
-		var audio = GameObject.FindGameObjectsWithTag("AudioObject");
-		var video = GameObject.FindGameObjectsWithTag("VideoObject");
-		var text = GameObject.FindGameObjectsWithTag("TextObject");
-		var link = GameObject.FindGameObjectsWithTag("LinkObject");
-		var image = GameObject.FindGameObjectsWithTag("ImageObject");
+		GameObject[] other = GameObject.FindGameObjectsWithTag("OtherObject");
+        GameObject[] audio = GameObject.FindGameObjectsWithTag("AudioObject");
+        GameObject[] video = GameObject.FindGameObjectsWithTag("VideoObject");
+        GameObject[] text = GameObject.FindGameObjectsWithTag("TextObject");
+        GameObject[] link = GameObject.FindGameObjectsWithTag("LinkObject");
+        GameObject[] image = GameObject.FindGameObjectsWithTag("ImageObject");
+        GameObject[] room = GameObject.FindGameObjectsWithTag("Room");
 
-		//désolé c'est pas beau, faut tout passer en liste pour pouvoir append une liste à l'autre...
-		for (int i = 0; i < other.Length; i++)
-		{
-			all.AddFirst<GameObject>(other[i]);
-		}
-		for (int i = 0; i < audio.Length; i++)
-		{
-			all.AddFirst<GameObject>(audio[i]);
-		}
-		for (int i = 0; i < video.Length; i++)
-		{
-			all.AddFirst<GameObject>(video[i]);
-		}
-		for (int i = 0; i < text.Length; i++)
-		{
-			all.AddFirst<GameObject>(text[i]);
-		}
-		for (int i = 0; i < link.Length; i++)
-		{
-			all.AddFirst<GameObject>(link[i]);
-		}
-		for (int i = 0; i < image.Length; i++)
-		{
-			all.AddFirst<GameObject>(image[i]);
-		}
+        List<GameObject> allL = new List<GameObject>();
 
+        allL.AddRange(other);
+        allL.AddRange(audio);
+        allL.AddRange(video);
+        allL.AddRange(text);
+        allL.AddRange(link);
+        allL.AddRange(image);
+        allL.AddRange(room);
+
+        GameObject[] all = new GameObject[allL.Count];
+
+        all = allL.ToArray();
 		serializableObj[] objs = new serializableObj[all.Length];
 
+        for (int i = 0; i < all.Length; i++) {
+            objs[i] = new serializableObj();
 
+            objs[i].x = all[i].transform.position.x;
+			objs[i].y = all[i].transform.position.y;
+			objs[i].z = all[i].transform.position.z;
 
-		for (int i = 0; i < all.Length; i++) {
-			objs [i].x = all [i].transform.position.x;
-			objs [i].y = all [i].transform.position.y;
-			objs [i].z = all [i].transform.position.z;
-			objs [i].xRotate = all [i].transform.rotation.eulerAngles.x;
-			objs [i].yRotate = all [i].transform.rotation.eulerAngles.y;
-			objs [i].zRotate = all [i].transform.rotation.eulerAngles.z;
-			objs [i].objName = all [i].name;
-		}
+			objs[i].xRotate = all[i].transform.rotation.eulerAngles.x;
+			objs[i].yRotate = all[i].transform.rotation.eulerAngles.y;
+			objs[i].zRotate = all[i].transform.rotation.eulerAngles.z;
 
-		Debug.Log (Application.persistentDataPath);
+			objs[i].objName = all[i].name;
+
+            objs[i].audio = all[i].GetComponent<AudioObject>();
+            objs[i].link = all[i].GetComponent<LinkObject>();
+            objs[i].image = all[i].GetComponent<ImageObject>();
+            objs[i].text = all[i].GetComponent<TextObject>();
+            objs[i].video = all[i].GetComponent<VideoObject>();
+        }
 
 		BinaryFormatter bf = new BinaryFormatter ();
-		FileStream file = File.Open (Application.persistentDataPath + "/roomInfo.dat", FileMode.Open);
+		FileStream file = File.Open (Application.persistentDataPath + "/roomInfo.dat", FileMode.OpenOrCreate);
 
 		bf.Serialize (file, objs);
 		file.Close();

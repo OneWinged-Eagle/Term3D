@@ -6,13 +6,13 @@ public class ServerCallback : Bolt.GlobalEventListener
 {
 	void Awake()
 	{
-	    PlayerObjectRegistry.CreateServerPlayer ();
+	    //PlayerObjectRegistry.CreateServerPlayer ();
 	}
 
     public override void Connected(BoltConnection connection)
     {
 		onConnection (connection);
-	    PlayerObjectRegistry.CreateClientPlayer (connection);
+	    //PlayerObjectRegistry.CreateClientPlayer (connection);
     }
 
     public override void Disconnected(BoltConnection connection)
@@ -22,12 +22,12 @@ public class ServerCallback : Bolt.GlobalEventListener
 
 	public override void SceneLoadLocalDone(string map)
 	{
-	    PlayerObjectRegistry.serverPlayer.Spawn ();
+	    //PlayerObjectRegistry.serverPlayer.Spawn ();
 	}
 
 	public override void SceneLoadRemoteDone(BoltConnection connection)
 	{
-	    PlayerObjectRegistry.GetPlayer (connection).Spawn ();
+	    //PlayerObjectRegistry.GetPlayer (connection).Spawn ();
 	}
 
 
