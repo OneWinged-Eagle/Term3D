@@ -28,17 +28,18 @@ public class testCallbacks : Bolt.GlobalEventListener // TODO: pourquoi la class
 
 		PathUtils.RootPath = root;
 		PathUtils.CurrPath = root;
-		DirectoryUtils.Directory rootDir = new DirectoryUtils.Directory(root);
 
-        BoltNetwork.Instantiate(BoltPrefabs.Room, new Vector3(0, 0, 0), Quaternion.identity);
+		RoomUtils.CreateNewRoom();
 
-        FileUtils.File[] files = rootDir.GetFiles();
+		/*DirectoryUtils.Directory rootDir = new DirectoryUtils.Directory(root);
+
+    FileUtils.File[] files = rootDir.GetFiles();
 		for (uint i = 0; i < files.Length; ++i)
 			BoltNetwork.Instantiate(BoltPrefabs.Cube_vert, new Vector3 (20f, 0.5f, 5.0f * (2 + i)), Quaternion.identity); // TODO: à gérer mieux que ça !
 
 		DirectoryUtils.Directory[] directories = rootDir.GetDirectories();
 		for (uint i = 0; i < directories.Length; ++i)
-			BoltNetwork.Instantiate(BoltPrefabs.Cube_rouge, new Vector3 (25f, 0.5f, 25f + (2 * i)), Quaternion.identity); // TODO: à gérer mieux que ça !
+			BoltNetwork.Instantiate(BoltPrefabs.Cube_rouge, new Vector3 (25f, 0.5f, 25f + (2 * i)), Quaternion.identity); // TODO: à gérer mieux que ça !*/
 
 		return true;
 	}

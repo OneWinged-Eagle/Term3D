@@ -42,23 +42,24 @@ public class addElementBehaviour : Bolt.EntityBehaviour<IPlayerState>
 				{
 				switch (hit.collider.tag)
 				{
-				case "OtherObject":
-					Debug.Log("ça otuche" + hit.collider.tag);
-					hit.transform.SendMessage("pickUp", hook, SendMessageOptions.DontRequireReceiver);
-					hit.transform.SendMessage("AskControl", SendMessageOptions.DontRequireReceiver);
+				case "ImageObject":
 					break;
 				case "AudioObject":
 					Debug.Log("ça otuche" + hit.collider.tag);
 					hit.transform.SendMessage("PlayAndPause",SendMessageOptions.DontRequireReceiver);
 					hit.transform.SendMessage("sendPlayPauseSignal", SendMessageOptions.DontRequireReceiver);
 					break;
-				case "TextObject":
-					break;
 				case "VideoObject":
 					break;
-				case "ImageObject":
+				case "TextObject":
 					break;
 				case "LinkObject":
+					hit.transform.SendMessage("Go", SendMessageOptions.DontRequireReceiver);
+					break;
+				case "OtherObject":
+					Debug.Log("ça otuche" + hit.collider.tag);
+					hit.transform.SendMessage("pickUp", hook, SendMessageOptions.DontRequireReceiver);
+					hit.transform.SendMessage("AskControl", SendMessageOptions.DontRequireReceiver);
 					break;
 				}
 				}

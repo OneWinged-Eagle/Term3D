@@ -11,7 +11,7 @@ public class FilesMenu : Bolt.GlobalEventListener
 
 	public void CreateFileList()
 	{
-		DirectoryUtils.Directory dir = new DirectoryUtils.Directory(PathUtils.CurrPath);
+		DirectoryUtils.Directory dir = new DirectoryUtils.Directory(PathUtils.PathToProjectPath(PathUtils.CurrPath));
 		PathUtils.Path[] paths;
 		if (FileType == ModelsUtils.FilesTypes.Link)
 			paths = dir.GetDirectories();
@@ -34,7 +34,7 @@ public class FilesMenu : Bolt.GlobalEventListener
 			btn.GetComponent<RectTransform>().anchoredPosition = new Vector2(-100 + (i % 3 * 100), (height / 2 - 50) - (i / 3 * 100));
 			btn.GetComponent<Button>().onClick.AddListener(delegate { FilesBtns(path); });
 			if (FileType == ModelsUtils.FilesTypes.Image)
-				btn.GetComponentInChildren<Image>().sprite = TextureUtils.FileToSprite(path.RealPath);
+				btn.GetComponentInChildren<Image>().sprite = TextureUtils.FileToSprite((FileUtils.File)path);
 			btn.GetComponentInChildren<Text>().text = path.GetName();
 			btn.transform.SetParent(Content.transform, false);
 		}
@@ -45,7 +45,9 @@ public class FilesMenu : Bolt.GlobalEventListener
 		switch (FileType)
 		{
 		case ModelsUtils.FilesTypes.Image:
-			Model.AddComponent<ImageObject>().Image = (FileUtils.File)path;
+			ImageObject imageObject = Model.AddComponent<ImageObject>();
+			imageObject.Image = (FileUtils.File)path;
+			imageObject.Apply();
 			break;
 		case ModelsUtils.FilesTypes.Audio:
 			Model.AddComponent<AudioObject>().Audio = (FileUtils.File)path;
@@ -57,7 +59,9 @@ public class FilesMenu : Bolt.GlobalEventListener
 			Model.AddComponent<TextObject>().Text = (FileUtils.File)path;
 			break;
 		case ModelsUtils.FilesTypes.Link:
-			Model.AddComponent<LinkObject>().Link = (DirectoryUtils.Directory)path;
+			LinkObject linkObject = Model.AddComponent<LinkObject>();
+			linkObject.Link = (DirectoryUtils.Directory)path;
+			linkObject.Apply();
 			break;
 		}
 		CloseBtn();

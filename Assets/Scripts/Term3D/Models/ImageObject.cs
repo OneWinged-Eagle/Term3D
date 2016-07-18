@@ -1,16 +1,14 @@
+using UnityEngine;
+using UnityEngine.UI;
+
 public class ImageObject : Bolt.EntityBehaviour<IImageObjectState>
 {
 	public FileUtils.File Image;
+	private Texture texture;
 
-	/*public override void Attached()
+	public void Apply()
 	{
-		if (BoltNetwork.isServer)
-			state.Sprite = TextureUtils.FileToBase64(Image);
-		state.AddCallBack("Sprite", spriteChanged);
+		if (texture == null && BoltNetwork.isServer)
+			texture = GetComponent<Renderer>().material.mainTexture = TextureUtils.FileToTexture(Image);
 	}
-
-	private void spriteChanged()
-	{
-		GetComponent<Image>().sprite = TextureUtils.Base64ToSprite(state.Sprite);
-	}*/
 }

@@ -43,7 +43,7 @@ public class Chat : Bolt.GlobalEventListener
 			display += msg + "\n";
 
 		string cmd = _logChat[_logChat.Count - 1];
-		if (cmd[0] == '/')
+		if (!String.IsNullOrEmpty(cmd) && cmd[0] == '/')
 		{
 			string result = _commandHandler.CallFunction(new List<string>(cmd.Split(' ')));
 

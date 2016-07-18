@@ -41,28 +41,33 @@ public class PathUtils
 	public static string GetPathFrom(string path)
 	{
 		if (System.IO.Path.IsPathRooted(path))
-			return PathUtils.GetPathFromAbsolute(path);
+			return GetPathFromAbsolute(path);
 		else
-			return PathUtils.GetPathFromRelative(path);
+			return GetPathFromRelative(path);
 	}
 
 	public static string GetPathFromAbsolute(string absPath)
 	{
-		return System.IO.Path.Combine(RootPath, absPath);
+		return System.IO.Path.GetFullPath(System.IO.Path.Combine(RootPath, absPath.Substring(1)));
 	}
 
 	public static string GetPathFromRelative(string relPath)
 	{
-		return System.IO.Path.Combine(CurrPath, relPath);
+		return System.IO.Path.GetFullPath(System.IO.Path.Combine(CurrPath, relPath));
 	}
 
 	public static string GetPathFromRelative(string relPath, string currPath)
 	{
-		return System.IO.Path.Combine(currPath, relPath);
+		return System.IO.Path.GetFullPath(System.IO.Path.Combine(currPath, relPath));
 	}
 
 	public static string PathToProjectPath(string path)
 	{
-		return path.Remove(path.IndexOf(RootPath), RootPath.Length);
+		string projectPath = path.Remove(path.IndexOf(RootPath), RootPath.Length);
+
+		if (String.IsNullOrEmpty(projectPath))
+			projectPath = System.IO.Path.DirectorySeparatorChar.ToString();
+
+		return projectPath;
 	}
 }

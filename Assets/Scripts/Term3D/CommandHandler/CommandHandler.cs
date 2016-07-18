@@ -47,8 +47,8 @@ public class CommandHandler
 
 	private string cat(List<string> args)
 	{
-		if (args.Count != 1)
-			return "Command's syntax is incorrect.\n"; // TODO: plus verbose
+		if (args.Count == 0)
+			return "cat command needs 1 argument.\n"; // TODO: plus verbose
 		else
 		{
 			FileUtils.File file = new FileUtils.File(args[0]);
@@ -73,22 +73,30 @@ public class CommandHandler
 
 			PathUtils.CurrPath = dir.RealPath;
 		}
-		return ("Now in " + (new DirectoryUtils.Directory(PathUtils.CurrPath)).ProjectPath + "\n"); // TODO: ???
+		return ("Now in " + PathUtils.PathToProjectPath(PathUtils.CurrPath) + "\n");
 	}
 
 	private string cp(List<string> args) // TODO: à pousser ?
 	{
 		if (args.Count == 0)
-			return "cp command needs 1 argument.\n"; // TODO: plus verbose
+			return "cp command needs 1 (or 2) argument(s).\n"; // TODO: plus verbose
 		else
 		{
-			FileUtils.File file = new FileUtils.File(args[0]);
+			FileUtils.File file1 = new FileUtils.File(args[0]);
 
-			if (!file.IsFile())
-				return file.ProjectPath + " : No such file or directory.\n"; // TODO: plus verbose
+			if (!file1.IsFile())
+				return file1.ProjectPath + " : No such file or directory.\n"; // TODO: plus verbose
 
-			File.Copy(file.ProjectPath, PathUtils.CurrPath + "\\" + file.ProjectPath); // TODO: à mettre dans les utils
-			return file.ProjectPath + "copied.\n"; // TODO: plus verbose
+			FileUtils.File file2 = new FileUtils.File(file1.GetName());
+
+			if (args.Count >= 2)
+				file2 = new FileUtils.File(args[1]);
+
+			if (file2.IsFile())
+				return file2.ProjectPath + " : already exists.\n"; // TODO: plus verbose
+
+			File.Copy(file1.RealPath, file2.RealPath); // TODO: à mettre dans les utils
+			return file1.ProjectPath + "copied to " + file2.ProjectPath + ".\n"; // TODO: plus verbose
 		}
 	}
 
@@ -139,8 +147,8 @@ public class CommandHandler
 
 	private string mv(List<string> args) // TODO: à faire
 	{
-		if (args.Count < 2)
-			return "mv command needs 2 arguments.\n"; // TODO: plus verbose
+		if (args.Count == 0)
+			return "mv command needs 1 (or 2) argument(s).\n"; // TODO: plus verbose
 		else
 		{
 			FileUtils.File file1 = new FileUtils.File(args[0]);
@@ -148,7 +156,10 @@ public class CommandHandler
 			if (!file1.IsFile())
 				return file1.ProjectPath + " : No such file or directory.\n"; // TODO: plus verbose
 
-			FileUtils.File file2 = new FileUtils.File(args[1]);
+			FileUtils.File file2 = new FileUtils.File(file1.GetName());
+
+			if (args.Count >= 2)
+				file2 = new FileUtils.File(args[1]);
 
 			if (file2.IsFile())
 				return file2.ProjectPath + " : already exists.\n"; // TODO: plus verbose
@@ -179,7 +190,7 @@ public class CommandHandler
 
 	private string pwd(List<string> args)
 	{
-		return PathUtils.CurrPath + "\n";
+		return PathUtils.PathToProjectPath(PathUtils.CurrPath) + "\n";
 	}
 
 	private string rm(List<string> args)
@@ -192,7 +203,7 @@ public class CommandHandler
 			if (!file.IsFile())
 				return file.ProjectPath + " : File not found.\n"; // TODO: plus verbose
 			File.Delete(file.RealPath);
-			return String.Empty;
+			return file.ProjectPath + " deleted.";
 		}
 	}
 
@@ -206,7 +217,7 @@ public class CommandHandler
 			if (!dir.IsDirectory())
 				return dir.ProjectPath + " : Directory not found.\n"; // TODO: plus verbose
 			Directory.Delete(dir.RealPath);
-			return String.Empty;
+			return dir.ProjectPath + " deleted.";
 		}
 	}
 

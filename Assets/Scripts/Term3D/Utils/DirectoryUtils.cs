@@ -25,7 +25,7 @@ public class DirectoryUtils
 			string[] files = System.IO.Directory.GetFiles(RealPath);
 
 			foreach (string file in files)
-				filesList.Add(new FileUtils.File(file));
+				filesList.Add(new FileUtils.File(PathUtils.PathToProjectPath(file)));
 
 			return filesList.ToArray();
 		}
@@ -37,7 +37,7 @@ public class DirectoryUtils
 			string[] files = System.IO.Directory.GetFiles(RealPath).Where(s => extensionsList.Any(e => s.EndsWith(e))).ToArray();
 
 			foreach (string file in files)
-				filesList.Add(new FileUtils.File(file));
+				filesList.Add(new FileUtils.File(PathUtils.PathToProjectPath(file)));
 
 			return filesList.ToArray();
 		}
@@ -48,7 +48,7 @@ public class DirectoryUtils
 			string[] directories = System.IO.Directory.GetDirectories(RealPath);
 
 			foreach (string directory in directories)
-				directoriesList.Add(new Directory(directory));
+				directoriesList.Add(new Directory(PathUtils.PathToProjectPath(directory)));
 
 			return directoriesList.ToArray();
 		}
