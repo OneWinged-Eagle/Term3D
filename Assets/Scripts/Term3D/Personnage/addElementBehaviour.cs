@@ -81,30 +81,35 @@ public class addElementBehaviour : Bolt.EntityBehaviour<IPlayerState>
 					filesMenuScript.Model = hit.collider.gameObject;
 					filesMenuScript.FileType = ModelsUtils.FilesTypes.Image;
 					filesMenuScript.CreateFileList();
+					hit.transform.SendMessage("throwObj", SendMessageOptions.DontRequireReceiver);
 					break;
 				case "AudioObject":
 					filesMenu.SetActive(true);
 					filesMenuScript.Model = hit.collider.gameObject;
 					filesMenuScript.FileType = ModelsUtils.FilesTypes.Audio;
 					filesMenuScript.CreateFileList();
+					hit.transform.SendMessage("throwObj", SendMessageOptions.DontRequireReceiver);
 					break;
 				case "VideoObject":
 					filesMenu.SetActive(true);
 					filesMenuScript.Model = hit.collider.gameObject;
 					filesMenuScript.FileType = ModelsUtils.FilesTypes.Video;
 					filesMenuScript.CreateFileList();
+					hit.transform.SendMessage("throwObj", SendMessageOptions.DontRequireReceiver);
 					break;
 				case "TextObject":
 					filesMenu.SetActive(true);
 					filesMenuScript.Model = hit.collider.gameObject;
 					filesMenuScript.FileType = ModelsUtils.FilesTypes.Text;
 					filesMenuScript.CreateFileList();
+					hit.transform.SendMessage("throwObj", SendMessageOptions.DontRequireReceiver);
 					break;
 				case "LinkObject":
 					filesMenu.SetActive(true);
 					filesMenuScript.Model = hit.collider.gameObject;
 					filesMenuScript.FileType = ModelsUtils.FilesTypes.Link;
 					filesMenuScript.CreateFileList();
+					hit.transform.SendMessage("throwObj", SendMessageOptions.DontRequireReceiver);
 					break;
 				case "OtherObject":
 					Debug.Log("ça otuche" + hit.collider.tag);
@@ -121,6 +126,9 @@ public class addElementBehaviour : Bolt.EntityBehaviour<IPlayerState>
             if (Physics.Raycast(intersectionRay, out hit, lenghtRay))
                 if (hit.collider.tag == "NonStaticObject")
                     hit.transform.SendMessage("Play", true, SendMessageOptions.DontRequireReceiver);
+		else if (Input.GetKey(KeyCode.Keypad0))
+			if (Physics.Raycast(intersectionRay, out hit, lenghtRay))
+				hit.transform.SendMessage("pickUp", true, SendMessageOptions.DontRequireReceiver);
         base.SimulateOwner();
 	}
 }
