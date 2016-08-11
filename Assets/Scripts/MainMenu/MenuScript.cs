@@ -4,11 +4,11 @@ using UnityEngine.UI;
 
 public class MenuScript : Bolt.GlobalEventListener
 {
-	public GameObject _mainMenu;
-	public GameObject _joinMenu;
-	public InputField _ip;
-	public string _servPublicIP; // TODO: variable utilisée uniquement dans LaunchServerButton : à passer en variable locale ?
-	public ushort _port = 27000;
+	public GameObject MainMenu;
+	public GameObject JoinMenu;
+	public InputField IP;
+	public string ServPublicIP; // TODO: variable utilisée uniquement dans LaunchServerButton : à passer en variable locale ?
+	public ushort Port = 27000;
 	// TODO: toutes les variables ci-dessus sont publiques, normal ? Peut-être à passer en properties ?
 
 	private void Start() {}
@@ -22,35 +22,35 @@ public class MenuScript : Bolt.GlobalEventListener
 
 	public void LaunchServerButton()
 	{
-		BoltLauncher.StartServer(new UdpKit.UdpEndPoint(UdpKit.UdpIPv4Address.Any, _port));
+		BoltLauncher.StartServer(new UdpKit.UdpEndPoint(UdpKit.UdpIPv4Address.Any, Port));
 		// DISPLAY THE PUBLIC IP IN UI
-		_servPublicIP = GetPublicIP();
-		Debug.Log(_servPublicIP + ": " + _port);
+		ServPublicIP = GetPublicIP();
+		Debug.Log(ServPublicIP + ": " + Port);
 	}
 
 	public void JoinServerButton()
 	{
-		_mainMenu.SetActive(false);
-		_joinMenu.SetActive(true);
+		MainMenu.SetActive(false);
+		JoinMenu.SetActive(true);
 	}
 
 	public void ExitButton()
 	{
-		BoltNetwork.ClosePortUPnP(_port);
+		BoltNetwork.ClosePortUPnP(Port);
 		BoltLauncher.Shutdown();
 		Application.Quit();
 	}
 
 	public void ConnectButton()
 	{
-		Debug.Log(_ip.text);
+		Debug.Log(IP.text);
 		BoltLauncher.StartClient();
 	}
 
 	public void BackButton()
 	{
-		_mainMenu.SetActive(true);
-		_joinMenu.SetActive(false);
+		MainMenu.SetActive(true);
+		JoinMenu.SetActive(false);
 	}
 
 	public override void BoltStartDone()
@@ -60,9 +60,9 @@ public class MenuScript : Bolt.GlobalEventListener
 			BoltNetwork.LoadScene("Term3D");
 			// BOLT UPNP PORT FORWARDING
 			BoltNetwork.EnableUPnP();
-			BoltNetwork.OpenPortUPnP(_port);
+			BoltNetwork.OpenPortUPnP(Port);
 		}
 		else
-			BoltNetwork.Connect(UdpKit.UdpEndPoint.Parse(_ip.text));
+			BoltNetwork.Connect(UdpKit.UdpEndPoint.Parse(IP.text));
 	}
 }

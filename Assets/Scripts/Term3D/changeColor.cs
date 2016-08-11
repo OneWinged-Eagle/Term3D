@@ -4,7 +4,8 @@ using System.Collections;
 [BoltGlobalBehaviour]
 public class ChangeColor : MonoBehaviour
 {
-/*	public override void Attached()
+	/*
+	public override void Attached()
 	{
 		//state.CubeColor = new Color(Random.value, Random.value, Random.value);
 		//state.AddCallback("CubeColor", colorChanged);
@@ -13,5 +14,6 @@ public class ChangeColor : MonoBehaviour
 	private void colorChanged()
 	{
 		//GetComponent<Renderer>().material.color = state.CubeColor;
-	}*/
+	}
+	*/
 }

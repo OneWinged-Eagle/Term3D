@@ -1,12 +1,11 @@
 using System.Collections;
 ﻿using UnityEngine;
 
-public class freeCam : MonoBehaviour {
-
+public class freeCam : MonoBehaviour
+{
 	public float speed = 5.0f;
 	public float spacing = 1.0f;
 	private Vector3 pos;
-
 
 	void Start()
 	{
@@ -24,5 +23,4 @@ public class freeCam : MonoBehaviour {
 		if (Input.GetKey (KeyCode.RightArrow))
 			transform.position += Vector3.right * speed * Time.deltaTime;
 	}
-
 }

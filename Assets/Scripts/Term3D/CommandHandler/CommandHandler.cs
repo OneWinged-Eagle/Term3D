@@ -6,24 +6,24 @@ using System.IO;
 
 public class CommandHandler
 {
-	private Dictionary<string, Delegate> _commands;
+	private Dictionary<string, Delegate> commands;
 
 	public CommandHandler()
 	{
-		_commands = new Dictionary<string, Delegate>();
-		_commands.Add("cat", new Func<List<string>, string>(cat));
-		_commands.Add("cd", new Func<List<string>, string>(cd));
-		_commands.Add("cp", new Func<List<string>, string>(cp));
-		//_commands.Add("exit", new Func<List<string>, string>(exit));
-		_commands.Add("ls", new Func<List<string>, string>(ls));
-		_commands.Add("mkdir", new Func<List<string>, string>(mkdir));
-		_commands.Add("mv", new Func<List<string>, string>(mv));
-		// _commands.Add("ps",  new Func<List<string>, string>(ps));
-		_commands.Add("pwd", new Func<List<string>, string>(pwd));
-		_commands.Add("rm", new Func<List<string>, string>(rm));
-		_commands.Add("rmdir", new Func<List<string>, string>(rmdir));
-		_commands.Add("touch", new Func<List<string>, string>(touch));
-		//_commands.Add("whoami", new Func<List<string>, string>(whoami));
+		commands = new Dictionary<string, Delegate>();
+		commands.Add("cat", new Func<List<string>, string>(cat));
+		commands.Add("cd", new Func<List<string>, string>(cd));
+		commands.Add("cp", new Func<List<string>, string>(cp));
+		//commands.Add("exit", new Func<List<string>, string>(exit));
+		commands.Add("ls", new Func<List<string>, string>(ls));
+		commands.Add("mkdir", new Func<List<string>, string>(mkdir));
+		commands.Add("mv", new Func<List<string>, string>(mv));
+		// commands.Add("ps",  new Func<List<string>, string>(ps));
+		commands.Add("pwd", new Func<List<string>, string>(pwd));
+		commands.Add("rm", new Func<List<string>, string>(rm));
+		commands.Add("rmdir", new Func<List<string>, string>(rmdir));
+		commands.Add("touch", new Func<List<string>, string>(touch));
+		//commands.Add("whoami", new Func<List<string>, string>(whoami));
 	}
 
 	public string CallFunction(List<string> cmdLine)
@@ -36,10 +36,10 @@ public class CommandHandler
 		if (String.IsNullOrEmpty(command))
 			return String.Empty;
 
-		if (!_commands.ContainsKey(command))
+		if (!commands.ContainsKey(command))
 			return command + " : " + "No such command\n";
 
-		Delegate del = _commands[command];
+		Delegate del = commands[command];
 		cmdLine.RemoveAt(0);
 
 		return del.DynamicInvoke(cmdLine).ToString();

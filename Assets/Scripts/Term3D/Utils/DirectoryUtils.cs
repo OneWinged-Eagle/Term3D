@@ -9,14 +9,9 @@ public class DirectoryUtils
 	{
 		public Directory(string path) : base(path) {}
 
-		public string GetName()
-		{
-			return GetDirectoryName();
-		}
-
 		public string GetDirectoryName()
 		{
-			return ProjectPath;
+			return GetName();
 		}
 
 		public FileUtils.File[] GetFiles()

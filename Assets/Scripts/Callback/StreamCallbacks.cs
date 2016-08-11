@@ -1,17 +1,19 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Text;
-using System.IO;
-using UdpKit;
 using Bolt;
+using System.Collections;
+using System.IO;
+using System.Text;
+using UdpKit;
+using UnityEngine;
 
 [BoltGlobalBehaviour()]
 public class StreamCallbacks : Bolt.GlobalEventListener
 {
-	/*public static UdpKit.UdpChannelName audioChannel;
+	/*
+	public static UdpKit.UdpChannelName AudioChannel;
+
 	public override void BoltStartBegin()
 	{
-		audioChannel = BoltNetwork.CreateStreamChannel("audio", UdpKit.UdpChannelMode.Reliable, 1);
+		AudioChannel = BoltNetwork.CreateStreamChannel("audio", UdpKit.UdpChannelMode.Reliable, 1);
 	}
 
 	public override void SceneLoadRemoteDone(BoltConnection c)
@@ -20,13 +22,14 @@ public class StreamCallbacks : Bolt.GlobalEventListener
 		{
 			byte[] data = File.ReadAllBytes(@"c:\testin.mp3");
 			BoltLog.Info("DATA TEST");
-			c.StreamBytes(audioChannel, data);
+			c.StreamBytes(AudioChannel, data);
 		}
 	}
 
 	public override void StreamDataReceived(BoltConnection connection, UdpStreamData data)
 	{
-		BoltLog.Info("CLIENT GOT DATA ! :)");
+		BoltLog.Info("CLIENT GOT DATA! :)");
 		System.IO.File.WriteAllBytes(@"c:\testout.mp3", data.Data);
-	} */
+	}
+	*/
 }

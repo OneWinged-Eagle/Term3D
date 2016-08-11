@@ -1,11 +1,13 @@
-﻿using UnityEngine;
 using System.Collections;
+﻿using UnityEngine;
+
 /*
 namespace UnityStandardAssets.Characters.FirstPerson
 {
 	[RequireComponent(typeof (CharacterController))]
 	[RequireComponent(typeof (AudioSource))]
-	public class movementBehaviour : Bolt.EntityBehaviour<IPlayerState> {
+	public class movementBehaviour : Bolt.EntityBehaviour<IPlayerState>
+	{
 		[SerializeField] private bool m_IsWalking;
 		[SerializeField] private float m_WalkSpeed;
 		[SerializeField] private float m_RunSpeed;
@@ -51,10 +53,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
 			m_AudioSource = GetComponent<AudioSource>();
 			m_MouseLook.Init(transform , m_Camera.transform);
 		}
-		
+
 		// Update is called once per frame
 		public override void SimulateOwner() {
-		
+
 		}
 	}
-}*/
+}
+*/

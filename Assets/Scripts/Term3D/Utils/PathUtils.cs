@@ -20,13 +20,10 @@ public class PathUtils
 
 		public string GetName()
 		{
-			if (IsFile())
-				return System.IO.Path.GetFileName(RealPath);
-			else
-				return (ProjectPath);
+			return System.IO.Path.GetFileName(RealPath);
 		}
 
-		protected Path(string path)
+		public Path(string path)
 		{
 			RealPath = PathUtils.GetPathFrom(path);
 

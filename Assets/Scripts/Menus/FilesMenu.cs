@@ -9,6 +9,29 @@ public class FilesMenu : Bolt.GlobalEventListener
 	public GameObject Model;
 	public ModelsUtils.FilesTypes FileType;
 
+	private void createContent(PathUtils.Path[] paths, int height)
+	{
+		if (paths.Length % 3 != 0)
+			height += 100;
+
+		RectTransform rectTransform = Content.gameObject.GetComponent<RectTransform>();
+		rectTransform.sizeDelta = new Vector2(0, height);
+		rectTransform.anchoredPosition = new Vector2(0, -(height / 2 - 100));
+
+		for (uint i = 0; i < paths.Length; ++i)
+		{
+			PathUtils.Path path = paths[i];
+			GameObject btn = Instantiate(Btn) as GameObject;
+
+			btn.GetComponent<RectTransform>().anchoredPosition = new Vector2((i % 3 * 100) - 100, (height / 2 - 50) - (i / 3 * 100));
+			btn.GetComponent<Button>().onClick.AddListener(delegate { FilesBtns(path); });
+			if (FileType == ModelsUtils.FilesTypes.Image)
+				btn.GetComponentInChildren<Image>().sprite = TextureUtils.FileToSprite((FileUtils.File)path);
+			btn.GetComponentInChildren<Text>().text = path.GetName();
+			btn.transform.SetParent(Content.transform, false);
+		}
+	}
+
 	public void CreateFileList()
 	{
 		DirectoryUtils.Directory dir = new DirectoryUtils.Directory(PathUtils.PathToProjectPath(PathUtils.CurrPath));
@@ -18,26 +41,7 @@ public class FilesMenu : Bolt.GlobalEventListener
 		else
 			paths = dir.GetFiles(ModelsUtils.Extensions[(int)FileType]);
 
-		int nb = paths.Length;
-		int height = nb / 3 * 100;
-		if (nb % 3 != 0)
-			height += 100;
-		RectTransform rectTransform = Content.gameObject.GetComponent<RectTransform>();
-
-		rectTransform.sizeDelta = new Vector2(0, height);
-		rectTransform.anchoredPosition = new Vector2(0, -(height / 2 - 100));
-		for (uint i = 0; i < nb; ++i)
-		{
-			PathUtils.Path path = paths[i];
-			GameObject btn = Instantiate(Btn) as GameObject;
-
-			btn.GetComponent<RectTransform>().anchoredPosition = new Vector2(-100 + (i % 3 * 100), (height / 2 - 50) - (i / 3 * 100));
-			btn.GetComponent<Button>().onClick.AddListener(delegate { FilesBtns(path); });
-			if (FileType == ModelsUtils.FilesTypes.Image)
-				btn.GetComponentInChildren<Image>().sprite = TextureUtils.FileToSprite((FileUtils.File)path);
-			btn.GetComponentInChildren<Text>().text = path.GetName();
-			btn.transform.SetParent(Content.transform, false);
-		}
+		createContent(paths, paths.Length / 3 * 100);
 	}
 
 	public void FilesBtns(PathUtils.Path path)
