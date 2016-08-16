@@ -1,0 +1,68 @@
+using System.Collections;
+﻿using UnityEngine;
+using UnityEngine.UI;
+
+public class MainMenu : Bolt.GlobalEventListener
+{
+	public GameObject Menu;
+	public GameObject JoinMenu;
+	public InputField IP;
+	public string ServPublicIP; // TODO: variable utilisée uniquement dans LaunchServerButton : à passer en variable locale ?
+	public ushort Port = 27000;
+	// TODO: toutes les variables ci-dessus sont publiques, normal ? Peut-être à passer en properties ?
+
+	private void Start() {}
+
+	private void Update() {}
+
+	public static string GetPublicIP()
+	{
+		return new System.Net.WebClient().DownloadString("https://api.ipify.org");
+	}
+
+	public void LaunchServerButton()
+	{
+		BoltLauncher.StartServer(new UdpKit.UdpEndPoint(UdpKit.UdpIPv4Address.Any, Port));
+		// DISPLAY THE PUBLIC IP IN UI
+		ServPublicIP = GetPublicIP();
+		Debug.Log(ServPublicIP + ": " + Port);
+	}
+
+	public void JoinServerButton()
+	{
+		Menu.SetActive(false);
+		JoinMenu.SetActive(true);
+	}
+
+	public void ExitButton()
+	{
+		BoltNetwork.ClosePortUPnP(Port);
+		BoltLauncher.Shutdown();
+		Application.Quit();
+	}
+
+	public void ConnectButton()
+	{
+		Debug.Log(IP.text);
+		BoltLauncher.StartClient();
+	}
+
+	public void BackButton()
+	{
+		Menu.SetActive(true);
+		JoinMenu.SetActive(false);
+	}
+
+	public override void BoltStartDone()
+	{
+		if (BoltNetwork.isServer)
+		{
+			BoltNetwork.LoadScene("Term3D");
+			// BOLT UPNP PORT FORWARDING
+			BoltNetwork.EnableUPnP();
+			BoltNetwork.OpenPortUPnP(Port);
+		}
+		else
+			BoltNetwork.Connect(UdpKit.UdpEndPoint.Parse(IP.text));
+	}
+}
