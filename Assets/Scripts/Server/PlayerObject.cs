@@ -18,7 +18,6 @@ public class PlayerObject
 
 	public void Spawn()
 	{
-		Debug.Log("coucouocucoucoucoucoucoucoucoucocuocucoucououcoucocuocuocucoucoucoucuoc");
 		if (!character)
 		{
 			character = BoltNetwork.Instantiate(BoltPrefabs.Robot);

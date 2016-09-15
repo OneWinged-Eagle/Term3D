@@ -9,7 +9,6 @@ public class MoveObjBehaviour : Bolt.EntityBehaviour<IOtherObjectState>
 
 	public override void Attached()
 	{
-		//Hook = GameObject.Find("Hook");
 		state.OtherObjectTransform.SetTransforms(transform);
 		base.Attached();
 	}
@@ -26,7 +25,6 @@ public class MoveObjBehaviour : Bolt.EntityBehaviour<IOtherObjectState>
 
 	public void pickUp(GameObject hook)
 	{
-		Debug.Log("coucou c'est sensé ramasser");
 		Hook = hook;
 		picked = true;
 		gameObject.GetComponent<Rigidbody>().useGravity = false;
