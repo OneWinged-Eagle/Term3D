@@ -80,7 +80,6 @@ public class LoadWorld : MonoBehaviour
 		        else if (objs[i].objName == "Room(Clone)")
 		        {
 		          	rotate = Quaternion.Euler(objs[i].xRotate, objs[i].yRotate, objs[i].zRotate);
-		          	Instantiate(roomObj, new Vector3(objs[i].x, objs[i].y, objs[i].z), rotate);
 					GameObject room = BoltNetwork.Instantiate(BoltPrefabs.Room, new Vector3(objs[i].x, objs[i].y, objs[i].z), rotate);
 		        }
 		    }
