@@ -30,12 +30,9 @@ public class LoadWorld : MonoBehaviour
 			FileStream file = File.Open(Application.persistentDataPath + "/roomInfo.dat", FileMode.Open);
 
 			objs = (SerializableObj[])bf.Deserialize(file);
-
 			file.Close();
 
 			Quaternion rotate;
-			Debug.Log(objs[0].objName);
-			Debug.Log(objs[1].objName);
 
 			for (int i = 0; i < objs.Length; i++)
 			{
