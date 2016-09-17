@@ -48,46 +48,46 @@ public class LoadWorld : MonoBehaviour
 				else if (objs [i].objName == "Cylindre(Clone)")
 				{
 					rotate = Quaternion.Euler (objs [i].xRotate, objs [i].yRotate, objs [i].zRotate);
-          GameObject cyl = (GameObject)Instantiate(cylindre, new Vector3(objs[i].x, objs[i].y, objs[i].z), rotate);
-        }
-        else if (objs [i].objName == "Audio(Clone)")
+		          	GameObject cyl = (GameObject)Instantiate(cylindre, new Vector3(objs[i].x, objs[i].y, objs[i].z), rotate);
+		        }
+		        else if (objs [i].objName == "Audio(Clone)")
 				{
 					rotate = Quaternion.Euler (objs [i].xRotate, objs [i].yRotate, objs [i].zRotate);
-        	GameObject audio = (GameObject)Instantiate(audioObj, new Vector3(objs[i].x, objs[i].y, objs[i].z), rotate);
-          audio.AddComponent<AudioObject>();
-        }
-        else if (objs[i].objName == "Video(Clone)")
-        {
-          rotate = Quaternion.Euler(objs[i].xRotate, objs[i].yRotate, objs[i].zRotate);
-          GameObject video = (GameObject)Instantiate(videoObj, new Vector3(objs[i].x, objs[i].y, objs[i].z), rotate);
-          video.AddComponent<VideoObject>();
-        }
-        else if (objs[i].objName == "Link(Clone)")
-        {
-          rotate = Quaternion.Euler(objs[i].xRotate, objs[i].yRotate, objs[i].zRotate);
-          GameObject link = (GameObject)Instantiate(linkObj, new Vector3(objs[i].x, objs[i].y, objs[i].z), rotate);
-          link.AddComponent<LinkObject>();
-        }
-        else if (objs[i].objName == "Text(Clone)")
-        {
-          rotate = Quaternion.Euler(objs[i].xRotate, objs[i].yRotate, objs[i].zRotate);
-          GameObject text = (GameObject)Instantiate(textObj, new Vector3(objs[i].x, objs[i].y, objs[i].z), rotate);
-          text.AddComponent<TextObject>();
-        }
-        else if (objs[i].objName == "Image(Clone)")
-        {
-          rotate = Quaternion.Euler(objs[i].xRotate, objs[i].yRotate, objs[i].zRotate);
-          GameObject image = (GameObject)Instantiate(imageObj, new Vector3(objs[i].x, objs[i].y, objs[i].z), rotate);
-          image.AddComponent<ImageObject>();
-        }
-        else if (objs[i].objName == "Room(Clone)")
-        {
-          rotate = Quaternion.Euler(objs[i].xRotate, objs[i].yRotate, objs[i].zRotate);
-          Instantiate(imageObj, new Vector3(objs[i].x, objs[i].y, objs[i].z), rotate);
-          GameObject room = (GameObject)Instantiate(roomObj, new Vector3(objs[i].x, objs[i].y, objs[i].z), rotate);
-          room.AddComponent<ImageObject>();
-        }
-      }
+		       		GameObject audio = (GameObject)Instantiate(audioObj, new Vector3(objs[i].x, objs[i].y, objs[i].z), rotate);
+		          	audio.AddComponent<AudioObject>();
+		        }
+		        else if (objs[i].objName == "Video(Clone)")
+		        {
+			        rotate = Quaternion.Euler(objs[i].xRotate, objs[i].yRotate, objs[i].zRotate);
+			        GameObject video = (GameObject)Instantiate(videoObj, new Vector3(objs[i].x, objs[i].y, objs[i].z), rotate);
+			        video.AddComponent<VideoObject>();
+		        }
+		        else if (objs[i].objName == "Link(Clone)")
+		        {
+		          rotate = Quaternion.Euler(objs[i].xRotate, objs[i].yRotate, objs[i].zRotate);
+		          GameObject link = (GameObject)Instantiate(linkObj, new Vector3(objs[i].x, objs[i].y, objs[i].z), rotate);
+		          link.AddComponent<LinkObject>();
+		        }
+		        else if (objs[i].objName == "Text(Clone)")
+		        {
+		          rotate = Quaternion.Euler(objs[i].xRotate, objs[i].yRotate, objs[i].zRotate);
+		          GameObject text = (GameObject)Instantiate(textObj, new Vector3(objs[i].x, objs[i].y, objs[i].z), rotate);
+		          text.AddComponent<TextObject>();
+		        }
+		        else if (objs[i].objName == "Image(Clone)")
+		        {
+		          rotate = Quaternion.Euler(objs[i].xRotate, objs[i].yRotate, objs[i].zRotate);
+		          GameObject image = (GameObject)Instantiate(imageObj, new Vector3(objs[i].x, objs[i].y, objs[i].z), rotate);
+		          image.AddComponent<ImageObject>();
+		        }
+		        else if (objs[i].objName == "Room(Clone)")
+		        {
+		          rotate = Quaternion.Euler(objs[i].xRotate, objs[i].yRotate, objs[i].zRotate);
+		          Instantiate(roomObj, new Vector3(objs[i].x, objs[i].y, objs[i].z), rotate);
+		          GameObject room = (GameObject)Instantiate(roomObj, new Vector3(objs[i].x, objs[i].y, objs[i].z), rotate);
+		          //room.AddComponent<ImageObject>();
+		        }
+		    }
 		}
 	}
 }
