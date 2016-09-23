@@ -24,34 +24,14 @@ public class SaveWorld : MonoBehaviour
 
 	public void save()
 	{
-		GameObject[] other = GameObject.FindGameObjectsWithTag("OtherObject");
-    GameObject[] audio = GameObject.FindGameObjectsWithTag("AudioObject");
-    GameObject[] video = GameObject.FindGameObjectsWithTag("VideoObject");
-    GameObject[] text = GameObject.FindGameObjectsWithTag("TextObject");
-    GameObject[] link = GameObject.FindGameObjectsWithTag("LinkObject");
-    GameObject[] image = GameObject.FindGameObjectsWithTag("ImageObject");
-    GameObject[] room = GameObject.FindGameObjectsWithTag("Room");
-
-    List<GameObject> allL = new List<GameObject>();
-
-    allL.AddRange(other);
-    allL.AddRange(audio);
-    allL.AddRange(video);
-    allL.AddRange(text);
-    allL.AddRange(link);
-    allL.AddRange(image);
-    allL.AddRange(room);
-
-    GameObject[] all = new GameObject[allL.Count];
-
-    all = allL.ToArray();
+		GameObject[] all = (GameObject[]) GameObject.FindObjectsOfType(typeof(GameObject));
 		SerializableObj[] objs = new SerializableObj[all.Length];
 
-    for (int i = 0; i < all.Length; i++)
+	  for (int i = 0; i < all.Length; i++)
 		{
-      objs[i] = new SerializableObj();
+	    objs[i] = new SerializableObj();
 
-      objs[i].x = all[i].transform.position.x;
+	    objs[i].x = all[i].transform.position.x;
 			objs[i].y = all[i].transform.position.y;
 			objs[i].z = all[i].transform.position.z;
 
@@ -61,12 +41,12 @@ public class SaveWorld : MonoBehaviour
 
 			objs[i].objName = all[i].name;
 
-      objs[i].audio = all[i].GetComponent<AudioObject>();
-      objs[i].link = all[i].GetComponent<LinkObject>();
-      objs[i].image = all[i].GetComponent<ImageObject>();
-      objs[i].text = all[i].GetComponent<TextObject>();
-      objs[i].video = all[i].GetComponent<VideoObject>();
-    }
+	    objs[i].audio = all[i].GetComponent<AudioObject>();
+	    objs[i].link = all[i].GetComponent<LinkObject>();
+	    objs[i].image = all[i].GetComponent<ImageObject>();
+	    objs[i].text = all[i].GetComponent<TextObject>();
+	    objs[i].video = all[i].GetComponent<VideoObject>();
+	  }
 
 		BinaryFormatter bf = new BinaryFormatter();
 		FileStream file = File.Open(Application.persistentDataPath + "/roomInfo.dat", FileMode.OpenOrCreate);
