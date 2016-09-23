@@ -33,7 +33,11 @@ public class ModelsMenu : Bolt.GlobalEventListener
 		int nb = int.Parse(datas.Substring(datas.IndexOf(',') + 1));
 		Transform spawn = Player.GetComponentInChildren<AddElementBehaviour>().Hook.transform;
 
+		spawn.Rotate(Vector3.up, 180);
+
 		BoltNetwork.Instantiate(ModelsList[fileType].Models[nb], spawn.position, spawn.rotation);
+
+		spawn.Rotate(Vector3.up, 180);
 
 		//Instantiate(ModelsList[fileType].Models[nb], spawnPoint.position, spawnPoint.rotation);
 

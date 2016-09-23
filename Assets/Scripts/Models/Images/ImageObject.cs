@@ -10,6 +10,9 @@ public class ImageObject : Bolt.EntityBehaviour<IImageObjectState>
 	public void Apply()
 	{
 		if (texture == null && BoltNetwork.isServer)
-			texture = GetComponent<Renderer>().material.mainTexture = TextureUtils.FileToTexture(Image);
+			if (GetComponent<Renderer>())
+				texture = GetComponent<Renderer>().material.mainTexture = TextureUtils.FileToTexture(Image);
+			else
+				texture = GetComponentInChildren<Renderer>().material.mainTexture = TextureUtils.FileToTexture(Image);
 	}
 }

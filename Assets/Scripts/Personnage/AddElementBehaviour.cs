@@ -121,10 +121,10 @@ public class AddElementBehaviour : Bolt.EntityBehaviour<IPlayerState>
 				if (Physics.Raycast(intersectionRay, out hit, LenghtRay))
 					if (hit.collider.tag == "OtherObject")
 						hit.transform.SendMessage("Destroy", true, SendMessageOptions.DontRequireReceiver);
-      else if (Input.GetKey(KeyCode.J))
+      /*else if (Input.GetKey(KeyCode.J))
         if (Physics.Raycast(intersectionRay, out hit, LenghtRay))
           if (hit.collider.tag == "NonStaticObject")
-            hit.transform.SendMessage("Play", true, SendMessageOptions.DontRequireReceiver);
+            hit.transform.SendMessage("Play", true, SendMessageOptions.DontRequireReceiver);*/
 			else if (Input.GetKey(KeyCode.Keypad0))
 				if (Physics.Raycast(intersectionRay, out hit, LenghtRay))
 					hit.transform.SendMessage("pickUp", true, SendMessageOptions.DontRequireReceiver);

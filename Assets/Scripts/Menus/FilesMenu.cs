@@ -18,7 +18,7 @@ public class FilesMenu : Bolt.GlobalEventListener
 		rectTransform.sizeDelta = new Vector2(0, height);
 		rectTransform.anchoredPosition = new Vector2(0, -(height / 2 - 100));
 
-		for (uint i = 0; i < paths.Length; ++i)
+		for (int i = 0; i < paths.Length; ++i)
 		{
 			PathUtils.Path path = paths[i];
 			GameObject btn = Instantiate(Btn) as GameObject;

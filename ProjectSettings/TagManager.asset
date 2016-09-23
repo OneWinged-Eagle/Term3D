@@ -5,15 +5,14 @@ TagManager:
   serializedVersion: 2
   tags:
   - Menu
-  - Enemy
   - Room
-  - Environment
-  - AudioObject
   - ImageObject
-  - LinkObject
-  - TextObject
+  - AudioObject
   - VideoObject
+  - TextObject
+  - LinkObject
   - OtherObject
+  - Player
   layers:
   - Default
   - TransparentFX
