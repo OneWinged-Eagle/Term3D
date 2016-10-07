@@ -11,7 +11,7 @@ public class PlayAudioEvent : Bolt.GlobalEventListener {
 
 	public static UdpKit.UdpChannelName audioChannel;
 
-	AudioSource taDarrone;
+	AudioSource audioSrc;
 
 
 	public override void BoltStartBegin()
@@ -49,7 +49,7 @@ public class PlayAudioEvent : Bolt.GlobalEventListener {
 		AudioClip sonServeur = serverWww.audioClip;
 		gameObject.GetComponent<AudioSource> ().clip = sonServeur;
 		gameObject.GetComponent<AudioSource> ().Play ();*/
-	
+
 
 
 
@@ -62,7 +62,7 @@ public class PlayAudioEvent : Bolt.GlobalEventListener {
 
 	public override void StreamDataReceived(BoltConnection connection, UdpStreamData data)
 	{
-		taDarrone = gameObject.GetComponent<AudioSource> ();
+		audioSrc = gameObject.GetComponent<AudioSource> ();
 
 		System.IO.File.WriteAllBytes(Application.persistentDataPath + @"\testout.ogg", data.Data);
 		//WWW testwww = new WWW ("file:///" + Application.persistentDataPath + "/testout.ogg");
@@ -74,8 +74,8 @@ public class PlayAudioEvent : Bolt.GlobalEventListener {
 
 
 		AudioClip monSon = testwww.audioClip;
-		taDarrone.clip = monSon;
-		taDarrone.Play ();
+		audioSrc.clip = monSon;
+		audioSrc.Play ();
 
 		Debug.Log ("testeaejdqhdjsqdhsjkhdjkqlololololo");
 
@@ -85,4 +85,3 @@ public class PlayAudioEvent : Bolt.GlobalEventListener {
 		startAudio.Send ();*/
 	}
 }
-	

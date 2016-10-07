@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class MainMenu : Bolt.GlobalEventListener
 {
 	public GameObject Menu;
+	public GameObject LaunchMenu;
 	public GameObject JoinMenu;
 	public InputField IP;
 	public string ServPublicIP; // TODO: variable utilisée uniquement dans LaunchServerButton : à passer en variable locale ?
@@ -20,7 +21,19 @@ public class MainMenu : Bolt.GlobalEventListener
 		return new System.Net.WebClient().DownloadString("https://api.ipify.org");
 	}
 
-	public void LaunchServerButton()
+	public void LaunchMenuBtn()
+	{
+		Menu.SetActive(false);
+		LaunchMenu.SetActive(true);
+	}
+
+	public void JoinMenuBtn()
+	{
+		Menu.SetActive(false);
+		JoinMenu.SetActive(true);
+	}
+
+	public void LaunchBtn()
 	{
 		BoltLauncher.StartServer(new UdpKit.UdpEndPoint(UdpKit.UdpIPv4Address.Any, Port));
 		// DISPLAY THE PUBLIC IP IN UI
@@ -28,29 +41,24 @@ public class MainMenu : Bolt.GlobalEventListener
 		Debug.Log(ServPublicIP + ": " + Port);
 	}
 
-	public void JoinServerButton()
-	{
-		Menu.SetActive(false);
-		JoinMenu.SetActive(true);
-	}
-
-	public void ExitButton()
-	{
-		BoltNetwork.ClosePortUPnP(Port);
-		BoltLauncher.Shutdown();
-		Application.Quit();
-	}
-
-	public void ConnectButton()
+	public void JoinBtn()
 	{
 		Debug.Log(IP.text);
 		BoltLauncher.StartClient();
 	}
 
-	public void BackButton()
+	public void BackBtn()
 	{
 		Menu.SetActive(true);
+		LaunchMenu.SetActive(false);
 		JoinMenu.SetActive(false);
+	}
+
+	public void ExitBtn()
+	{
+		BoltNetwork.ClosePortUPnP(Port);
+		BoltLauncher.Shutdown();
+		Application.Quit();
 	}
 
 	public override void BoltStartDone()

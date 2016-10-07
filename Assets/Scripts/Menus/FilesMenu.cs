@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class FilesMenu : Bolt.GlobalEventListener
 {
+	private const int MARGIN = 300;
+
 	public GameObject Btn;
 	public GameObject Content;
 	public GameObject Model;
@@ -12,18 +14,18 @@ public class FilesMenu : Bolt.GlobalEventListener
 	private void createContent(PathUtils.Path[] paths, int height)
 	{
 		if (paths.Length % 3 != 0)
-			height += 100;
+			height += MARGIN;
 
 		RectTransform rectTransform = Content.gameObject.GetComponent<RectTransform>();
 		rectTransform.sizeDelta = new Vector2(0, height);
-		rectTransform.anchoredPosition = new Vector2(0, -(height / 2 - 100));
+		rectTransform.anchoredPosition = new Vector2(0, -(height / 2 - MARGIN));
 
 		for (int i = 0; i < paths.Length; ++i)
 		{
 			PathUtils.Path path = paths[i];
 			GameObject btn = Instantiate(Btn) as GameObject;
 
-			btn.GetComponent<RectTransform>().anchoredPosition = new Vector2((i % 3 * 100) - 100, (height / 2 - 50) - (i / 3 * 100));
+			btn.GetComponent<RectTransform>().anchoredPosition = new Vector2((i % 3 * MARGIN) - MARGIN, (height / 2 - MARGIN / 2) - (i / 3 * MARGIN));
 			btn.GetComponent<Button>().onClick.AddListener(delegate { FilesBtns(path); });
 			if (FileType == ModelsUtils.FilesTypes.Image)
 				btn.GetComponentInChildren<Image>().sprite = TextureUtils.FileToSprite((FileUtils.File)path);
@@ -41,7 +43,7 @@ public class FilesMenu : Bolt.GlobalEventListener
 		else
 			paths = dir.GetFiles(ModelsUtils.Extensions[(int)FileType]);
 
-		createContent(paths, paths.Length / 3 * 100);
+		createContent(paths, paths.Length / 3 * MARGIN);
 	}
 
 	public void FilesBtns(PathUtils.Path path)
