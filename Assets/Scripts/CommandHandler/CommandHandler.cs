@@ -44,6 +44,7 @@ public class CommandHandler
 		return del.DynamicInvoke(cmdLine).ToString();
 	}
 
+	// TODO: Gérer les accès pour cette fonction
 	private string cat(List<string> args)
 	{
 		if (args.Count == 0)
@@ -65,16 +66,21 @@ public class CommandHandler
 			PathUtils.CurrPath = PathUtils.RootPath;
 		else
 		{
-			DirectoryUtils.Directory dir = new DirectoryUtils.Directory(args[0]);
-
-			if (!dir.IsDirectory())
-				return dir.ProjectPath + " : No such file or directory.\n"; // TODO: plus verbose
-
-			PathUtils.CurrPath = dir.RealPath;
+			string path = (args[0][0] == '/' ? PathUtils.GetPathFromAbsolute(PathUtils.RootPath + args[0]) : PathUtils.GetPathFromAbsolute(PathUtils.CurrPath + "/" + args[0]));
+			if (path.Contains(PathUtils.RootPath))
+			{
+				DirectoryUtils.Directory dir = new DirectoryUtils.Directory(path);
+				if (!dir.IsDirectory())
+					return dir.ProjectPath + " : No such file or directory.\n"; // TODO: plus verbose
+				PathUtils.CurrPath = dir.RealPath;
+			}
+			else
+			 return ("Cannot access " + args[0] + " : Permission denied.\n");
 		}
 		return ("Now in " + PathUtils.PathToProjectPath(PathUtils.CurrPath) + "\n");
 	}
 
+	// TODO: Gérer les accès pour cette fonction
 	private string cp(List<string> args) // TODO: à pousser ?
 	{
 		if (args.Count == 0)
@@ -146,25 +152,33 @@ public class CommandHandler
 
 	private string mkdir(List<string> args)
 	{
+		string result = "";
+
 		if (args.Count == 0)
-			return "mkdir command needs 1 argument.\n"; // TODO: plus verbose
+			return "mkdir command needs at least 1 argument.\n"; // TODO: plus verbose
 
-		DirectoryUtils.Directory dir = new DirectoryUtils.Directory(args[0]);
-		if (dir.IsDirectory())
-			return "Such directory already exists : " + dir.ProjectPath + "\n"; // TODO: plus verbose
+		for (int i = 0; i < args.Count; ++i)
+		{
+			string path = (args[i][0] == '/' ? PathUtils.GetPathFromAbsolute(PathUtils.RootPath + args[i]) : PathUtils.GetPathFromAbsolute(PathUtils.CurrPath + "/" + args[i]));
 
-		/*
-		int i;
-		if ((i = args[0].LastIndexOf('/')) != -1)													//
-			if (!Directory.Exists(args[0].Substring(0, i)))									// TODO: wut?
-				return (args[0].Substring(0, i) + " : No such directory.\n");	//
-		*/
-
-		Directory.CreateDirectory(dir.RealPath);
-
-		return "Directory " + dir.ProjectPath + " created\n";
+			if (path.Contains(PathUtils.RootPath))
+			{
+				DirectoryUtils.Directory dir = new DirectoryUtils.Directory(path);
+				if (dir.IsDirectory())
+					result += "Such directory already exists : " + dir.ProjectPath + "\n"; // TODO: plus verbose
+				else
+				{
+					Directory.CreateDirectory(dir.RealPath);
+					result += "Directory " + dir.ProjectPath + " created\n";
+				}
+			}
+			else
+				result += "Cannot access " + args[i] + " directory : Permission denied\n";
+		}
+		return result;
 	}
 
+	// TODO: Gérer les accès pour cette fonction
 	private string mv(List<string> args) // TODO: à faire
 	{
 		if (args.Count == 0)
@@ -215,51 +229,89 @@ public class CommandHandler
 
 	private string rm(List<string> args)
 	{
+		string result = "";
+
 		if (args.Count == 0)
-			return "rm command needs 1 argument.\n"; // TODO: plus verbose
-		else
-		{
-			FileUtils.File file = new FileUtils.File(args[0]);
-			if (!file.IsFile())
-				return file.ProjectPath + " : File not found.\n"; // TODO: plus verbose
-			File.Delete(file.RealPath);
-			return file.ProjectPath + " deleted.";
-		}
+			return "rm command needs at least 1 argument.\n"; // TODO: plus verbose
+
+			for (int i = 0; i < args.Count; ++i)
+			{
+				string path = (args[i][0] == '/' ? PathUtils.GetPathFromAbsolute(PathUtils.RootPath + args[i]) : PathUtils.GetPathFromAbsolute(PathUtils.CurrPath + "/" + args[i]));
+
+				if (path.Contains(PathUtils.RootPath))
+				{
+					FileUtils.File file = new FileUtils.File(path);
+					if (!file.IsFile())
+						result += file.ProjectPath + " : File not found.\n"; // TODO: plus verbose
+					else
+					{
+						File.Delete(file.RealPath);
+						result += file.ProjectPath + " deleted.\n";
+					}
+				}
+				else
+					result += "Cannot access " + args[i] + " directory : Permission denied\n";
+			}
+		return result;
 	}
 
 	private string rmdir(List<string> args)
 	{
+		string result = "";
+
 		if (args.Count == 0)
-			return "rmdir command needs 1 argument.\n"; // TODO: plus verbose
-		else
+			return "rmdir command needs at least 1 argument.\n"; // TODO: plus verbose
+
+		for (int i = 0; i < args.Count; ++i)
 		{
-			DirectoryUtils.Directory dir = new DirectoryUtils.Directory(args[0]);
-			if (!dir.IsDirectory())
-				return dir.ProjectPath + " : Directory not found.\n"; // TODO: plus verbose
-			Directory.Delete(dir.RealPath);
-			return dir.ProjectPath + " deleted.";
+			string path = (args[i][0] == '/' ? PathUtils.GetPathFromAbsolute(PathUtils.RootPath + args[i]) : PathUtils.GetPathFromAbsolute(PathUtils.CurrPath + "/" + args[i]));
+
+			if (path.Contains(PathUtils.RootPath))
+			{
+				DirectoryUtils.Directory dir = new DirectoryUtils.Directory(path);
+				if (!dir.IsDirectory())
+					result += dir.ProjectPath + " : Directory not found.\n"; // TODO: plus verbose
+				else
+				{
+					Directory.Delete(dir.RealPath);
+					result += dir.ProjectPath + " deleted.\n";
+				}
+			}
+			else
+				result += "Cannot access " + args[i] + " directory : Permission denied\n";
 		}
+		return result;
 	}
+
 
 	private string touch(List<string> args)
 	{
+		string result = "";
+
 		if (args.Count == 0)
-			return "Touch command needs 1 arguments.\n"; // TODO: plus verbose
+			return "Touch command needs at least 1 arguments.\n"; // TODO: plus verbose
 
-		FileUtils.File file = new FileUtils.File(args[0]);
-		if (file.IsFile())
-			return "Such file already exists : " + file.ProjectPath + "\n"; // TODO: plus verbose
+		for (int i = 0; i < args.Count; ++i)
+		{
+			string path = (args[i][0] == '/' ? PathUtils.GetPathFromAbsolute(PathUtils.RootPath + args[i]) : PathUtils.GetPathFromAbsolute(PathUtils.CurrPath + "/" + args[i]));
 
-		/*
-		int i;
-		if ((i = args[0].LastIndexOf('/')) != -1)												//
-			if (!Directory.Exists(args[0].Substring(0, i)))								// TODO: wut?
-				return args[0].Substring(0, i) + " : No such directory.\n";	//
-		*/
-
-		File.Create(file.RealPath);
-
-		return "File " + file.ProjectPath + " created\n";
+			if (path.Contains(PathUtils.RootPath))
+			{
+				FileUtils.File file = new FileUtils.File(path);
+				if (file.IsFile())
+				{
+					result += "Such file already exists : " + file.ProjectPath + "\n"; // TODO: plus verbose
+				}
+				else
+				{
+					File.Create(file.RealPath);
+					result += "File " + file.ProjectPath + " created\n";
+				}
+			}
+			else
+				result += "Cannot access " + args[i] + " directory : Permission denied\n";
+		}
+		return result;
 	}
 
 	/*private string whoami(List<string> args)
