@@ -14,7 +14,6 @@ public class CommandHandler
 		commands.Add("cat", new Func<List<string>, string>(cat));
 		commands.Add("cd", new Func<List<string>, string>(cd));
 		commands.Add("cp", new Func<List<string>, string>(cp));
-		//commands.Add("exit", new Func<List<string>, string>(exit));
 		commands.Add("ls", new Func<List<string>, string>(ls));
 		commands.Add("mkdir", new Func<List<string>, string>(mkdir));
 		commands.Add("mv", new Func<List<string>, string>(mv));
@@ -100,27 +99,48 @@ public class CommandHandler
 		}
 	}
 
-	/*private string exit(List<string> args) // TODO: wut?
-	{
-		return "exit";
-	}*/
-
 	private string ls(List<string> args)  // TODO: à pousser ? Changer les utils ?
 	{
 		string result = "";
 		DirectoryInfo dir;
 
-		if (args.Count == 0)
-			dir = new DirectoryInfo(PathUtils.CurrPath);
-		else
-			dir = new DirectoryInfo(args[0]);
-
-		foreach (DirectoryInfo d in dir.GetDirectories())
-			result += "Directory : " +  d.Name + "\n";
-
-		foreach (FileInfo f in dir.GetFiles())
-			result += "File : " + f.Name + "\n";
-
+		for (int i = 0; i < args.Count || i == 0; ++i)
+		{
+			if (args.Count == 0)
+				dir = new DirectoryInfo(PathUtils.CurrPath);
+			else
+			{
+				result += "Listing " + args[i] + " directory.\n";
+				if (args[i].Equals("/"))
+					dir = new DirectoryInfo(PathUtils.RootPath);
+				else
+				{
+					string path = (args[i][0] == '/' ? PathUtils.GetPathFromAbsolute(PathUtils.RootPath + args[i]) : PathUtils.GetPathFromAbsolute(PathUtils.CurrPath + "/" + args[i]));
+					if (path.Contains(PathUtils.RootPath))
+					{
+						if (PathUtils.IsValidPath(path))
+							dir = new DirectoryInfo(path);
+						else
+						{
+							dir = null;
+							result += "Cannot access " + args[i] + " directory : No such file or directory.\n";
+						}
+					}
+					else
+					{
+						dir = null;
+						result += "Cannot access " + args[i] + " directory : Permission denied.\n";
+					}
+				}
+			}
+			if (dir != null)
+			{
+				foreach (DirectoryInfo d in dir.GetDirectories())
+					result += "Directory : " +  d.Name + "\n";
+				foreach (FileInfo f in dir.GetFiles())
+					result += "File : " + f.Name + "\n";
+			}
+		}
 		return result;
 	}
 

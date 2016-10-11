@@ -42,10 +42,16 @@ public class PathUtils
 			return GetPathFromRelative(path);
 	}
 
-	public static string GetPathFromAbsolute(string absPath)
+	// return le path en absolu en enlevant les dots !
+	public static string GetPathFromAbsolute(string path)
+	{
+		return System.IO.Path.GetFullPath(path);
+	}
+
+/*	public static string GetPathFromAbsolute(string absPath) // TODO : Hein ?
 	{
 		return System.IO.Path.GetFullPath(System.IO.Path.Combine(RootPath, absPath.Substring(1)));
-	}
+	} */
 
 	public static string GetPathFromRelative(string relPath)
 	{
@@ -65,5 +71,10 @@ public class PathUtils
 			projectPath = System.IO.Path.DirectorySeparatorChar.ToString();
 
 		return projectPath;
+	}
+
+	public static bool IsValidPath(string path)
+	{
+		return Directory.Exists(path);
 	}
 }
