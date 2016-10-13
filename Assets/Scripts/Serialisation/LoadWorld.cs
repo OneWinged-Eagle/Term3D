@@ -7,14 +7,14 @@ using UnityEngine;
 
 public class LoadWorld : MonoBehaviour
 {
-	public GameObject cubeVert;
+	/*public GameObject cubeVert;
 	public GameObject cylindre;
 	public GameObject audioObj;
   public GameObject videoObj;
   public GameObject linkObj;
   public GameObject textObj;
   public GameObject imageObj;
-  public GameObject roomObj;
+  public GameObject roomObj;*/
 
   public SerializableObj[] objs;
 
@@ -43,7 +43,7 @@ public class LoadWorld : MonoBehaviour
 
 
 
-			/************************** MDRRRRRRRRRRRRRRRR c'est quoi cette horreur en dessus ????? hahaha yen a qui abusent
+			/************************** MDRRRRRRRRRRRRRRRR c'est quoi cette horreur en dessus ?????? hahaha yen a qui abusent
 
 			for (int i = 0; i < objs.Length; i++)
 			{
