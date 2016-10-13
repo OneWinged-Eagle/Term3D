@@ -12,10 +12,13 @@ public class SerializableObj
 	public float yRotate;
 	public float zRotate;
 
-	public string objName;
-  public AudioObject audio;
-  public ImageObject image;
-  public TextObject text;
-  public LinkObject link;
-  public VideoObject video;
+	public string objName; // a virer ?
+	public Bolt.PrefabId objId;
+
+	public AudioObject audio;
+	public ImageObject image;
+	public TextObject text;
+	public LinkObject link;
+	public VideoObject video;
+
 }

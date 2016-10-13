@@ -9,6 +9,9 @@ using System.Collections.Generic;
 
 public class SaveWorld : MonoBehaviour
 {
+	public List<GameObject> objectList;
+	//public List<SerializableObj> serializableList;
+
 	// Use this for initialization
 	void Start () {}
 
@@ -24,28 +27,82 @@ public class SaveWorld : MonoBehaviour
 
 	public void save()
 	{
-		GameObject[] all = (GameObject[]) GameObject.FindObjectsOfType(typeof(GameObject));
-		SerializableObj[] objs = new SerializableObj[all.Length];
+		//GameObject[] all = (GameObject[]) GameObject.FindObjectsOfType(typeof(GameObject));
+		//SerializableObj[] objs = new SerializableObj[all.Length];
 
-	  for (int i = 0; i < all.Length; i++)
+	
+		GameObject[] tmp;
+
+		objectList.Clear ();
+		tmp  = GameObject.FindGameObjectsWithTag ("OtherObject");
+		for (int i = 0; i < tmp.Length; i++)
+			objectList.Add (tmp[i]);
+		tmp  = GameObject.FindGameObjectsWithTag ("AudioObject");
+		for (int i = 0; i < tmp.Length; i++)
+			objectList.Add (tmp[i]);
+		tmp  = GameObject.FindGameObjectsWithTag ("LinkObject");
+		for (int i = 0; i < tmp.Length; i++)
+			objectList.Add (tmp[i]);
+		tmp  = GameObject.FindGameObjectsWithTag ("ImageObject");
+		for (int i = 0; i < tmp.Length; i++)
+			objectList.Add (tmp[i]);
+		tmp  = GameObject.FindGameObjectsWithTag ("VideoObject");
+		for (int i = 0; i < tmp.Length; i++)
+			objectList.Add (tmp[i]);
+		tmp  = GameObject.FindGameObjectsWithTag ("TextObject");
+		for (int i = 0; i < tmp.Length; i++)
+			objectList.Add (tmp[i]);
+		/*
+
+		for (int i = 0; i < objectList.Count; i++) {
+			serializableList [i].x = objectList [i].transform.position.x;
+			serializableList [i].y = objectList [i].transform.position.y;
+			serializableList [i].z = objectList [i].transform.position.z;
+
+			serializableList [i].xRotate = objectList [i].transform.rotation.eulerAngles.x;
+			serializableList [i].yRotate = objectList [i].transform.rotation.eulerAngles.y;
+			serializableList [i].zRotate = objectList [i].transform.rotation.eulerAngles.z;
+
+			serializableList [i].objName = objectList [i].name;
+
+			serializableList [i].audio = objectList [i].GetComponent<AudioObject>();
+			serializableList [i].link = objectList [i].GetComponent<LinkObject>();
+			serializableList [i].image = objectList [i].GetComponent<ImageObject>();
+			serializableList [i].text = objectList [i].GetComponent<TextObject>();
+			serializableList [i].video = objectList [i].GetComponent<VideoObject>();
+		}
+
+		BinaryFormatter bf = new BinaryFormatter();
+		FileStream file = File.Open(Application.persistentDataPath + "/roomInfo.dat", FileMode.OpenOrCreate);
+
+		bf.Serialize(file, serializableList);
+		file.Close();*/
+
+		SerializableObj[] objs = new SerializableObj[objectList.Count];
+
+		for (int i = 0; i < objectList.Count; i++)
 		{
 	    objs[i] = new SerializableObj();
 
-	    objs[i].x = all[i].transform.position.x;
-			objs[i].y = all[i].transform.position.y;
-			objs[i].z = all[i].transform.position.z;
 
-			objs[i].xRotate = all[i].transform.rotation.eulerAngles.x;
-			objs[i].yRotate = all[i].transform.rotation.eulerAngles.y;
-			objs[i].zRotate = all[i].transform.rotation.eulerAngles.z;
+			Debug.Log (objectList [i].GetComponent<BoltEntity> ().prefabId.GetType());
 
-			objs[i].objName = all[i].name;
+			objs[i].x = objectList[i].transform.position.x;
+			objs[i].y = objectList[i].transform.position.y;
+			objs[i].z = objectList[i].transform.position.z;
 
-	    objs[i].audio = all[i].GetComponent<AudioObject>();
-	    objs[i].link = all[i].GetComponent<LinkObject>();
-	    objs[i].image = all[i].GetComponent<ImageObject>();
-	    objs[i].text = all[i].GetComponent<TextObject>();
-	    objs[i].video = all[i].GetComponent<VideoObject>();
+			objs[i].xRotate = objectList[i].transform.rotation.eulerAngles.x;
+			objs[i].yRotate = objectList[i].transform.rotation.eulerAngles.y;
+			objs[i].zRotate = objectList[i].transform.rotation.eulerAngles.z;
+
+			objs[i].objName = objectList[i].name;  //still usefull ?
+			objs [i].objId = objectList [i].GetComponent<BoltEntity> ().prefabId;
+
+			objs[i].audio = objectList[i].GetComponent<AudioObject>();
+			objs[i].link = objectList[i].GetComponent<LinkObject>();
+			objs[i].image = objectList[i].GetComponent<ImageObject>();
+			objs[i].text = objectList[i].GetComponent<TextObject>();
+			objs[i].video = objectList[i].GetComponent<VideoObject>();
 	  }
 
 		BinaryFormatter bf = new BinaryFormatter();
@@ -53,5 +110,6 @@ public class SaveWorld : MonoBehaviour
 
 		bf.Serialize(file, objs);
 		file.Close();
+
 	}
 }

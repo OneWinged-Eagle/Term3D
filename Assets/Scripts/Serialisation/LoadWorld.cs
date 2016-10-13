@@ -34,6 +34,17 @@ public class LoadWorld : MonoBehaviour
 
 			Quaternion rotate;
 
+
+			for (int i = 0; i < objs.Length; i++)
+			{
+				rotate = Quaternion.Euler (objs [i].xRotate, objs [i].yRotate, objs [i].zRotate);
+				BoltNetwork.Instantiate(objs[i].objId, new Vector3 (objs [i].x, objs [i].y, objs [i].z), rotate);
+			}
+
+
+
+			/************************** MDRRRRRRRRRRRRRRRR c'est quoi cette horreur en dessus ????? hahaha yen a qui abusent
+
 			for (int i = 0; i < objs.Length; i++)
 			{
 				Debug.Log (objs [i].objName);
@@ -83,6 +94,7 @@ public class LoadWorld : MonoBehaviour
 					GameObject room = BoltNetwork.Instantiate(BoltPrefabs.Room, new Vector3(objs[i].x, objs[i].y, objs[i].z), rotate);
 		    }
 		  }
+		  */
 		}
 	}
 }
