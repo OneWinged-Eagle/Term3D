@@ -31,7 +31,7 @@ public class ModelsMenu : Bolt.GlobalEventListener
 			GameObject btn = Instantiate(Btn) as GameObject;
 
 			btn.GetComponent<RectTransform>().anchoredPosition = new Vector2((i % 3 * MARGIN) - MARGIN, (height / 2 - MARGIN / 2) - (i / 3 * MARGIN));
-			int nb = i; // it looks VERY stupid, but there's an explication...
+			int nb = i; // it looks VERY stupid, but there's an explanation...
 			btn.GetComponent<Button>().onClick.AddListener(delegate { ModelsBtns(fileType, nb); });
 			btn.GetComponentInChildren<Image>().sprite = TextureUtils.GetSpriteFromAsset(model);
 			btn.GetComponentInChildren<Text>().text = model.name;
