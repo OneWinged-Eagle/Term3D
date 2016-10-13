@@ -3,8 +3,12 @@ using UnityEngine.UI;
 
 public class ModelsMenu : Bolt.GlobalEventListener
 {
+	private const int MARGIN = 300;
+
+	public GameObject Btn;
+	public GameObject Content;
 	public GameObject TypesMenu;
-	public GameObject[] ModelsMenus;
+	public GameObject ModelsSubMenu;
 	public ModelsUtils.ModelList[] ModelsList;
 	public GameObject Player;
 
@@ -12,44 +16,58 @@ public class ModelsMenu : Bolt.GlobalEventListener
 
 	private void Update() {}
 
-	public void TypesBtns(int fileType) // see enum FilesTypes in ModelsUtils
+	private void createContent(GameObject[] models, int height, int fileType)
 	{
-		GameObject menu = ModelsMenus[fileType];
-		TypesMenu.SetActive(false);
-		menu.SetActive(true);
+		if (models.Length % 3 != 0)
+			height += MARGIN;
 
-		GameObject[] models = ModelsList[fileType].Models;
-		for (uint i = 0; i < models.Length; i++)
+		RectTransform rectTransform = Content.gameObject.GetComponent<RectTransform>();
+		rectTransform.sizeDelta = new Vector2(0, height);
+		rectTransform.anchoredPosition = new Vector2(0, -(height / 2 - MARGIN));
+
+		for (int i = 0; i < models.Length; ++i)
 		{
-			Image image = menu.transform.Find("ModelBtn_" + i).GetComponentInChildren<Image>();
-			if (image.sprite == null)
-				image.sprite = TextureUtils.GetSpriteFromAsset(models[i]);
+			GameObject model = models[i];
+			GameObject btn = Instantiate(Btn) as GameObject;
+
+			btn.GetComponent<RectTransform>().anchoredPosition = new Vector2((i % 3 * MARGIN) - MARGIN, (height / 2 - MARGIN / 2) - (i / 3 * MARGIN));
+			int nb = i; // it looks VERY stupid, but there's an explication...
+			btn.GetComponent<Button>().onClick.AddListener(delegate { ModelsBtns(fileType, nb); });
+			btn.GetComponentInChildren<Image>().sprite = TextureUtils.GetSpriteFromAsset(model);
+			btn.GetComponentInChildren<Text>().text = model.name;
+			btn.transform.SetParent(Content.transform, false);
 		}
 	}
 
-	public void ModelsBtns(string datas)
+	public void TypesBtns(int fileType) // see enum FilesTypes in ModelsUtils
 	{
-		int fileType = int.Parse(datas.Substring(0, datas.IndexOf(',')));
-		int nb = int.Parse(datas.Substring(datas.IndexOf(',') + 1));
+		TypesMenu.SetActive(false);
+
+		GameObject[] models = ModelsList[fileType].Models;
+		createContent(models, models.Length / 3 * MARGIN, fileType);
+
+		ModelsSubMenu.SetActive(true);
+	}
+
+	public void ModelsBtns(int fileType, int nb)
+	{
 		Transform spawn = Player.GetComponentInChildren<AddElementBehaviour>().Hook.transform;
 
 		spawn.Rotate(Vector3.up, 180);
-
 		BoltNetwork.Instantiate(ModelsList[fileType].Models[nb], spawn.position, spawn.rotation);
-
 		spawn.Rotate(Vector3.up, 180);
-
-		//Instantiate(ModelsList[fileType].Models[nb], spawnPoint.position, spawnPoint.rotation);
 
 		CloseBtn();
 	}
 
 	public void BackBtn()
 	{
+		ModelsSubMenu.SetActive(false);
+
+		foreach (Transform child in Content.transform)
+			GameObject.Destroy(child.gameObject);
+
 		TypesMenu.SetActive(true);
-		foreach (GameObject menu in ModelsMenus)
-			if (menu != null)
-				menu.SetActive(false);
 	}
 
 	public void CloseBtn()
