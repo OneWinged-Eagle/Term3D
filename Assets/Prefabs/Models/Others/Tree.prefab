@@ -240,7 +240,7 @@ MonoBehaviour:
   m_Script: {fileID: -36112512, guid: 5b00bf8b25851d440940a40ec23344f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sceneGuid: 319d8e6d-fb3a-441e-9d46-a0a5615aae16
+  _sceneGuid: 
   _serializerGuid: cd3a1e42-6318-427c-98b1-5a6191dd4e99
   _prefabId: 12
   _updateRate: 1

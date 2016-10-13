@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
+[BoltGlobalBehaviour]
 public class ModelsMenu : Bolt.GlobalEventListener
 {
 	public GameObject TypesMenu;
@@ -35,14 +36,44 @@ public class ModelsMenu : Bolt.GlobalEventListener
 
 		spawn.Rotate(Vector3.up, 180);
 
-		BoltNetwork.Instantiate(ModelsList[fileType].Models[nb], spawn.position, spawn.rotation);
+		var spawnObjectEvent = spawnObject.Create ();
+		Debug.Log (ModelsList [fileType].Models [nb]);
+		spawnObjectEvent.objectTest = "coucou";
+		spawnObjectEvent.objectId = ModelsList[fileType].Models[nb].GetComponent<BoltEntity>().prefabId;
+		spawnObjectEvent.objectPos = spawn.position;
+		spawnObjectEvent.objectRot = spawn.rotation;
+		spawnObjectEvent.Send ();
+	
+
+		/////////////////////////////////
+		//BoltNetwork.Instantiate(ModelsList[fileType].Models[nb], spawn.position, spawn.rotation);
+
 
 		spawn.Rotate(Vector3.up, 180);
+
+		///////////////////////////
 
 		//Instantiate(ModelsList[fileType].Models[nb], spawnPoint.position, spawnPoint.rotation);
 
 		CloseBtn();
 	}
+
+	public override void OnEvent(spawnObject e)
+	{
+		Debug.Log (e.objectTest);
+		Debug.Log (e.objectId);
+		Debug.Log (e.objectPos);
+		Debug.Log (e.objectRot);
+		if (BoltNetwork.isServer) {
+			Debug.Log ("coucoucocuocuocu je suis un serveur");
+			BoltNetwork.Instantiate (e.objectId, e.objectPos, e.objectRot);
+		} else if (BoltNetwork.isClient)
+			Debug.Log ("ne fé rien kek");
+		else {
+			Debug.Log ("je suis rien du tout :( ");
+		}
+	}
+
 
 	public void BackBtn()
 	{
@@ -57,4 +88,7 @@ public class ModelsMenu : Bolt.GlobalEventListener
 		BackBtn();
 		gameObject.SetActive(false);
 	}
+
+
+
 }
