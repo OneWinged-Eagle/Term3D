@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
+[BoltGlobalBehaviour]
 public class ModelsMenu : Bolt.GlobalEventListener
 {
 	private const int MARGIN = 300;
@@ -53,9 +54,21 @@ public class ModelsMenu : Bolt.GlobalEventListener
 	{
 		GameObject model = ModelsList[fileType].Models[nb];
 
-		BoltNetwork.Instantiate(model, Player.GetComponentInChildren<AddElementBehaviour>().Hook.transform.position, model.transform.rotation);
+		var spawnObjectEvent = spawnObject.Create();
+		spawnObjectEvent.objectId = model.GetComponent<BoltEntity>().prefabId;
+		spawnObjectEvent.objectPos = Player.GetComponentInChildren<AddElementBehaviour>().Hook.transform.position;
+		spawnObjectEvent.objectRot = model.transform.rotation;
+		spawnObjectEvent.Send();
 
 		CloseBtn();
+	}
+
+	public override void OnEvent(spawnObject e)
+	{
+		if (BoltNetwork.isServer)
+			BoltNetwork.Instantiate(e.objectId, e.objectPos, e.objectRot);
+		else if (BoltNetwork.isClient)
+			;
 	}
 
 	public void BackBtn()
@@ -73,4 +86,7 @@ public class ModelsMenu : Bolt.GlobalEventListener
 		BackBtn();
 		gameObject.SetActive(false);
 	}
+
+
+
 }

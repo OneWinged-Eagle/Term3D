@@ -247,14 +247,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f4e807fdf35d5a4887e40983e566c07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cubeVert: {fileID: 131798, guid: da405f74b2bf9f345997f8faf1f4bf2b, type: 2}
-  cylindre: {fileID: 102204, guid: e1cc43e915c67314fba2dea32061ac78, type: 2}
-  audioObj: {fileID: 172308, guid: 7b059ae3f14c0024abde8d93d75d8b49, type: 2}
-  videoObj: {fileID: 183706, guid: b10a8e0644175474abc681ac29df3207, type: 2}
-  linkObj: {fileID: 162118, guid: e08e6949468485c43ba747f797fe1305, type: 2}
-  textObj: {fileID: 180652, guid: 8a64393dcd6290c4b93439d901dcd88a, type: 2}
-  imageObj: {fileID: 128564, guid: b45c5bf4745cf734689382da7131f9bb, type: 2}
-  roomObj: {fileID: 151480, guid: c198640eb9f53b74faa2acccb92b02d8, type: 2}
   objs: []
 --- !u!114 &11456900
 MonoBehaviour:
@@ -319,6 +311,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9591b9412b98f2f45a2178784e4f52de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectList: []
 --- !u!124 &12444350
 Behaviour:
   m_ObjectHideFlags: 1

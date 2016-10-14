@@ -412,14 +412,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f4e807fdf35d5a4887e40983e566c07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cubeVert: {fileID: 131798, guid: da405f74b2bf9f345997f8faf1f4bf2b, type: 2}
-  cylindre: {fileID: 102204, guid: e1cc43e915c67314fba2dea32061ac78, type: 2}
-  audioObj: {fileID: 0}
-  videoObj: {fileID: 0}
-  linkObj: {fileID: 0}
-  textObj: {fileID: 0}
-  imageObj: {fileID: 0}
-  roomObj: {fileID: 0}
   objs:
   - x: 0
     y: 0
@@ -428,6 +420,8 @@ MonoBehaviour:
     yRotate: 0
     zRotate: 0
     objName: 
+    objId:
+      Value: 0
     audio: {fileID: 0}
     image: {fileID: 0}
     text: {fileID: 0}
@@ -440,6 +434,8 @@ MonoBehaviour:
     yRotate: 0
     zRotate: 0
     objName: 
+    objId:
+      Value: 0
     audio: {fileID: 0}
     image: {fileID: 0}
     text: {fileID: 0}
@@ -452,6 +448,8 @@ MonoBehaviour:
     yRotate: 0
     zRotate: 0
     objName: 
+    objId:
+      Value: 0
     audio: {fileID: 0}
     image: {fileID: 0}
     text: {fileID: 0}
@@ -464,6 +462,8 @@ MonoBehaviour:
     yRotate: 0
     zRotate: 0
     objName: 
+    objId:
+      Value: 0
     audio: {fileID: 0}
     image: {fileID: 0}
     text: {fileID: 0}
@@ -476,6 +476,8 @@ MonoBehaviour:
     yRotate: 0
     zRotate: 0
     objName: 
+    objId:
+      Value: 0
     audio: {fileID: 0}
     image: {fileID: 0}
     text: {fileID: 0}
@@ -488,6 +490,8 @@ MonoBehaviour:
     yRotate: 0
     zRotate: 0
     objName: 
+    objId:
+      Value: 0
     audio: {fileID: 0}
     image: {fileID: 0}
     text: {fileID: 0}
@@ -500,6 +504,8 @@ MonoBehaviour:
     yRotate: 0
     zRotate: 0
     objName: 
+    objId:
+      Value: 0
     audio: {fileID: 0}
     image: {fileID: 0}
     text: {fileID: 0}
@@ -512,6 +518,8 @@ MonoBehaviour:
     yRotate: 0
     zRotate: 0
     objName: 
+    objId:
+      Value: 0
     audio: {fileID: 0}
     image: {fileID: 0}
     text: {fileID: 0}
@@ -524,6 +532,8 @@ MonoBehaviour:
     yRotate: 0
     zRotate: 0
     objName: 
+    objId:
+      Value: 0
     audio: {fileID: 0}
     image: {fileID: 0}
     text: {fileID: 0}
@@ -536,6 +546,8 @@ MonoBehaviour:
     yRotate: 0
     zRotate: 0
     objName: 
+    objId:
+      Value: 0
     audio: {fileID: 0}
     image: {fileID: 0}
     text: {fileID: 0}
@@ -565,6 +577,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9591b9412b98f2f45a2178784e4f52de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectList: []
 --- !u!114 &11492372
 MonoBehaviour:
   m_ObjectHideFlags: 1
