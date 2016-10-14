@@ -51,11 +51,9 @@ public class ModelsMenu : Bolt.GlobalEventListener
 
 	public void ModelsBtns(int fileType, int nb)
 	{
-		Transform spawn = Player.GetComponentInChildren<AddElementBehaviour>().Hook.transform;
+		GameObject model = ModelsList[fileType].Models[nb];
 
-		spawn.Rotate(Vector3.up, 180);
-		BoltNetwork.Instantiate(ModelsList[fileType].Models[nb], spawn.position, spawn.rotation);
-		spawn.Rotate(Vector3.up, 180);
+		BoltNetwork.Instantiate(model, Player.GetComponentInChildren<AddElementBehaviour>().Hook.transform.position, model.transform.rotation);
 
 		CloseBtn();
 	}
