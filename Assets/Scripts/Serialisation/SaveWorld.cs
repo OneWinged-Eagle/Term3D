@@ -33,7 +33,21 @@ public class SaveWorld : MonoBehaviour
 	
 		GameObject[] tmp;
 
+		String[] tagString = {"OtherObject","AudioObject", "LinkObject","ImageObject","VideoObject","TextObject"};
+
+		Debug.Log (tagString);
+
 		objectList.Clear ();
+		int y = 0;
+		while (y <= 5)
+		{
+			tmp = GameObject.FindGameObjectsWithTag (tagString [y]);
+			for (int i = 0; i < tmp.Length; i++)
+				objectList.Add (tmp[i]);
+			y++;
+		}
+
+		/*
 		tmp  = GameObject.FindGameObjectsWithTag ("OtherObject");
 		for (int i = 0; i < tmp.Length; i++)
 			objectList.Add (tmp[i]);
