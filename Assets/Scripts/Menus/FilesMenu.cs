@@ -36,7 +36,7 @@ public class FilesMenu : Bolt.GlobalEventListener
 
 	public void CreateFileList()
 	{
-		DirectoryUtils.Directory dir = new DirectoryUtils.Directory(PathUtils.PathToProjectPath(PathUtils.CurrPath));
+		DirectoryUtils.Directory dir = new DirectoryUtils.Directory(PathUtils.CurrPath);
 		PathUtils.Path[] paths;
 		if (FileType == ModelsUtils.FilesTypes.Link)
 			paths = dir.GetDirectories();
