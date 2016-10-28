@@ -7,6 +7,8 @@ public class AddElementBehaviour : Bolt.EntityBehaviour<IPlayerState>
 
 	public float LenghtRay;
 
+	private GameObject pauseMenu;
+
 	private GameObject modelsMenu;
 	private ModelsMenu modelsMenuScript;
 
@@ -15,6 +17,9 @@ public class AddElementBehaviour : Bolt.EntityBehaviour<IPlayerState>
 
 	public override void Attached()
 	{
+		pauseMenu = GameObject.Find("PauseMenu");
+		pauseMenu.SetActive(false);
+
 		modelsMenu = GameObject.Find("ModelsMenu");
 		modelsMenuScript = modelsMenu.GetComponent<ModelsMenu>();
 		modelsMenuScript.Player = gameObject;
@@ -28,10 +33,10 @@ public class AddElementBehaviour : Bolt.EntityBehaviour<IPlayerState>
 	public override void SimulateOwner()
 	{
 		if (Input.GetKeyDown(KeyCode.Escape))
-		{
-			Debug.Log("E des barres");
+			pauseMenu.SetActive(true);
+
+		if (Input.GetKeyDown(KeyCode.Tab))
 			modelsMenu.SetActive(true);
-		}
 
 		RaycastHit hit;
 		Ray intersectionRay = Camera.main.ScreenPointToRay(new Vector3(Screen.width * 0.5f, Screen.height * 0.5f, 0.0f));
@@ -39,7 +44,6 @@ public class AddElementBehaviour : Bolt.EntityBehaviour<IPlayerState>
 		if (filesMenu.activeSelf == false)
 			if (Input.GetMouseButtonDown(0))
 			{
-				Debug.Log("ça appuie");
 				if (Physics.Raycast(intersectionRay, out hit, LenghtRay))
 				{
 					switch (hit.collider.tag)
