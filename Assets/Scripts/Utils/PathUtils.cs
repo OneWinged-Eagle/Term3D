@@ -67,10 +67,6 @@ public class PathUtils
 
 	public static string PathToProjectPath(string path)
 	{
-
-		Debug.Log(path);
-		Debug.Log(RootPath);
-
 		string projectPath = path.Remove(path.IndexOf(RootPath), RootPath.Length);
 
 		if (String.IsNullOrEmpty(projectPath))

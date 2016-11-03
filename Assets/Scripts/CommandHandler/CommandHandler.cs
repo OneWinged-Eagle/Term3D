@@ -63,7 +63,10 @@ public class CommandHandler
 	private string cd(List<string> args)
 	{
 		if (args.Count == 0)
+		{
 			PathUtils.CurrPath = PathUtils.RootPath;
+			GameObject.Find("pwd").GetComponent<UnityEngine.UI.Text>().text = PathUtils.PathToProjectPath(PathUtils.CurrPath);
+		}
 		else
 		{
 			string path = (args[0][0] == '/' ? PathUtils.GetPathFromAbsolute(PathUtils.RootPath + args[0]) : PathUtils.GetPathFromAbsolute(PathUtils.CurrPath + "/" + args[0]));
@@ -73,6 +76,7 @@ public class CommandHandler
 				if (!dir.IsDirectory())
 					return dir.ProjectPath + " : No such file or directory.\n"; // TODO: plus verbose
 				PathUtils.CurrPath = dir.RealPath;
+				GameObject.Find("pwd").GetComponent<UnityEngine.UI.Text>().text = PathUtils.PathToProjectPath(PathUtils.CurrPath);
 			}
 			else
 			 return ("Cannot access " + args[0] + " : Permission denied.\n");
