@@ -5,6 +5,7 @@ public class AudioPlayer : Bolt.EntityBehaviour<IAudioObjectState>
 {
 	bool isListen = false;
 	AudioSource audio;
+	ParticleSystem ps;
 
 	public override void Attached()
 	{
@@ -21,15 +22,19 @@ public class AudioPlayer : Bolt.EntityBehaviour<IAudioObjectState>
 	void colorPlayed()
 	{
 		audio = GetComponent<AudioSource>();
+		ps = GetComponent<ParticleSystem>();
+		var em = ps.emission;
 
 		if (state.isPlayed == true)
 		{
 			audio.Play();
+			em.enabled = true;
 			this.GetComponent<Renderer>().material.color = Color.green;
 		}
 		else if (state.isPlayed == false)
 		{
 			this.GetComponent<Renderer>().material.color = Color.red;
+			em.enabled = false;
 			audio.Pause();
 		}
 	}
