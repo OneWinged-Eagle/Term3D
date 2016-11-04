@@ -10,9 +10,10 @@ public class TextureUtils
 	public static Sprite GetSpriteFromAsset(GameObject asset) // TODO: à supprimer, fonction inutile :'(
 	{
 		#if UNITY_EDITOR
-		Texture2D texture = AssetPreview.GetAssetPreview(asset);
+		/*Texture2D texture = AssetPreview.GetAssetPreview(asset);
 
 		return Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f)); // TODO: souvent, lors du premier run, y'a un NullReferenceException à cette ligne...
+		*/
 		#endif
 		return (null);
 	}
