@@ -25,7 +25,9 @@ public class PauseMenu : Bolt.GlobalEventListener
 
 	public void ExitBtn()
 	{
-		// TODO
+		BoltNetwork.ClosePortUPnP(27000); // TODO: pas propre
+		BoltLauncher.Shutdown();
+		BoltNetwork.LoadScene("Menu");
 	}
 
 	public void VolumeSlider_OnValueChanged(float volume)

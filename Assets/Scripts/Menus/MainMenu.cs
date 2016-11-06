@@ -1,6 +1,5 @@
 using System.Collections;
 
-using UnityEditor;
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,7 +8,7 @@ public class MainMenu : Bolt.GlobalEventListener
 	public GameObject Menu;
 	public GameObject LaunchMenu;
 	public GameObject JoinMenu;
-	public Text ChooseFolderTxt;
+	public InputField ChooseFolderTxt;
 	public InputField IP;
 	public string ServPublicIP; // TODO: variable utilisée uniquement dans LaunchServerButton : à passer en variable locale ?
 	public ushort Port = 27000;
@@ -36,11 +35,6 @@ public class MainMenu : Bolt.GlobalEventListener
 		JoinMenu.SetActive(true);
 	}
 
-	public void BrowseBtn()
-	{
-		ChooseFolderTxt.text = EditorUtility.OpenFolderPanel( "Choisissez votre dossier racine", "", "" );
-	}
-
 	public void LaunchBtn()
 	{
 		string root = PathUtils.GetPathFrom(ChooseFolderTxt.text);
@@ -57,7 +51,7 @@ public class MainMenu : Bolt.GlobalEventListener
 		BoltLauncher.StartServer(new UdpKit.UdpEndPoint(UdpKit.UdpIPv4Address.Any, Port));
 		// DISPLAY THE PUBLIC IP IN UI
 		ServPublicIP = GetPublicIP();
-		Debug.Log(ServPublicIP + ": " + Port);
+		Debug.Log("IP: " + ServPublicIP + "(Port: " + Port + ")");
 	}
 
 	public void JoinBtn()
