@@ -23,6 +23,7 @@ public class testCallbacks : Bolt.GlobalEventListener // TODO: pourquoi la class
 
 	private void instantiateWorld()
 	{
+		RoomUtils.Reset();
 		RoomUtils.CreateNewRoom();
 	}
 }

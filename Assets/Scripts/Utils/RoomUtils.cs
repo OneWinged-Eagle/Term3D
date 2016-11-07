@@ -6,6 +6,11 @@ public class RoomUtils
 
 	private static uint nb;
 
+	public static void Reset()
+	{
+		nb = 0;
+	}
+
 	public static GameObject CreateNewRoom()
 	{
 		GameObject newRoom = BoltNetwork.Instantiate(BoltPrefabs.Room, new Vector3(0, 0, 0), Quaternion.identity);
