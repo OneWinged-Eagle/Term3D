@@ -236,7 +236,23 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22459134, guid: ad7d2a7694dca994dbd563a287935d2e, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -49.99998
+      value: 0.000019073486
+      objectReference: {fileID: 0}
+    - target: {fileID: 192254, guid: ad7d2a7694dca994dbd563a287935d2e, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 22483284, guid: ad7d2a7694dca994dbd563a287935d2e, type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 22483284, guid: ad7d2a7694dca994dbd563a287935d2e, type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 22483284, guid: ad7d2a7694dca994dbd563a287935d2e, type: 2}
+      propertyPath: m_SizeDelta.x
+      value: -17
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ad7d2a7694dca994dbd563a287935d2e, type: 2}
@@ -319,6 +335,14 @@ Prefab:
     - target: {fileID: 22493804, guid: 2a7f8931f5467864180ca428e82024d5, type: 2}
       propertyPath: m_Pivot.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 119012, guid: 2a7f8931f5467864180ca428e82024d5, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 146246, guid: 2a7f8931f5467864180ca428e82024d5, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2a7f8931f5467864180ca428e82024d5, type: 2}
@@ -596,7 +620,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!81 &1976613051
 AudioListener:
   m_ObjectHideFlags: 0
