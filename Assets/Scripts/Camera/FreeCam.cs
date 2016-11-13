@@ -1,26 +1,33 @@
 using System.Collections;
+
 ﻿using UnityEngine;
 
+///<summary>
+///Free movement camera
+///</summary>
+///<remarks>
+///To use in tests
+///</remarks>
 public class FreeCam : MonoBehaviour
 {
 	public float speed = 5.0f;
-	public float spacing = 1.0f;
+
 	private Vector3 pos;
 
-	void Start()
+	public void Start()
 	{
 		pos = transform.position;
 	}
 
-	void Update()
+	public void Update()
 	{
 		if (Input.GetKey (KeyCode.UpArrow))
-			transform.position += Vector3.forward * speed * Time.deltaTime;
-		if (Input.GetKey (KeyCode.DownArrow))
-			transform.position += Vector3.back * speed * Time.deltaTime;
-		if (Input.GetKey (KeyCode.LeftArrow))
-			transform.position += Vector3.left * speed * Time.deltaTime;
+			pos += Vector3.forward * speed * Time.deltaTime;
 		if (Input.GetKey (KeyCode.RightArrow))
-			transform.position += Vector3.right * speed * Time.deltaTime;
+			pos += Vector3.right * speed * Time.deltaTime;
+		if (Input.GetKey (KeyCode.DownArrow))
+			pos += Vector3.back * speed * Time.deltaTime;
+		if (Input.GetKey (KeyCode.LeftArrow))
+			pos += Vector3.left * speed * Time.deltaTime;
 	}
 }

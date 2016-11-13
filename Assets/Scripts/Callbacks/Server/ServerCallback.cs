@@ -1,14 +1,13 @@
 using System.Collections;
+
 ﻿using UnityEngine;
 
-[BoltGlobalBehaviour(BoltNetworkModes.Host, "Term3D")] //change to .Server if there is a bug
-public class ServerCallback : Bolt.GlobalEventListener
+///<summary>
+///Handle client connections
+///</summary>
+[BoltGlobalBehaviour(BoltNetworkModes.Host, "Term3D")]
+public class ServerCallback : Bolt.GlobalEventListener // TODO: gérer les comms ou les virer
 {
-	void Awake()
-	{
-	  //PlayerObjectRegistry.CreateServerPlayer();
-	}
-
   public override void Connected(BoltConnection connection)
   {
 		OnConnection(connection);
@@ -30,15 +29,20 @@ public class ServerCallback : Bolt.GlobalEventListener
 	  //PlayerObjectRegistry.GetPlayer(connection).Spawn();
 	}
 
-	public void OnConnection(BoltConnection connection)
+	private void OnConnection(BoltConnection connection)
 	{
 		var log = EventLog.Create();
 		log.Message = string.Format("{0} connected", connection.RemoteEndPoint);
 		log.Send();
-		connection.SetStreamBandwidth(4092 * 20);
+		connection.SetStreamBandwidth(4092 * 20); // 80kb/s
 	}
 
-	public void OnDisconnect(BoltConnection connection)
+	private void Awake()
+	{
+	  //PlayerObjectRegistry.CreateServerPlayer();
+	}
+
+	private void OnDisconnect(BoltConnection connection)
 	{
 		var log = EventLog.Create();
 		log.Message = string.Format("{0} disconnected", connection.RemoteEndPoint);

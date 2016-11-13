@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+///<summary>
+///Serializable object to save GameObjects
+///</summary>
 [System.Serializable]
 public class SerializableObj
 {
@@ -12,7 +15,7 @@ public class SerializableObj
 	public float yRotate;
 	public float zRotate;
 
-	public string objName; // a virer ?
+	public string objName; // TODO: à virer ?
 	public Bolt.PrefabId objId;
 
 	public AudioObject audio;
@@ -20,5 +23,4 @@ public class SerializableObj
 	public TextObject text;
 	public LinkObject link;
 	public VideoObject video;
-
 }

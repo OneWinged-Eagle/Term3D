@@ -1,5 +1,8 @@
 using UnityEngine;
 
+///<summary>
+///Utility functions and classes for Models
+///</summary>
 public class ModelsUtils
 {
 	[System.Serializable]

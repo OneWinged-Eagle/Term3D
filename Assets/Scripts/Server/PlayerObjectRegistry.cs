@@ -1,9 +1,13 @@
 using System.Collections;
 ﻿using System.Collections.Generic;
 using System.Linq;
+
 using UnityEngine;
 
-public static class PlayerObjectRegistry
+///<summary>
+///Create and attribute the players
+///</summary>
+public static class PlayerObjectRegistry // TODO: à retaper
 {
 	static List<PlayerObject> players = new List<PlayerObject>();
 

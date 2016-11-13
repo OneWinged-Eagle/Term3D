@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-[BoltGlobalBehaviour]
-public class PauseMenu : Bolt.GlobalEventListener
+///<summary>
+///Handle PauseMenu actions (options and exit)
+///</summary>
+[BoltGlobalBehaviour()]
+public class PauseMenu : Bolt.GlobalEventListener // TODO: à vérif' (@guillaume)
 {
 	public GameObject PauseSubMenu;
 	public GameObject OptionsMenu;

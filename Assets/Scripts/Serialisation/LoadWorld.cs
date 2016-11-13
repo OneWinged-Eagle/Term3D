@@ -3,9 +3,13 @@ using System.Collections;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
+
 using UnityEngine;
 
-public class LoadWorld : MonoBehaviour
+///<summary>
+///Load
+///</summary>
+public class LoadWorld : MonoBehaviour // TODO: plus de sauvegardes, retaper le ToLoad
 {
 	/*public GameObject cubeVert;
 	public GameObject cylindre;
@@ -16,32 +20,34 @@ public class LoadWorld : MonoBehaviour
   public GameObject imageObj;
   public GameObject roomObj;*/
 
-  public SerializableObj[] objs;
-
 	// Use this for initializatio
 	void Start() {}
+
+	static public bool ToLoad;
+
+	static public void Load()
+	{
+		BinaryFormatter bf = new BinaryFormatter ();
+		FileStream file = File.Open(Application.persistentDataPath + "/roomInfo.dat", FileMode.Open);
+
+		SerializableObj[] objs = (SerializableObj[])bf.Deserialize(file);
+		file.Close();
+
+		Quaternion rotate;
+
+		for (int i = 0; i < objs.Length; i++)
+		{
+			rotate = Quaternion.Euler (objs [i].xRotate, objs [i].yRotate, objs [i].zRotate);
+			BoltNetwork.Instantiate(objs[i].objId, new Vector3 (objs [i].x, objs [i].y, objs [i].z), rotate);
+		}
+	}
 
 	// Update is called once per frame
 	void Update()
 	{
 		if (Input.GetKeyDown (KeyCode.M))
 		{
-			BinaryFormatter bf = new BinaryFormatter ();
-			FileStream file = File.Open(Application.persistentDataPath + "/roomInfo.dat", FileMode.Open);
-
-			objs = (SerializableObj[])bf.Deserialize(file);
-			file.Close();
-
-			Quaternion rotate;
-
-
-			for (int i = 0; i < objs.Length; i++)
-			{
-				rotate = Quaternion.Euler (objs [i].xRotate, objs [i].yRotate, objs [i].zRotate);
-				BoltNetwork.Instantiate(objs[i].objId, new Vector3 (objs [i].x, objs [i].y, objs [i].z), rotate);
-			}
-
-
+			Load();
 
 			/************************** MDRRRRRRRRRRRRRRRR c'est quoi cette horreur en dessus ?????? hahaha yen a qui abusent
 

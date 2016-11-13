@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-[BoltGlobalBehaviour]
-public class ModelsMenu : Bolt.GlobalEventListener
+///<summary>
+///Handle ModelsMenu actions (browse and create models)
+///</summary>
+[BoltGlobalBehaviour()]
+public class ModelsMenu : Bolt.GlobalEventListener // TODO: à vérif' (@guillaume)
 {
 	private const int MARGIN = 300;
 
@@ -56,7 +59,7 @@ public class ModelsMenu : Bolt.GlobalEventListener
 
 		var spawnObjectEvent = spawnObject.Create();
 		spawnObjectEvent.objectId = model.GetComponent<BoltEntity>().prefabId;
-		spawnObjectEvent.objectPos = Player.GetComponentInChildren<AddElementBehaviour>().Hook.transform.position;
+		spawnObjectEvent.objectPos = Player.GetComponentInChildren<InputHandler>().Hook.transform.position;
 		spawnObjectEvent.objectRot = model.transform.rotation;
 		spawnObjectEvent.Send();
 
@@ -86,7 +89,4 @@ public class ModelsMenu : Bolt.GlobalEventListener
 		BackBtn();
 		gameObject.SetActive(false);
 	}
-
-
-
 }

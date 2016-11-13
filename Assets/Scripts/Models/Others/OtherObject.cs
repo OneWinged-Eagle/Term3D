@@ -1,7 +1,11 @@
 using System.Collections;
+
 using UnityEngine;
 
-public class MoveObjBehaviour : Bolt.EntityBehaviour<IOtherObjectState>
+///<summary>
+///OtherObject handlers
+///</summary>
+public class OtherObject : Bolt.EntityBehaviour<IOtherObjectState>
 {
 	public GameObject Hook;
 
@@ -9,13 +13,14 @@ public class MoveObjBehaviour : Bolt.EntityBehaviour<IOtherObjectState>
 
 	public override void Attached()
 	{
-		state.OtherObjectTransform.SetTransforms(transform);
+		state.OtherObjectTransform.SetTransforms(transform); // Assets/Scripts/Models/Others/OtherObject.cs(16,44): warning CS0618: `Bolt.NetworkTransform.SetTransforms(UnityEngine.Transform)' is obsolete: `For setting the transform to replicate in Attached use the new IState.SetTransforms method instead, for changing the transform after it's been set use the new ChangeTransforms method'
+
 		base.Attached();
 	}
 
 	public override void SimulateOwner()
 	{
-		if (picked == true)
+		if (picked)
 		{
 			transform.position = Hook.transform.position;
 			transform.rotation = Hook.transform.rotation;

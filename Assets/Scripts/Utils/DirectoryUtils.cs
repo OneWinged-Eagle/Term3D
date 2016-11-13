@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
+///<summary>
+///Utility functions and classes for Directories
+///</summary>
 public class DirectoryUtils
 {
 	public class Directory : PathUtils.Path

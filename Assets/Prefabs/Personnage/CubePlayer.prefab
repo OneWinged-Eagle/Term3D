@@ -247,7 +247,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f4e807fdf35d5a4887e40983e566c07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objs: []
 --- !u!114 &11456900
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -256,7 +255,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 189322}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 865413c45d2e84c4d86516d81996c407, type: 3}
+  m_Script: {fileID: 11500000, guid: 7e4b3b08f6db5734d80d7746a9188d34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Hook: {fileID: 171068}
@@ -297,9 +296,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f4811bee5ef66e409b2c034787934b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
-  rotateSpeed: 10
-  cameraPlayer: {fileID: 179506}
+  MoveSpeed: 10
+  RotateSpeed: 10
+  CameraPlayer: {fileID: 179506}
 --- !u!114 &11495198
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -1,9 +1,13 @@
 using UnityEngine;
 
+///<summary>
+///LinkObject handlers
+///</summary>
 [System.Serializable]
 public class LinkObject : Bolt.EntityBehaviour<ILinkObjectState>
 {
 	public DirectoryUtils.Directory Link;
+
 	private GameObject room;
 
 	public void Go(GameObject player)

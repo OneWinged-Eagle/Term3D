@@ -2,6 +2,9 @@ using System;
 using System.IO;
 using UnityEngine;
 
+///<summary>
+///Utility functions and classes for Textures
+///</summary>
 public class TextureUtils
 {
 	public static Sprite GetSpriteFromAsset(GameObject asset) // TODO: à refaire

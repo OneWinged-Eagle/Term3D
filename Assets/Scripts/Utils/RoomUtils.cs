@@ -1,5 +1,8 @@
 using UnityEngine;
 
+///<summary>
+///Utility functions and classes for Rooms
+///</summary>
 public class RoomUtils
 {
 	private const uint MAX = 10;

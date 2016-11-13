@@ -3,6 +3,9 @@ using UnityEngine;
 using System;
 using System.IO;
 
+///<summary>
+///Utility functions and classes for Paths
+///</summary>
 public class PathUtils
 {
 	public class Path
@@ -44,16 +47,10 @@ public class PathUtils
 			return GetPathFromRelative(path);
 	}
 
-	// return le path en absolu en enlevant les dots !
 	public static string GetPathFromAbsolute(string path)
 	{
 		return System.IO.Path.GetFullPath(path);
 	}
-
-/*	public static string GetPathFromAbsolute(string absPath) // TODO : Hein ?
-	{
-		return System.IO.Path.GetFullPath(System.IO.Path.Combine(RootPath, absPath.Substring(1)));
-	} */
 
 	public static string GetPathFromRelative(string relPath)
 	{

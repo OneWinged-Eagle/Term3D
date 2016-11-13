@@ -1,7 +1,11 @@
 using System.Collections;
+
 using UnityEngine;
 
-public class AudioPlayer : Bolt.EntityBehaviour<IAudioObjectState>
+///<summary>
+///AudioObject handlers local
+///</summary>
+public class AudioPlayer : Bolt.EntityBehaviour<IAudioObjectState> // TODO: à merger avec le multi et foutre dans AudioObject.cs
 {
 	bool isListen = false;
 	AudioSource audio;

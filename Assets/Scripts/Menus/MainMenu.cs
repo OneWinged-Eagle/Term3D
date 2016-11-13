@@ -3,16 +3,19 @@ using System.Collections;
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class MainMenu : Bolt.GlobalEventListener
+///<summary>
+///Handle MainMenu actions (launch server, join server, options, exit)
+///</summary>
+[BoltGlobalBehaviour()]
+public class MainMenu : Bolt.GlobalEventListener // TODO: à vérif' (@guillaume)
 {
+	private const int PORT = 27000;
+
 	public GameObject Menu;
 	public GameObject LaunchMenu;
 	public GameObject JoinMenu;
 	public InputField ChooseFolderTxt;
 	public InputField IP;
-	public string ServPublicIP; // TODO: variable utilisée uniquement dans LaunchServerButton : à passer en variable locale ?
-	public ushort Port = 27000;
-	// TODO: toutes les variables ci-dessus sont publiques, normal ? Peut-être à passer en properties ?
 
 	private void Start() {}
 
@@ -48,10 +51,30 @@ public class MainMenu : Bolt.GlobalEventListener
 		PathUtils.RootPath = root;
 		PathUtils.CurrPath = root;
 
-		BoltLauncher.StartServer(new UdpKit.UdpEndPoint(UdpKit.UdpIPv4Address.Any, Port));
+		BoltLauncher.StartServer(new UdpKit.UdpEndPoint(UdpKit.UdpIPv4Address.Any, PORT));
 		// DISPLAY THE PUBLIC IP IN UI
-		ServPublicIP = GetPublicIP();
-		Debug.Log("IP: " + ServPublicIP + "(Port: " + Port + ")");
+		string ServPublicIP = GetPublicIP();
+		Debug.Log("IP: " + ServPublicIP + "(PORT: " + PORT + ")");
+	}
+
+	public void LoadBtn()
+	{
+		string root = PathUtils.GetPathFrom("/");
+
+		if (!PathUtils.IsValidPath(root))
+		{
+			ChooseFolderTxt.text = "Dossier non trouvé";
+			return;
+		}
+
+		PathUtils.RootPath = root;
+		PathUtils.CurrPath = root;
+
+		BoltLauncher.StartServer(new UdpKit.UdpEndPoint(UdpKit.UdpIPv4Address.Any, PORT));
+		LoadWorld.ToLoad = true;
+		// DISPLAY THE PUBLIC IP IN UI
+		string ServPublicIP = GetPublicIP();
+		Debug.Log("IP: " + ServPublicIP + "(PORT: " + PORT + ")");
 	}
 
 	public void JoinBtn()
@@ -69,7 +92,7 @@ public class MainMenu : Bolt.GlobalEventListener
 
 	public void ExitBtn()
 	{
-		BoltNetwork.ClosePortUPnP(Port);
+		BoltNetwork.ClosePortUPnP(PORT);
 		BoltLauncher.Shutdown();
 		Application.Quit();
 	}
@@ -81,7 +104,7 @@ public class MainMenu : Bolt.GlobalEventListener
 			BoltNetwork.LoadScene("Term3D");
 			// BOLT UPNP PORT FORWARDING
 			BoltNetwork.EnableUPnP();
-			BoltNetwork.OpenPortUPnP(Port);
+			BoltNetwork.OpenPortUPnP(PORT);
 		}
 		else
 			BoltNetwork.Connect(UdpKit.UdpEndPoint.Parse(IP.text));

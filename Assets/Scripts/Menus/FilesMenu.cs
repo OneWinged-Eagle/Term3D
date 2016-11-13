@@ -2,7 +2,11 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class FilesMenu : Bolt.GlobalEventListener
+///<summary>
+///Handle FilesMenu actions (browse and link files/directories to models)
+///</summary>
+[BoltGlobalBehaviour()]
+public class FilesMenu : Bolt.GlobalEventListener // TODO: à vérif' (@guillaume)
 {
 	private const int MARGIN = 300;
 

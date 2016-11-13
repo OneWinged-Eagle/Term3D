@@ -1,11 +1,15 @@
-using UnityEngine;
-using UnityEngine.UI;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 
-[BoltGlobalBehaviour]
-public class Chat : Bolt.GlobalEventListener
+using UnityEngine;
+using UnityEngine.UI;
+
+///<summary>
+///Chat and commands
+///</summary>
+[BoltGlobalBehaviour()]
+public class Chat : Bolt.GlobalEventListener // TODO: à retaper
 {
 	public InputField _ip; // TODO: variable utilisée uniquement dans sendMsg : à passer en variable locale ?
 	public Text _content; // TODO: variable utilisée uniquement dans displayMsg : à passer en variable locale ?

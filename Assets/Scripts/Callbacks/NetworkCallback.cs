@@ -1,8 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 
-[BoltGlobalBehaviour]
+///<summary>
+///Send EventLog to all clients and show them
+///</summary>
+[BoltGlobalBehaviour()]
 public class NetworkCallback : Bolt.GlobalEventListener
 {
   private List<string> logMsgs = new List<string>();
@@ -10,7 +14,6 @@ public class NetworkCallback : Bolt.GlobalEventListener
   public override void OnEvent(EventLog e)
   {
     logMsgs.Insert(0, e.Message);
-    base.OnEvent(e); // TODO: utile ?
   }
 
   private void OnGUI()

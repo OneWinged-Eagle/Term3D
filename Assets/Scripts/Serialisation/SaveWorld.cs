@@ -1,22 +1,25 @@
-﻿using UnityEngine;
-using System.Collections;
-
 using System;
+using System.Collections;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Runtime.Serialization;
 using System.Collections.Generic;
 
-public class SaveWorld : MonoBehaviour
+using UnityEngine;
+
+///<summary>
+///Save
+///</summary>
+public class SaveWorld : MonoBehaviour // TODO: plus de sauvegardes, sauver les rooms
 {
 	public List<GameObject> objectList;
 	//public List<SerializableObj> serializableList;
 
 	// Use this for initialization
-	void Start () {}
+	void Start() {}
 
 	// Update is called once per frame
-	void Update ()
+	void Update()
 	{
 		if (Input.GetKey(KeyCode.P))
 		{
@@ -30,7 +33,7 @@ public class SaveWorld : MonoBehaviour
 		//GameObject[] all = (GameObject[]) GameObject.FindObjectsOfType(typeof(GameObject));
 		//SerializableObj[] objs = new SerializableObj[all.Length];
 
-	
+
 		GameObject[] tmp;
 
 		String[] tagString = {"OtherObject","AudioObject", "LinkObject","ImageObject","VideoObject","TextObject"};

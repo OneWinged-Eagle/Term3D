@@ -1,7 +1,10 @@
 using System.Collections;
 ﻿using UnityEngine;
 
-public class PlayerObject
+///<summary>
+///???
+///</summary>
+public class PlayerObject // TODO: à retaper
 {
 	public BoltEntity character;
 	public BoltConnection connection;

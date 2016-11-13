@@ -1,14 +1,19 @@
-﻿using UnityEngine;
+using Bolt;
+
 using System.Collections;
 using System.Text;
 using System.IO;
+
 using UdpKit;
-using Bolt;
 
+using UnityEngine;
 
-[BoltGlobalBehaviour]
-public class PlayAudioEvent : Bolt.GlobalEventListener {
-
+///<summary>
+///AudioObject handlers multi
+///</summary>
+[BoltGlobalBehaviour()]
+public class PlayAudioEvent : Bolt.GlobalEventListener // TODO: à merger avec le local et foutre dans AudioObject.cs
+{
 	public static UdpKit.UdpChannelName audioChannel;
 
 	AudioSource audioSrc;

@@ -1,10 +1,14 @@
-using UnityEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 
-public class CommandHandler
+using UnityEngine;
+
+///<summary>
+///Handle all UNIX commands
+///</summary>
+public class CommandHandler // TODO: à update (@wilfried) + gérer tout les TODO
 {
 	private Dictionary<string, Delegate> commands;
 

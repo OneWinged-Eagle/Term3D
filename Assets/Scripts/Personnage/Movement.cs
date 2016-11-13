@@ -1,33 +1,34 @@
 using System.Collections;
+
 ﻿using UnityEngine;
 
-public class Movement : Bolt.EntityBehaviour<IPlayerState>
+///<summary>
+///Player's movement handler
+///</summary>
+public class Movement : Bolt.EntityBehaviour<IPlayerState> // TODO: mouvements du perso à refaire
 {
-	public float moveSpeed;
-	public float rotateSpeed;
+	public float MoveSpeed;
+	public float RotateSpeed;
 
-	public GameObject cameraPlayer;
+	public GameObject CameraPlayer;
 
-	// Use this for initialization
 	public override void Attached()
 	{
-		print("player init");
+		MoveSpeed = 10f;
+		RotateSpeed = 1.0f;
 
-		moveSpeed = 10f;
-		//rotateSpeed = 1.0f;
-
-		state.Transform.SetTransforms(transform);
-		//state.Speed = moveSpeed;
+		state.Transform.SetTransforms(transform); // Assets/Scripts/Personnage/Movement.cs(20,33): warning CS0618: `Bolt.NetworkTransform.SetTransforms(UnityEngine.Transform)' is obsolete: `For setting the transform to replicate in Attached use the new IState.SetTransforms method instead, for changing the transform after it's been set use the new ChangeTransforms method'
 		base.Attached();
 	}
 
-	// Update is called once per frame
 	public override void SimulateOwner()
 	{
-		transform.Translate(moveSpeed * Input.GetAxis("Horizontal") * Time.deltaTime, 0f, moveSpeed * Input.GetAxis("Vertical") * Time.deltaTime);
-		transform.Rotate(Input.GetAxis("Mouse Y") * Time.deltaTime * rotateSpeed, Input.GetAxis("Mouse X"), 0f);
+		transform.Translate(MoveSpeed * Input.GetAxis("Horizontal") * Time.deltaTime, 0f, MoveSpeed * Input.GetAxis("Vertical") * Time.deltaTime);
+		transform.Rotate(Input.GetAxis("Mouse Y") * Time.deltaTime * RotateSpeed, Input.GetAxis("Mouse X"), 0f);
+
 		if (entity.isOwner)
-			cameraPlayer.SetActive (true);
+			CameraPlayer.SetActive(true);
+
 		base.SimulateOwner();
 	}
 }

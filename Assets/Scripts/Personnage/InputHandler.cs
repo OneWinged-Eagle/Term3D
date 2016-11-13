@@ -1,7 +1,11 @@
 using System.Collections;
+
 ﻿using UnityEngine;
 
-public class AddElementBehaviour : Bolt.EntityBehaviour<IPlayerState>
+///<summary>
+///Player's inputs handler
+///</summary>
+public class InputHandler : Bolt.EntityBehaviour<IPlayerState> // TODO: à retaper 100%
 {
 	public GameObject Hook;
 
@@ -41,7 +45,8 @@ public class AddElementBehaviour : Bolt.EntityBehaviour<IPlayerState>
 		RaycastHit hit;
 		Ray intersectionRay = Camera.main.ScreenPointToRay(new Vector3(Screen.width * 0.5f, Screen.height * 0.5f, 0.0f));
 
-		if (filesMenu.activeSelf == false)
+		if (!pauseMenu.activeSelf && !modelsMenu.activeSelf && !filesMenu.activeSelf)
+		{
 			if (Input.GetMouseButtonDown(0))
 			{
 				if (Physics.Raycast(intersectionRay, out hit, LenghtRay))
@@ -121,7 +126,8 @@ public class AddElementBehaviour : Bolt.EntityBehaviour<IPlayerState>
 					}
 				}
 			}
-			else if (Input.GetKey(KeyCode.O))
+
+			if (Input.GetKeyDown(KeyCode.O))
 				if (Physics.Raycast(intersectionRay, out hit, LenghtRay))
 					if (hit.collider.tag == "OtherObject")
 						hit.transform.SendMessage("Destroy", true, SendMessageOptions.DontRequireReceiver);
@@ -129,9 +135,19 @@ public class AddElementBehaviour : Bolt.EntityBehaviour<IPlayerState>
         if (Physics.Raycast(intersectionRay, out hit, LenghtRay))
           if (hit.collider.tag == "NonStaticObject")
             hit.transform.SendMessage("Play", true, SendMessageOptions.DontRequireReceiver);*/
-			else if (Input.GetKey(KeyCode.Keypad0))
+
+			if (Input.GetKeyDown(KeyCode.E))
 				if (Physics.Raycast(intersectionRay, out hit, LenghtRay))
-					hit.transform.SendMessage("pickUp", true, SendMessageOptions.DontRequireReceiver);
+					hit.transform.SendMessage("pickUp", Hook, SendMessageOptions.DontRequireReceiver);
+
+			if (Input.GetKey(KeyCode.Keypad4))
+				if (Physics.Raycast(intersectionRay, out hit, LenghtRay))
+					hit.transform.Rotate(Vector3.up, -50 * Time.deltaTime);
+
+			if (Input.GetKey(KeyCode.Keypad6))
+				if (Physics.Raycast(intersectionRay, out hit, LenghtRay))
+					hit.transform.Rotate(Vector3.up, 50 * Time.deltaTime);
+		}
     base.SimulateOwner();
 	}
 }

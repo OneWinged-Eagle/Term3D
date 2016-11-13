@@ -1,12 +1,18 @@
 using Bolt;
+
 using System.Collections;
 using System.IO;
 using System.Text;
+
 using UdpKit;
+
 using UnityEngine;
 
+///<summary>
+///Handle file transfer
+///</summary>
 [BoltGlobalBehaviour()]
-public class StreamCallback : Bolt.GlobalEventListener
+public class StreamCallback : Bolt.GlobalEventListener // TODO: à update ou virer
 {
 	/*
 	public static UdpKit.UdpChannelName AudioChannel;

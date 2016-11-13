@@ -1,6 +1,9 @@
 using System;
 using System.IO;
 
+///<summary>
+///Utility functions and classes for Files
+///</summary>
 public class FileUtils
 {
 	public class File : PathUtils.Path

@@ -15,7 +15,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &108890
 GameObject:
   m_ObjectHideFlags: 1
@@ -103,7 +103,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &418890
 Transform:
   m_ObjectHideFlags: 1
@@ -412,147 +412,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f4e807fdf35d5a4887e40983e566c07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objs:
-  - x: 0
-    y: 0
-    z: 0
-    xRotate: 0
-    yRotate: 0
-    zRotate: 0
-    objName: 
-    objId:
-      Value: 0
-    audio: {fileID: 0}
-    image: {fileID: 0}
-    text: {fileID: 0}
-    link: {fileID: 0}
-    video: {fileID: 0}
-  - x: 0
-    y: 0
-    z: 0
-    xRotate: 0
-    yRotate: 0
-    zRotate: 0
-    objName: 
-    objId:
-      Value: 0
-    audio: {fileID: 0}
-    image: {fileID: 0}
-    text: {fileID: 0}
-    link: {fileID: 0}
-    video: {fileID: 0}
-  - x: 0
-    y: 0
-    z: 0
-    xRotate: 0
-    yRotate: 0
-    zRotate: 0
-    objName: 
-    objId:
-      Value: 0
-    audio: {fileID: 0}
-    image: {fileID: 0}
-    text: {fileID: 0}
-    link: {fileID: 0}
-    video: {fileID: 0}
-  - x: 0
-    y: 0
-    z: 0
-    xRotate: 0
-    yRotate: 0
-    zRotate: 0
-    objName: 
-    objId:
-      Value: 0
-    audio: {fileID: 0}
-    image: {fileID: 0}
-    text: {fileID: 0}
-    link: {fileID: 0}
-    video: {fileID: 0}
-  - x: 0
-    y: 0
-    z: 0
-    xRotate: 0
-    yRotate: 0
-    zRotate: 0
-    objName: 
-    objId:
-      Value: 0
-    audio: {fileID: 0}
-    image: {fileID: 0}
-    text: {fileID: 0}
-    link: {fileID: 0}
-    video: {fileID: 0}
-  - x: 0
-    y: 0
-    z: 0
-    xRotate: 0
-    yRotate: 0
-    zRotate: 0
-    objName: 
-    objId:
-      Value: 0
-    audio: {fileID: 0}
-    image: {fileID: 0}
-    text: {fileID: 0}
-    link: {fileID: 0}
-    video: {fileID: 0}
-  - x: 0
-    y: 0
-    z: 0
-    xRotate: 0
-    yRotate: 0
-    zRotate: 0
-    objName: 
-    objId:
-      Value: 0
-    audio: {fileID: 0}
-    image: {fileID: 0}
-    text: {fileID: 0}
-    link: {fileID: 0}
-    video: {fileID: 0}
-  - x: 0
-    y: 0
-    z: 0
-    xRotate: 0
-    yRotate: 0
-    zRotate: 0
-    objName: 
-    objId:
-      Value: 0
-    audio: {fileID: 0}
-    image: {fileID: 0}
-    text: {fileID: 0}
-    link: {fileID: 0}
-    video: {fileID: 0}
-  - x: 0
-    y: 0
-    z: 0
-    xRotate: 0
-    yRotate: 0
-    zRotate: 0
-    objName: 
-    objId:
-      Value: 0
-    audio: {fileID: 0}
-    image: {fileID: 0}
-    text: {fileID: 0}
-    link: {fileID: 0}
-    video: {fileID: 0}
-  - x: 0
-    y: 0
-    z: 0
-    xRotate: 0
-    yRotate: 0
-    zRotate: 0
-    objName: 
-    objId:
-      Value: 0
-    audio: {fileID: 0}
-    image: {fileID: 0}
-    text: {fileID: 0}
-    link: {fileID: 0}
-    video: {fileID: 0}
 --- !u!114 &11453300
 MonoBehaviour:
   m_ObjectHideFlags: 1
