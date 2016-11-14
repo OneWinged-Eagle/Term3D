@@ -7,13 +7,13 @@ using System.Collections;
 [System.Serializable]
 public class SerializableObj
 {
-	public float x;
-	public float y;
-	public float z;
+	public float x; // \
+	public float y; // |pourquoi pas en une seule variable ?
+	public float z; // /
 
-	public float xRotate;
-	public float yRotate;
-	public float zRotate;
+	public float xRotate; // \
+	public float yRotate; // |idem ?
+	public float zRotate; // /
 
 	public string objName; // TODO: à virer ?
 	public Bolt.PrefabId objId;
