@@ -69,6 +69,7 @@ public class PlayAudioEvent : Bolt.GlobalEventListener // TODO: à merger avec l
 	{
 		audioSrc = gameObject.GetComponent<AudioSource> ();
 
+		Debug.Log (Application.persistentDataPath);
 		System.IO.File.WriteAllBytes(Application.persistentDataPath + @"\testout.ogg", data.Data);
 		//WWW testwww = new WWW ("file:///" + Application.persistentDataPath + "/testout.ogg");
 

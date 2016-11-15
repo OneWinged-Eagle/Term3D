@@ -68,9 +68,10 @@ public class InputHandler : Bolt.EntityBehaviour<IPlayerState> // TODO: à retap
 						hit.transform.SendMessage("Go", gameObject, SendMessageOptions.DontRequireReceiver);
 						break;
 					case "OtherObject":
-						Debug.Log("ça otuche" + hit.collider.tag);
+						Debug.Log ("ça otuche" + hit.collider.tag);
+						Bolt.NetworkId networkId = GetComponent<BoltEntity> ().networkId;
 						hit.transform.SendMessage("pickUp", Hook, SendMessageOptions.DontRequireReceiver);
-						hit.transform.SendMessage("AskControl", SendMessageOptions.DontRequireReceiver);
+						hit.transform.SendMessage("AskControl",networkId, SendMessageOptions.DontRequireReceiver);
 						break;
 					}
 				}
