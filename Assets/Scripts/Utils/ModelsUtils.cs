@@ -21,14 +21,26 @@ public class ModelsUtils
 		Other
 	}
 
+	public static readonly string[] Tags =
+	{
+		"ImageObject",
+		"AudioObject",
+		"VideoObject",
+		"TextObject",
+		"LinkObject",
+		"OtherObject"
+	}
+
 	public static readonly string[] ImagesExtensions =
 	{
-		".jpg", ".jpeg", ".png"
+		".jpg", ".jpeg",
+		".png"
 	};
 
 	public static readonly string[] AudiosExtensions =
 	{
-		".mp3", ".ogg"
+		".mp3",
+		".ogg"
 	};
 
 	public static readonly string[] VideosExtensions =
