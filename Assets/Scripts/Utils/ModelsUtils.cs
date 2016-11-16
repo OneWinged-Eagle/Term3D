@@ -29,7 +29,7 @@ public class ModelsUtils
 		"TextObject",
 		"LinkObject",
 		"OtherObject"
-	}
+	};
 
 	public static readonly string[] ImagesExtensions =
 	{
