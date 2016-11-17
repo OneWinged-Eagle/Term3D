@@ -10,7 +10,7 @@ using Bolt;
 public class AskControlToHost : Bolt.GlobalEventListener // TODO: à retravailler 100%
 {
 	
-
+	public GameObject otherObj;
 
 	public void AskControl(NetworkId id)
 	{
@@ -22,14 +22,16 @@ public class AskControlToHost : Bolt.GlobalEventListener // TODO: à retravaille
 
 	public override void OnEvent(askControl e)
 	{
-		Debug.Log ("e.Entity " + e.entity);
+		OtherObjectHandler otherObject = otherObj.AddComponent<OtherObjectHandler> ();
+		otherObject.test (e.networkIdObj, e.entity);
+		/*Debug.Log ("e.Entity " + e.entity);
 		Debug.Log ("e.prefabid " + e.prefabId);
 		Debug.Log ("e.protocoltoken " + e.protocolToken);
 		Debug.Log ("e.networkid" + e.networkIdPlayer);
 		Debug.Log ("e.networkid" + e.networkIdObj);
 
 		BoltEntity entity = BoltNetwork.FindEntity (e.networkIdPlayer);
-		Debug.Log (	entity.GetState<IPlayerState>());
+		Debug.Log (	entity.GetState<IPlayerState>());*/
 
 		//Transform test = entity.GetState<IPlayerState> ().Transform;
 		// Debug.Log (test);
