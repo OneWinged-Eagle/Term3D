@@ -9,9 +9,7 @@ using Bolt;
 [BoltGlobalBehaviour(BoltNetworkModes.Client, "Term3D")]
 public class AskControlToHost : Bolt.GlobalEventListener // TODO: à retravailler 100%
 {
-	public override void SimulateOwner()
-	{
-	}
+	
 
 
 	public void AskControl(NetworkId id)
