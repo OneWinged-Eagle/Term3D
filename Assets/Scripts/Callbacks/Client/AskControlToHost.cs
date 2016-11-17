@@ -22,8 +22,8 @@ public class AskControlToHost : Bolt.GlobalEventListener // TODO: à retravaille
 
 	public override void OnEvent(askControl e)
 	{
-		OtherObjectHandler otherObject = otherObj.AddComponent<OtherObjectHandler> ();
-		otherObject.test (e.networkIdObj, e.entity);
+		OtherObjectHandler otherObject = new OtherObjectHandler ();// = otherObj.AddComponent<OtherObjectHandler> ();
+		otherObject.test (e.networkIdObj, e.networkIdPlayer);
 		/*Debug.Log ("e.Entity " + e.entity);
 		Debug.Log ("e.prefabid " + e.prefabId);
 		Debug.Log ("e.protocoltoken " + e.protocolToken);
