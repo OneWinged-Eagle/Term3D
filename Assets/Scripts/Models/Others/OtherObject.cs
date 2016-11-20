@@ -52,4 +52,5 @@ public class OtherObject : Bolt.EntityBehaviour<IOtherObjectState>
 	}
 
 
+
 }
