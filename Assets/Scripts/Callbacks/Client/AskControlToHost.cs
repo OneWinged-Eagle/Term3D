@@ -14,27 +14,27 @@ public class AskControlToHost : Bolt.GlobalEventListener // TODO: à retravaille
 
 	public void AskControl(NetworkId id)
 	{
-		var test = askControl.Create ();
-		test.networkIdPlayer = id;
-		test.networkIdObj = GetComponent<BoltEntity> ().networkId;
-		test.Send ();
+		var controlObjEvent = askControl.Create ();
+		controlObjEvent.networkIdPlayer = id;
+		controlObjEvent.networkIdObj = GetComponent<BoltEntity> ().networkId;
+		controlObjEvent.haveControl = true;
+		gameObject.GetComponent<Rigidbody>().useGravity = false;
+		controlObjEvent.Send ();
+	}
+
+	public void giveUpControl(NetworkId id)
+	{
+		var controlObjEvent = askControl.Create ();
+		controlObjEvent.networkIdPlayer = id;
+		controlObjEvent.networkIdObj = GetComponent<BoltEntity> ().networkId;
+		controlObjEvent.haveControl = false;
+		gameObject.GetComponent<Rigidbody>().useGravity = true;
+		controlObjEvent.Send ();
 	}
 
 	public override void OnEvent(askControl e)
 	{
 		OtherObjectHandler otherObject = new OtherObjectHandler ();// = otherObj.AddComponent<OtherObjectHandler> ();
-		otherObject.test (e.networkIdObj, e.networkIdPlayer);
-		/*Debug.Log ("e.Entity " + e.entity);
-		Debug.Log ("e.prefabid " + e.prefabId);
-		Debug.Log ("e.protocoltoken " + e.protocolToken);
-		Debug.Log ("e.networkid" + e.networkIdPlayer);
-		Debug.Log ("e.networkid" + e.networkIdObj);
-
-		BoltEntity entity = BoltNetwork.FindEntity (e.networkIdPlayer);
-		Debug.Log (	entity.GetState<IPlayerState>());*/
-
-		//Transform test = entity.GetState<IPlayerState> ().Transform;
-		// Debug.Log (test);
-
+		otherObject.controlObjEvent (e.networkIdObj, e.networkIdPlayer, e.haveControl);
 	}
 }
