@@ -36,10 +36,10 @@ public class InputHandler : Bolt.EntityBehaviour<IPlayerState> // TODO: à retap
 
 	public override void SimulateOwner()
 	{
-		if (Input.GetKeyDown(KeyCode.Escape))
+		if (Input.GetButtonDown("Pause"))
 			pauseMenu.SetActive(true);
 
-		if (Input.GetKeyDown(KeyCode.Tab))
+		if (Input.GetButtonDown("ModelsMenu"))
 			modelsMenu.SetActive(true);
 
 		RaycastHit hit;
@@ -47,7 +47,7 @@ public class InputHandler : Bolt.EntityBehaviour<IPlayerState> // TODO: à retap
 
 		if (!pauseMenu.activeSelf && !modelsMenu.activeSelf && !filesMenu.activeSelf)
 		{
-			if (Input.GetMouseButtonDown(0))
+			if (Input.GetButtonDown("Interact"))
 			{
 				if (Physics.Raycast(intersectionRay, out hit, LenghtRay))
 				{
@@ -76,7 +76,7 @@ public class InputHandler : Bolt.EntityBehaviour<IPlayerState> // TODO: à retap
 				}
 			}
 			//pas propre ici a refaire
-			else if (Input.GetMouseButtonDown(1))
+			else if (Input.GetButtonDown("Throw"))
 			{
 				if (Physics.Raycast(intersectionRay, out hit, LenghtRay))
 				{
@@ -127,16 +127,12 @@ public class InputHandler : Bolt.EntityBehaviour<IPlayerState> // TODO: à retap
 				}
 			}
 
-			if (Input.GetKeyDown(KeyCode.O))
+			if (Input.GetButtonDown("Destroy"))
 				if (Physics.Raycast(intersectionRay, out hit, LenghtRay))
 					if (hit.collider.tag == "OtherObject")
 						hit.transform.SendMessage("Destroy", true, SendMessageOptions.DontRequireReceiver);
-      /*else if (Input.GetKey(KeyCode.J))
-        if (Physics.Raycast(intersectionRay, out hit, LenghtRay))
-          if (hit.collider.tag == "NonStaticObject")
-            hit.transform.SendMessage("Play", true, SendMessageOptions.DontRequireReceiver);*/
 
-			if (Input.GetKeyDown(KeyCode.E))
+			if (Input.GetButtonDown("PickUp"))
 				if (Physics.Raycast(intersectionRay, out hit, LenghtRay))
 					hit.transform.SendMessage("pickUp", Hook, SendMessageOptions.DontRequireReceiver);
 
@@ -147,6 +143,15 @@ public class InputHandler : Bolt.EntityBehaviour<IPlayerState> // TODO: à retap
 			if (Input.GetKey(KeyCode.Keypad6))
 				if (Physics.Raycast(intersectionRay, out hit, LenghtRay))
 					hit.transform.Rotate(Vector3.up, 50 * Time.deltaTime);
+
+			if (Input.GetKeyDown(KeyCode.P))
+				SavesHandler.Save();
+
+			if (Input.GetKeyDown(KeyCode.M))
+			{
+				SavesHandler.ToLoad = true;
+				SavesHandler.Load();
+			}
 		}
     base.SimulateOwner();
 	}

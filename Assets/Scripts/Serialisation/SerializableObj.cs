@@ -7,20 +7,40 @@ using System.Collections;
 [System.Serializable]
 public class SerializableObj
 {
-	public float x; // \
-	public float y; // |pourquoi pas en une seule variable ?
-	public float z; // /
+	public string Name { get; set; }
 
-	public float xRotate; // \
-	public float yRotate; // |idem ?
-	public float zRotate; // /
+	public Bolt.PrefabId ID { get; set; }
+	public float PosX { get; set; }
+	public float PosY { get; set; }
+	public float PosZ { get; set; }
+	public float RotX { get; set; }
+	public float RotY { get; set; }
+	public float RotZ { get; set; }
 
-	public string objName; // TODO: à virer ?
-	public Bolt.PrefabId objId;
+	public ImageObject Image { get; set; }// \
+	public AudioObject Audio { get; set; }//  \
+	public VideoObject Video { get; set; }//     |Faire une class mère et remplacer par celle-ci
+	public TextObject Text { get; set; }//    /
+	public LinkObject Link { get; set; }// /
 
-	public AudioObject audio;
-	public ImageObject image;
-	public TextObject text;
-	public LinkObject link;
-	public VideoObject video;
+	public SerializableObj(string name,
+			Bolt.PrefabId id, Vector3 position, Vector3 eulerAngles,
+			ImageObject image, AudioObject audio, VideoObject video, TextObject text, LinkObject link)
+	{
+		Name = name;
+
+		ID = id;
+		PosX = position.x;
+		PosY = position.y;
+		PosZ = position.z;
+		RotX = eulerAngles.x;
+		RotY = eulerAngles.y;
+		RotZ = eulerAngles.z;
+
+		Image = image;
+		Audio = audio;
+		Video = video;
+		Text = text;
+		Link = link;
+	}
 }

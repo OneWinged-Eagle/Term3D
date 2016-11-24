@@ -22,33 +22,15 @@ public class SavesHandler
 		List<GameObject> gameObjs = new List<GameObject>();
 
 		foreach (string tag in ModelsUtils.Tags)
-			foreach (GameObject gameObj in GameObject.FindGameObjectsWithTag(tag))
-				gameObjs.Add(gameObj);
+			gameObjs.AddRange(GameObject.FindGameObjectsWithTag(tag));
 
 		SerializableObj[] objs = new SerializableObj[gameObjs.Count];
+		uint i = 0;
 
-		for (int i = 0; i < gameObjs.Count; i++)
-		{
-	    objs[i] = new SerializableObj();
-
-			objs[i].x = gameObjs[i].transform.position.x;
-			objs[i].y = gameObjs[i].transform.position.y;
-			objs[i].z = gameObjs[i].transform.position.z;
-
-			objs[i].xRotate = gameObjs[i].transform.rotation.eulerAngles.x;
-			objs[i].yRotate = gameObjs[i].transform.rotation.eulerAngles.y;
-			objs[i].zRotate = gameObjs[i].transform.rotation.eulerAngles.z;
-
-			objs[i].objName = gameObjs[i].name;
-			objs[i].objId = gameObjs [i].GetComponent<BoltEntity>().prefabId;
-
-			objs[i].audio = gameObjs[i].GetComponent<AudioObject>();
-			objs[i].link = gameObjs[i].GetComponent<LinkObject>();
-			objs[i].image = gameObjs[i].GetComponent<ImageObject>();
-			objs[i].text = gameObjs[i].GetComponent<TextObject>();
-			objs[i].video = gameObjs[i].GetComponent<VideoObject>();
-	  }
-
+		foreach (GameObject gameObj in gameObjs)
+			objs[i++] = new SerializableObj(gameObj.name,
+					gameObj.GetComponent<BoltEntity>().prefabId, gameObj.transform.position, gameObj.transform.rotation.eulerAngles,
+					gameObj.GetComponent<ImageObject>(), gameObj.GetComponent<AudioObject>(), gameObj.GetComponent<VideoObject>(), gameObj.GetComponent<TextObject>(), gameObj.GetComponent<LinkObject>());
 		FileStream file = File.Open(Application.persistentDataPath + "/" + (String.IsNullOrEmpty(SaveName) ? "save" : SaveName) + ".dat", FileMode.OpenOrCreate);
 		formatter.Serialize(file, objs);
 		file.Close();
@@ -63,7 +45,7 @@ public class SavesHandler
 			file.Close();
 
 			foreach (SerializableObj obj in objs)
-				BoltNetwork.Instantiate(obj.objId, new Vector3(obj.x, obj.y, obj.z), Quaternion.Euler(obj.xRotate, obj.yRotate, obj.zRotate));
+				BoltNetwork.Instantiate(obj.ID, new Vector3(obj.PosX, obj.PosY, obj.PosZ), Quaternion.Euler(obj.RotX, obj.RotY, obj.RotZ));
 
 			ToLoad = false;
 		}

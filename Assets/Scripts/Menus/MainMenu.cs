@@ -16,6 +16,9 @@ public class MainMenu : Bolt.GlobalEventListener // TODO: à vérif' (@guillaume
 	public GameObject JoinMenu;
 	public InputField ChooseFolderTxt;
 	public InputField IP;
+	public Toggle EmptyRoomToggle;
+	public Toggle ForestRoomToggle;
+	public Toggle SpaceRoomToggle;
 
 	private void Start() {}
 
@@ -38,8 +41,22 @@ public class MainMenu : Bolt.GlobalEventListener // TODO: à vérif' (@guillaume
 		JoinMenu.SetActive(true);
 	}
 
+	private Bolt.PrefabId GetRoom()
+	{
+		if (EmptyRoomToggle.isOn)
+			return BoltPrefabs.Room;
+		else if (ForestRoomToggle.isOn)
+			return BoltPrefabs.Forest;
+		else if (SpaceRoomToggle.isOn)
+			return BoltPrefabs.Space;
+		else
+			return BoltPrefabs.Room;
+	}
+
 	public void LaunchBtn()
 	{
+		if (string.IsNullOrEmpty(ChooseFolderTxt.text))
+			ChooseFolderTxt.text = "D:\\term3D ";
 		string root = PathUtils.GetPathFrom(ChooseFolderTxt.text);
 
 		if (!PathUtils.IsValidPath(root))
@@ -50,6 +67,7 @@ public class MainMenu : Bolt.GlobalEventListener // TODO: à vérif' (@guillaume
 
 		PathUtils.RootPath = root;
 		PathUtils.CurrPath = root;
+		RoomUtils.Room = GetRoom();
 
 		BoltLauncher.StartServer(new UdpKit.UdpEndPoint(UdpKit.UdpIPv4Address.Any, PORT));
 		// DISPLAY THE PUBLIC IP IN UI
@@ -71,7 +89,7 @@ public class MainMenu : Bolt.GlobalEventListener // TODO: à vérif' (@guillaume
 		PathUtils.CurrPath = root;
 
 		BoltLauncher.StartServer(new UdpKit.UdpEndPoint(UdpKit.UdpIPv4Address.Any, PORT));
-		LoadWorld.ToLoad = true;
+		SavesHandler.ToLoad = true;
 		// DISPLAY THE PUBLIC IP IN UI
 		string ServPublicIP = GetPublicIP();
 		Debug.Log("IP: " + ServPublicIP + "(PORT: " + PORT + ")");

@@ -79,7 +79,7 @@ GameObject:
   - 4: {fileID: 481720}
   - 114: {fileID: 11401702}
   m_Layer: 0
-  m_Name: Room
+  m_Name: Space
   m_TagString: Room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -471,7 +471,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sceneGuid: 
   _serializerGuid: cd3a1e42-6318-427c-98b1-5a6191dd4e99
-  _prefabId: 24
+  _prefabId: 25
   _updateRate: 1
   _autoFreezeProxyFrames: 0
   _clientPredicted: 1

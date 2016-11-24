@@ -23,7 +23,7 @@ public class PlayerObject // TODO: à retaper
 	{
 		if (!character)
 		{
-			character = BoltNetwork.Instantiate(BoltPrefabs.Robot);
+			//character = BoltNetwork.Instantiate(BoltPrefabs.Robot);
 			if (isServer)
 			{
 				Debug.Log(connection);

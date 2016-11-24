@@ -17,8 +17,7 @@ public class InitWorld : Bolt.GlobalEventListener // TODO: à update les comm' (
 		{
 			//PlayerObjectRegistry.CreateServerPlayer();
 			instantiateWorld();
-			if (LoadWorld.ToLoad)
-				LoadWorld.Load();
+			SavesHandler.Load();
 		}
 		else if (BoltNetwork.isClient)
 			; //PlayerObjectRegistry.CreateClientPlayer();

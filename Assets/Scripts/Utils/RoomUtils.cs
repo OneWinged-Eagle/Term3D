@@ -9,6 +9,8 @@ public class RoomUtils
 
 	private static uint nb;
 
+	public static Bolt.PrefabId Room;
+
 	public static void Reset()
 	{
 		nb = 0;
@@ -16,7 +18,7 @@ public class RoomUtils
 
 	public static GameObject CreateNewRoom()
 	{
-		GameObject newRoom = BoltNetwork.Instantiate(BoltPrefabs.Room, new Vector3(0, 0, 0), Quaternion.identity);
+		GameObject newRoom = BoltNetwork.Instantiate(Room, new Vector3(0, 0, 0), Quaternion.identity);
 		newRoom.transform.Translate((100 * (nb % MAX)) + (50 * (nb % MAX)), 0, ((nb / MAX) * 100) + (nb / MAX) * 50);
 		nb++;
 		return newRoom;
