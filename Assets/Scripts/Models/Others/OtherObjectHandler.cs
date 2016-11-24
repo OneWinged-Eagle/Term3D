@@ -9,6 +9,7 @@ public class OtherObjectHandler : Bolt.EntityBehaviour<IOtherObjectState> {
 	public  Transform objPos;
 	static public bool objControl;
 	public Vector3 tmpPos;
+	static public bool checkGrav = false;
 
 	public override void Attached()
 	{
@@ -19,7 +20,12 @@ public class OtherObjectHandler : Bolt.EntityBehaviour<IOtherObjectState> {
 
 		if (BoltNetwork.isServer) {
 			if (objControl) {
-				//gameObject.GetComponent<Rigidbody>().useGravity = false;
+				//gameObject.GetComponent<Rigidbody> ().useGravity = false;
+
+				if (checkGrav) {
+					gameObject.GetComponent<Rigidbody> ().useGravity = false;
+					checkGrav = false;
+				}
 				tmpPos = playerEntity.GetState<IPlayerState> ().Transform.Position;
 				tmpPos.z = playerEntity.GetState<IPlayerState> ().Transform.Position.z + 2;
 				objEntity.transform.position = tmpPos;
@@ -27,8 +33,13 @@ public class OtherObjectHandler : Bolt.EntityBehaviour<IOtherObjectState> {
 				//transform.position = tmpPos;
 				//transform.rotation = playerEntity.GetState<IPlayerState> ().Transform.Rotation;
 				Debug.Log ("ouocuocucououuouazoeuzaoeuoazeuzao   " + playerEntity.GetState<IPlayerState> ().Transform.Position);
+			} else {
+				if (!checkGrav) {
+					gameObject.GetComponent<Rigidbody> ().useGravity = true;
+					checkGrav = true;
+				}
 			}
-		}
+	}
 		if (BoltNetwork.isClient) {
 			Debug.Log ("je suis un client");
 		}
@@ -39,8 +50,7 @@ public class OtherObjectHandler : Bolt.EntityBehaviour<IOtherObjectState> {
 		objEntity = BoltNetwork.FindEntity (objNetworkId);
 		playerEntity = BoltNetwork.FindEntity (playerId);
 		objControl = haveControl;
+		checkGrav = haveControl;
 
-		Debug.Log("coucou" + playerEntity.GetState<IPlayerState>().Transform);
-		Debug.Log("coucou" + playerEntity.GetState<IPlayerState>().Transform.Position);
 	}
 }

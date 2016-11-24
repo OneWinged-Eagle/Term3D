@@ -28,7 +28,6 @@ public class AskControlToHost : Bolt.GlobalEventListener // TODO: à retravaille
 		controlObjEvent.networkIdPlayer = id;
 		controlObjEvent.networkIdObj = GetComponent<BoltEntity> ().networkId;
 		controlObjEvent.haveControl = false;
-		gameObject.GetComponent<Rigidbody>().useGravity = true;
 		controlObjEvent.Send ();
 	}
 
