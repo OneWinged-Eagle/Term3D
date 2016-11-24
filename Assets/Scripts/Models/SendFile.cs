@@ -7,6 +7,8 @@ using UdpKit;
 public class SendFile : Bolt.GlobalEventListener {
 	public static UdpKit.UdpChannelName fileChannel;
 	public FileUtils.File file;
+	public string path;
+	public string projectPathEvt;
 
 	public override void BoltStartBegin()
 	{
@@ -16,7 +18,14 @@ public class SendFile : Bolt.GlobalEventListener {
 	public void sendFile(FileUtils.File fileSend)
 	{
 		file = fileSend;
-		Debug.Log ("cooucou");
+		path = PathUtils.GetPathFrom (Application.persistentDataPath);
+		Debug.Log ("path" + path + "\\tmp" + file.ProjectPath);
+		Debug.Log ("hello path " + file.ProjectPath);
+		Debug.Log (Application.persistentDataPath + "/tmp" + file.ProjectPath);
+		var sendFileEvt = sendFileEvent.Create ();
+		sendFileEvt.projectPath = file.ProjectPath;
+		sendFileEvt.Send ();
+
 		if (BoltNetwork.isServer) {
 			byte[] data = File.ReadAllBytes (fileSend.RealPath);
 			BoltLog.Info ("data test");
@@ -24,41 +33,24 @@ public class SendFile : Bolt.GlobalEventListener {
 				Debug.Log (connection);
 				connection.StreamBytes (fileChannel, data);
 			}
+
 		} else if (BoltNetwork.isClient) {
 		
 		}
 	}
-
-	/*public override void StreamDataReceived(BoltConnection connection, UdpStreamData data)
-	{
-		Debug.Log ("cooucoukekekeeke");
-		Debug.Log (Application.persistentDataPath);
-		System.IO.File.WriteAllBytes(Application.persistentDataPath + file.ProjectPath, data.Data);
-	}*/
-
+		
 	public override void StreamDataReceived(BoltConnection connection, UdpStreamData data)
 	{
-		Debug.Log (Application.persistentDataPath);
-		Debug.Log (data.Channel.ToString());
+		path = PathUtils.GetPathFrom (Application.persistentDataPath);
+		Debug.Log ("path" + path + "\\tmp"+ projectPathEvt);
 
-		System.IO.File.WriteAllBytes(Application.persistentDataPath + @"\poueté.ogg", data.Data);
-		//WWW testwww = new WWW ("file:///" + Application.persistentDataPath + "/testout.ogg");
+		if (BoltNetwork.isClient)
+			System.IO.File.WriteAllBytes(path + "\\tmp"+ projectPathEvt, data.Data);
 
-		/*
-		System.IO.File.WriteAllBytes(@"d:\testout.ogg", data.Data);
-		WWW testwww = new WWW ("file://" + @"d:\testout.ogg");
+	}
 
-
-
-		AudioClip monSon = testwww.audioClip;
-		audioSrc.clip = monSon;
-		audioSrc.Play ();
-
-		Debug.Log ("testeaejdqhdjsqdhsjkhdjkqlololololo");
-
-
-		/*var startAudio = PlayAudio.Create ();
-		startAudio.isPlayed = true;
-		startAudio.Send ();*/
+	public override void OnEvent(sendFileEvent e)
+	{
+		projectPathEvt = e.projectPath;
 	}
 }

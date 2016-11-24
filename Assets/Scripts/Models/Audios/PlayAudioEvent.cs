@@ -67,9 +67,9 @@ public class PlayAudioEvent : Bolt.GlobalEventListener // TODO: à merger avec l
 
 	public override void StreamDataReceived(BoltConnection connection, UdpStreamData data)
 	{
-		audioSrc = gameObject.GetComponent<AudioSource> ();
+		/*audioSrc = gameObject.GetComponent<AudioSource> ();
 
-		Debug.Log (Application.persistentDataPath + "tototo");
+		Debug.Log (Application.persistentDataPath);
 		Debug.Log (data.Channel.ToString());
 		System.IO.File.WriteAllBytes(Application.persistentDataPath + @"\coco.ogg", data.Data);
 		//WWW testwww = new WWW ("file:///" + Application.persistentDataPath + "/testout.ogg");

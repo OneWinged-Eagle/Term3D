@@ -135,8 +135,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b5ec204af3981c44845cd642c125dab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objPos: {fileID: 0}
+  objEntity: {fileID: 0}
+  playerEntity: {fileID: 0}
+  objControl: 0
   tmpPos: {x: 0, y: 0, z: 0}
+  checkGrav: 0
 --- !u!114 &11442978
 MonoBehaviour:
   m_ObjectHideFlags: 1
