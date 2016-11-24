@@ -33,7 +33,6 @@ public class AskControlToHost : Bolt.GlobalEventListener // TODO: à retravaille
 
 	public override void OnEvent(askControl e)
 	{
-		OtherObjectHandler otherObject = new OtherObjectHandler ();// = otherObj.AddComponent<OtherObjectHandler> ();
-		otherObject.controlObjEvent (e.networkIdObj, e.networkIdPlayer, e.haveControl);
+		gameObject.GetComponent<OtherObjectHandler> ().controlObjEvent (e.networkIdObj, e.networkIdPlayer, e.haveControl);
 	}
 }

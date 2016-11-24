@@ -4,12 +4,12 @@ using Bolt;
 
 [System.Serializable]
 public class OtherObjectHandler : Bolt.EntityBehaviour<IOtherObjectState> {
-	static public BoltEntity objEntity;
-	static public  BoltEntity playerEntity;
-	public  Transform objPos;
-	static public bool objControl;
+	 public BoltEntity objEntity;
+	 public  BoltEntity playerEntity;
+	  Transform objPos;
+	public bool objControl;
 	public Vector3 tmpPos;
-	static public bool checkGrav = false;
+	 public bool checkGrav = false;
 
 	public override void Attached()
 	{
