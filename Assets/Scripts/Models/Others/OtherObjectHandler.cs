@@ -26,10 +26,12 @@ public class OtherObjectHandler : Bolt.EntityBehaviour<IOtherObjectState> {
 					gameObject.GetComponent<Rigidbody> ().useGravity = false;
 					checkGrav = false;
 				}
-				tmpPos = playerEntity.GetState<IPlayerState> ().Transform.Position;
+				/*tmpPos = playerEntity.GetState<IPlayerState> ().HookTransform.Position;
 				tmpPos.z = playerEntity.GetState<IPlayerState> ().Transform.Position.z + 2;
 				objEntity.transform.position = tmpPos;
-				objEntity.transform.rotation = playerEntity.GetState<IPlayerState> ().Transform.Rotation;
+				objEntity.transform.rotation = playerEntity.GetState<IPlayerState> ().Transform.Rotation;*/
+				objEntity.transform.position = playerEntity.GetState<IPlayerState> ().HookTransform.Position;
+				objEntity.transform.rotation = playerEntity.GetState<IPlayerState> ().HookTransform.Rotation;
 				//transform.position = tmpPos;
 				//transform.rotation = playerEntity.GetState<IPlayerState> ().Transform.Rotation;
 				Debug.Log ("ouocuocucououuouazoeuzaoeuoazeuzao   " + playerEntity.GetState<IPlayerState> ().Transform.Position);

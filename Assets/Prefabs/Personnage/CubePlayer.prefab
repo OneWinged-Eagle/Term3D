@@ -23,6 +23,8 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 448418}
+  - 114: {fileID: 114000013847833310}
+  - 114: {fileID: 114000010473262716}
   m_Layer: 0
   m_Name: Hook
   m_TagString: Untagged
@@ -302,6 +304,7 @@ MonoBehaviour:
   MoveSpeed: 10
   RotateSpeed: 10
   CameraPlayer: {fileID: 179506}
+  hook: {fileID: 171068}
 --- !u!114 &11495198
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -332,3 +335,39 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 189322}
   m_IsPrefabParent: 1
+--- !u!114 &114000010473262716
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 171068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98f007e72405af24c852771844d32cbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114000013847833310
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 171068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -36112512, guid: 5b00bf8b25851d440940a40ec23344f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sceneGuid: 
+  _serializerGuid: 6728d208-8de9-4689-986f-84527ccf330d
+  _prefabId: -1
+  _updateRate: 1
+  _autoFreezeProxyFrames: 0
+  _clientPredicted: 1
+  _allowInstantiateOnClient: 1
+  _persistThroughSceneLoads: 0
+  _sceneObjectDestroyOnDetach: 0
+  _sceneObjectAutoAttach: 1
+  _alwaysProxy: 0
+  _detachOnDisable: 1
+  _allowFirstReplicationWhenFrozen: 0
+  _autoRemoveChildEntities: 0

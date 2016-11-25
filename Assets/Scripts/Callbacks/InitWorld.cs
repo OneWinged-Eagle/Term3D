@@ -20,7 +20,10 @@ public class InitWorld : Bolt.GlobalEventListener // TODO: à update les comm' (
 			SavesHandler.Load();
 		}
 		else if (BoltNetwork.isClient)
-			; //PlayerObjectRegistry.CreateClientPlayer();
+		{
+			PathUtils.RootPath = PathUtils.GetPathFrom(Application.persistentDataPath) + "\\tmp";
+			PathUtils.CurrPath = PathUtils.RootPath;
+		}
 		else
 			; //WUT?
 	}
