@@ -44,9 +44,13 @@ public class SendFile : Bolt.GlobalEventListener {
 		path = PathUtils.GetPathFrom (Application.persistentDataPath);
 		Debug.Log ("path" + path + "\\tmp"+ projectPathEvt);
 
-		if (BoltNetwork.isClient)
-			System.IO.File.WriteAllBytes(path + "\\tmp"+ projectPathEvt, data.Data);
+		if (BoltNetwork.isClient) {
+			System.IO.File.WriteAllBytes (path + "\\tmp" + projectPathEvt, data.Data);
+			Debug.Log (path + "\\tmp" + projectPathEvt);
+			gameObject.GetComponent<ImageObject> ().pathToFile = path + "\\tmp" + projectPathEvt;
+			gameObject.GetComponent<ImageObject> ().Apply ();
 
+		}
 	}
 
 	public override void OnEvent(sendFileEvent e)
