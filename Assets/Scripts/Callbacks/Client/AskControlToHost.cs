@@ -9,7 +9,7 @@ using Bolt;
 [BoltGlobalBehaviour(BoltNetworkModes.Client, "Term3D")]
 public class AskControlToHost : Bolt.GlobalEventListener // TODO: à retravailler 100%
 {
-	
+
 	public GameObject otherObj;
 
 	public void AskControl(NetworkId id)

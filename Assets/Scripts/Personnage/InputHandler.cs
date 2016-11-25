@@ -69,15 +69,14 @@ public class InputHandler : Bolt.EntityBehaviour<IPlayerState> // TODO: à retap
 						break;
 					case "OtherObject":
 						Debug.Log ("ça otuche" + hit.collider.tag);
-						Bolt.NetworkId networkId = GetComponent<BoltEntity> ().networkId;
 						//hit.transform.SendMessage("pickUp", Hook, SendMessageOptions.DontRequireReceiver);
-						hit.transform.SendMessage("AskControl",networkId, SendMessageOptions.DontRequireReceiver);
+						hit.transform.SendMessage("AskControl", GetComponent<BoltEntity>().networkId, SendMessageOptions.DontRequireReceiver);
 						break;
 					}
 				}
 			}
 			//pas propre ici a refaire
-			else if (Input.GetButtonDown("Throw"))
+			else if (Input.GetButtonDown("FilesMenu"))
 			{
 				if (Physics.Raycast(intersectionRay, out hit, LenghtRay))
 				{
@@ -90,41 +89,33 @@ public class InputHandler : Bolt.EntityBehaviour<IPlayerState> // TODO: à retap
 						filesMenuScript.Model = hit.collider.gameObject;
 						filesMenuScript.FileType = ModelsUtils.FilesTypes.Image;
 						filesMenuScript.CreateFileList();
-						hit.transform.SendMessage("throwObj", SendMessageOptions.DontRequireReceiver);
 						break;
 					case "AudioObject":
 						filesMenu.SetActive(true);
 						filesMenuScript.Model = hit.collider.gameObject;
 						filesMenuScript.FileType = ModelsUtils.FilesTypes.Audio;
 						filesMenuScript.CreateFileList();
-						hit.transform.SendMessage("throwObj", SendMessageOptions.DontRequireReceiver);
 						break;
 					case "VideoObject":
 						filesMenu.SetActive(true);
 						filesMenuScript.Model = hit.collider.gameObject;
 						filesMenuScript.FileType = ModelsUtils.FilesTypes.Video;
 						filesMenuScript.CreateFileList();
-						hit.transform.SendMessage("throwObj", SendMessageOptions.DontRequireReceiver);
 						break;
 					case "TextObject":
 						filesMenu.SetActive(true);
 						filesMenuScript.Model = hit.collider.gameObject;
 						filesMenuScript.FileType = ModelsUtils.FilesTypes.Text;
 						filesMenuScript.CreateFileList();
-						hit.transform.SendMessage("throwObj", SendMessageOptions.DontRequireReceiver);
 						break;
 					case "LinkObject":
 						filesMenu.SetActive(true);
 						filesMenuScript.Model = hit.collider.gameObject;
 						filesMenuScript.FileType = ModelsUtils.FilesTypes.Link;
 						filesMenuScript.CreateFileList();
-						hit.transform.SendMessage("throwObj", SendMessageOptions.DontRequireReceiver);
 						break;
 					case "OtherObject":
-						Debug.Log("ça otuche" + hit.collider.tag);
-						//hit.transform.SendMessage("throwObj", SendMessageOptions.DontRequireReceiver);
-						Bolt.NetworkId networkId = GetComponent<BoltEntity> ().networkId;
-						hit.transform.SendMessage("giveUpControl",networkId, SendMessageOptions.DontRequireReceiver);
+						hit.transform.SendMessage("giveUpControl", GetComponent<BoltEntity>().networkId, SendMessageOptions.DontRequireReceiver);
 						break;
 					}
 				}
@@ -137,7 +128,11 @@ public class InputHandler : Bolt.EntityBehaviour<IPlayerState> // TODO: à retap
 
 			if (Input.GetButtonDown("PickUp"))
 				if (Physics.Raycast(intersectionRay, out hit, LenghtRay))
-					hit.transform.SendMessage("pickUp", Hook, SendMessageOptions.DontRequireReceiver);
+					hit.transform.SendMessage("AskControl", GetComponent<BoltEntity>().networkId, SendMessageOptions.DontRequireReceiver);
+
+			if (Input.GetButtonDown("Throw"))
+				if (Physics.Raycast(intersectionRay, out hit, LenghtRay))
+					hit.transform.SendMessage("giveUpControl", GetComponent<BoltEntity>().networkId, SendMessageOptions.DontRequireReceiver);
 
 			if (Input.GetKey(KeyCode.Keypad4))
 				if (Physics.Raycast(intersectionRay, out hit, LenghtRay))

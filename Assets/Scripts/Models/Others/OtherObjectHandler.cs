@@ -34,7 +34,7 @@ public class OtherObjectHandler : Bolt.EntityBehaviour<IOtherObjectState> {
 				objEntity.transform.rotation = playerEntity.GetState<IPlayerState> ().HookTransform.Rotation;
 				//transform.position = tmpPos;
 				//transform.rotation = playerEntity.GetState<IPlayerState> ().Transform.Rotation;
-				Debug.Log ("ouocuocucououuouazoeuzaoeuoazeuzao   " + playerEntity.GetState<IPlayerState> ().Transform.Position);
+				//Debug.Log ("ouocuocucououuouazoeuzaoeuoazeuzao   " + playerEntity.GetState<IPlayerState> ().Transform.Position);
 			} else {
 				if (!checkGrav) {
 					gameObject.GetComponent<Rigidbody> ().useGravity = true;

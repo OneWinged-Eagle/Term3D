@@ -87,6 +87,7 @@ public class MainMenu : Bolt.GlobalEventListener // TODO: à vérif' (@guillaume
 
 		PathUtils.RootPath = root;
 		PathUtils.CurrPath = root;
+		RoomUtils.Room = GetRoom();
 
 		BoltLauncher.StartServer(new UdpKit.UdpEndPoint(UdpKit.UdpIPv4Address.Any, PORT));
 		SavesHandler.ToLoad = true;
