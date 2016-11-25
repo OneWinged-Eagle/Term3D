@@ -46,6 +46,8 @@ public class SendFile : Bolt.GlobalEventListener {
 
 		if (BoltNetwork.isClient) {
 			System.IO.File.WriteAllBytes (path + "\\tmp" + projectPathEvt, data.Data);
+Debug.Log("gameObject.GetComponent<ImageObject>() \"" + gameObject.GetComponent<ImageObject>() + "\"");
+Debug.Log("gameObject.GetComponent<ImageObject>().pathToFile = \"" + gameObject.GetComponent<ImageObject>().pathToFile + "\"");
 			Debug.Log (path + "\\tmp" + projectPathEvt);
 			gameObject.GetComponent<ImageObject> ().pathToFile = path + "\\tmp" + projectPathEvt;
 			gameObject.GetComponent<ImageObject> ().Apply ();
