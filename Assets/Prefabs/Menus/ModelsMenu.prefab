@@ -1298,6 +1298,8 @@ MonoBehaviour:
     - {fileID: 161014, guid: 5a584d24a40c9ba4d8eca9ddf1efd2fe, type: 2}
     - {fileID: 120456, guid: 7d93ddc4c4d60954eaa519052af40911, type: 2}
     - {fileID: 1000010012102784, guid: efc2a483aa9591d4d8b55ffb2f9dcdb7, type: 2}
+    - {fileID: 1000010012102784, guid: 0771cf37148974644b877788ae2c9ea8, type: 2}
+    - {fileID: 1000010012102784, guid: 0ead5a4e10b00634c864e429a11e4d16, type: 2}
   Player: {fileID: 189322, guid: 61946cabd8e09844e9da8c898341185c, type: 2}
 --- !u!114 &11469314
 MonoBehaviour:
