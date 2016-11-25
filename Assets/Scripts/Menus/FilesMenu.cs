@@ -55,9 +55,10 @@ public class FilesMenu : Bolt.GlobalEventListener // TODO: à vérif' (@guillaum
 		switch (FileType)
 		{
 		case ModelsUtils.FilesTypes.Image:
-			ImageObject imageObject = Model.AddComponent<ImageObject>();
+			/*ImageObject imageObject = Model.AddComponent<ImageObject>();
 			imageObject.Image = (FileUtils.File)path;
-			imageObject.Apply();
+			imageObject.Apply();*/
+			Model.GetComponent<SendFile> ().sendFile ((FileUtils.File)path);
 			break;
 		case ModelsUtils.FilesTypes.Audio:
 			Model.AddComponent<AudioObject>().Audio = (FileUtils.File)path;

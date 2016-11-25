@@ -68,9 +68,10 @@ public class InputHandler : Bolt.EntityBehaviour<IPlayerState> // TODO: à retap
 						hit.transform.SendMessage("Go", gameObject, SendMessageOptions.DontRequireReceiver);
 						break;
 					case "OtherObject":
-						Debug.Log("ça otuche" + hit.collider.tag);
-						hit.transform.SendMessage("pickUp", Hook, SendMessageOptions.DontRequireReceiver);
-						hit.transform.SendMessage("AskControl", SendMessageOptions.DontRequireReceiver);
+						Debug.Log ("ça otuche" + hit.collider.tag);
+						Bolt.NetworkId networkId = GetComponent<BoltEntity> ().networkId;
+						//hit.transform.SendMessage("pickUp", Hook, SendMessageOptions.DontRequireReceiver);
+						hit.transform.SendMessage("AskControl",networkId, SendMessageOptions.DontRequireReceiver);
 						break;
 					}
 				}
@@ -121,7 +122,9 @@ public class InputHandler : Bolt.EntityBehaviour<IPlayerState> // TODO: à retap
 						break;
 					case "OtherObject":
 						Debug.Log("ça otuche" + hit.collider.tag);
-						hit.transform.SendMessage("throwObj", SendMessageOptions.DontRequireReceiver);
+						//hit.transform.SendMessage("throwObj", SendMessageOptions.DontRequireReceiver);
+						Bolt.NetworkId networkId = GetComponent<BoltEntity> ().networkId;
+						hit.transform.SendMessage("giveUpControl",networkId, SendMessageOptions.DontRequireReceiver);
 						break;
 					}
 				}

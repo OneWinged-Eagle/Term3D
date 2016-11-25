@@ -15,6 +15,7 @@ GameObject:
   - 114: {fileID: 11400386}
   - 114: {fileID: 11455826}
   - 114: {fileID: 11442978}
+  - 114: {fileID: 11429286}
   m_Layer: 0
   m_Name: LionStatue
   m_TagString: OtherObject
@@ -123,6 +124,22 @@ MonoBehaviour:
   _detachOnDisable: 1
   _allowFirstReplicationWhenFrozen: 0
   _autoRemoveChildEntities: 0
+--- !u!114 &11429286
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 157880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b5ec204af3981c44845cd642c125dab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objEntity: {fileID: 0}
+  playerEntity: {fileID: 0}
+  objControl: 0
+  tmpPos: {x: 0, y: 0, z: 0}
+  checkGrav: 0
 --- !u!114 &11442978
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -134,6 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ef03b1ca58c3934398080cdc9138a3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  otherObj: {fileID: 157880}
 --- !u!114 &11455826
 MonoBehaviour:
   m_ObjectHideFlags: 1

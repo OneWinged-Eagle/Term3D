@@ -1,6 +1,7 @@
 using System.Collections;
 
 ﻿using UnityEngine;
+using Bolt;
 
 ///<summary>
 ///Ask item control to host
@@ -8,28 +9,30 @@ using System.Collections;
 [BoltGlobalBehaviour(BoltNetworkModes.Client, "Term3D")]
 public class AskControlToHost : Bolt.GlobalEventListener // TODO: à retravailler 100%
 {
-	public void AskControl()
+	
+	public GameObject otherObj;
+
+	public void AskControl(NetworkId id)
 	{
-		var test = askControl.Create ();
+		var controlObjEvent = askControl.Create ();
+		controlObjEvent.networkIdPlayer = id;
+		controlObjEvent.networkIdObj = GetComponent<BoltEntity> ().networkId;
+		controlObjEvent.haveControl = true;
+		gameObject.GetComponent<Rigidbody>().useGravity = false;
+		controlObjEvent.Send ();
+	}
 
-		//test.protocolToken = null;
-		//test.networkId = null;
-
-		test.Send ();
+	public void giveUpControl(NetworkId id)
+	{
+		var controlObjEvent = askControl.Create ();
+		controlObjEvent.networkIdPlayer = id;
+		controlObjEvent.networkIdObj = GetComponent<BoltEntity> ().networkId;
+		controlObjEvent.haveControl = false;
+		controlObjEvent.Send ();
 	}
 
 	public override void OnEvent(askControl e)
 	{
-		foreach (var entity in BoltNetwork.entities) {
-			foreach (var connection in BoltNetwork.connections) {
-				entity.AssignControl (connection);
-				Debug.Log (entity);
-				Debug.Log (connection);
-			}
-		}
-
-		Debug.Log (e.prefabId);
-		Debug.Log (e.protocolToken);
-		Debug.Log (e.networkId);
+		gameObject.GetComponent<OtherObjectHandler> ().controlObjEvent (e.networkIdObj, e.networkIdPlayer, e.haveControl);
 	}
 }
