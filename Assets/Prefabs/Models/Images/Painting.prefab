@@ -49,8 +49,8 @@ GameObject:
   - 114: {fileID: 11433590}
   - 114: {fileID: 11418820}
   - 114: {fileID: 114000011696864130}
-  - 114: {fileID: 114000012063942246}
-  - 114: {fileID: 114000012294312294}
+  - 114: {fileID: 114000010759225560}
+  - 114: {fileID: 114000012148993932}
   m_Layer: 0
   m_Name: Painting
   m_TagString: ImageObject
@@ -181,7 +181,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.85, y: 1.1, z: 0.2}
+  m_Size: {x: 0.85, y: 1.1, z: 0.1}
   m_Center: {x: 2.273737e-13, y: -5.684342e-14, z: -0.000000001862645}
 --- !u!114 &11418820
 MonoBehaviour:
@@ -285,6 +285,18 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 146250}
   m_IsPrefabParent: 1
+--- !u!114 &114000010759225560
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 146250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ef03b1ca58c3934398080cdc9138a3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  otherObj: {fileID: 0}
 --- !u!114 &114000011696864130
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -297,19 +309,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pathToFile: 
---- !u!114 &114000012063942246
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 146250}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ef03b1ca58c3934398080cdc9138a3e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  otherObj: {fileID: 0}
---- !u!114 &114000012294312294
+--- !u!114 &114000012148993932
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

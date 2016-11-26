@@ -16,7 +16,7 @@ GameObject:
   - 95: {fileID: 9516874}
   - 114: {fileID: 11424614}
   - 114: {fileID: 11437556}
-  - 114: {fileID: 114000010807352094}
+  - 114: {fileID: 114000011624229980}
   m_Layer: 0
   m_Name: Crate
   m_TagString: OtherObject
@@ -177,7 +177,7 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 172122}
   m_IsPrefabParent: 1
---- !u!114 &114000010807352094
+--- !u!114 &114000011624229980
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

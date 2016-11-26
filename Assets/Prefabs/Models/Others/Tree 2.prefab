@@ -30,7 +30,7 @@ GameObject:
   - 114: {fileID: 11461254}
   - 114: {fileID: 11465926}
   - 114: {fileID: 11448636}
-  - 114: {fileID: 114000014031191556}
+  - 114: {fileID: 114000011734082034}
   m_Layer: 0
   m_Name: Tree 2
   m_TagString: OtherObject
@@ -235,7 +235,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sceneGuid: 
   _serializerGuid: cd3a1e42-6318-427c-98b1-5a6191dd4e99
-  _prefabId: 15
+  _prefabId: 19
   _updateRate: 1
   _autoFreezeProxyFrames: 0
   _clientPredicted: 1
@@ -270,7 +270,7 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 161014}
   m_IsPrefabParent: 1
---- !u!114 &114000014031191556
+--- !u!114 &114000011734082034
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

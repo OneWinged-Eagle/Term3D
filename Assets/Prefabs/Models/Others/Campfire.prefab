@@ -83,7 +83,7 @@ GameObject:
   - 114: {fileID: 11459610}
   - 114: {fileID: 11448708}
   - 114: {fileID: 11488404}
-  - 114: {fileID: 114000012083201106}
+  - 114: {fileID: 114000010752445112}
   m_Layer: 0
   m_Name: Campfire
   m_TagString: OtherObject
@@ -5760,7 +5760,7 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 193546}
   m_IsPrefabParent: 1
---- !u!114 &114000012083201106
+--- !u!114 &114000010752445112
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

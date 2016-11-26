@@ -16,7 +16,7 @@ GameObject:
   - 114: {fileID: 11411110}
   - 114: {fileID: 11476016}
   - 95: {fileID: 9515680}
-  - 114: {fileID: 114000013497102996}
+  - 114: {fileID: 114000010992778824}
   m_Layer: 0
   m_Name: Bed
   m_TagString: OtherObject
@@ -177,7 +177,7 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 120456}
   m_IsPrefabParent: 1
---- !u!114 &114000013497102996
+--- !u!114 &114000010992778824
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
