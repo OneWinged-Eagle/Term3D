@@ -123,7 +123,6 @@ public class InputHandler : Bolt.EntityBehaviour<IPlayerState> // TODO: à retap
 
 			if (Input.GetButtonDown("Destroy"))
 				if (Physics.Raycast(intersectionRay, out hit, LenghtRay))
-					if (hit.collider.tag == "OtherObject")
 						hit.transform.SendMessage("Destroy", true, SendMessageOptions.DontRequireReceiver);
 
 			if (Input.GetButtonDown("PickUp"))

@@ -83,6 +83,7 @@ GameObject:
   - 114: {fileID: 11459610}
   - 114: {fileID: 11448708}
   - 114: {fileID: 11488404}
+  - 114: {fileID: 114000012083201106}
   m_Layer: 0
   m_Name: Campfire
   m_TagString: OtherObject
@@ -5759,3 +5760,19 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 193546}
   m_IsPrefabParent: 1
+--- !u!114 &114000012083201106
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 193546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b5ec204af3981c44845cd642c125dab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objEntity: {fileID: 0}
+  playerEntity: {fileID: 0}
+  objControl: 0
+  tmpPos: {x: 0, y: 0, z: 0}
+  checkGrav: 0
