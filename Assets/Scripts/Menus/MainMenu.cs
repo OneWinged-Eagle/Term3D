@@ -56,7 +56,7 @@ public class MainMenu : Bolt.GlobalEventListener // TODO: à vérif' (@guillaume
 	public void LaunchBtn()
 	{
 		if (string.IsNullOrEmpty(ChooseFolderTxt.text))
-			ChooseFolderTxt.text = "D:\\term3D ";
+			ChooseFolderTxt.text = "/";
 		string root = PathUtils.GetPathFrom(ChooseFolderTxt.text);
 
 		if (!PathUtils.IsValidPath(root))

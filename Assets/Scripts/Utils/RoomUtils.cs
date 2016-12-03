@@ -18,7 +18,7 @@ public class RoomUtils
 
 	public static GameObject CreateNewRoom()
 	{
-		GameObject newRoom = BoltNetwork.Instantiate(Room, new Vector3(0, 0, 0), Quaternion.identity);
+		GameObject newRoom = BoltNetwork.Instantiate(Room, new Vector3(20, 0, 20), Quaternion.identity);
 		newRoom.transform.Translate((100 * (nb % MAX)) + (50 * (nb % MAX)), 0, ((nb / MAX) * 100) + (nb / MAX) * 50);
 		nb++;
 		return newRoom;

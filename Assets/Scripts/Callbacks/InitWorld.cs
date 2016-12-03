@@ -32,5 +32,9 @@ public class InitWorld : Bolt.GlobalEventListener // TODO: à update les comm' (
 	{
 		RoomUtils.Reset();
 		RoomUtils.CreateNewRoom();
+		if (RoomUtils.Room == BoltPrefabs.Space)
+			Destroy(GameObject.Find("Directional Light"));
+		else
+			RenderSettings.skybox = null;
 	}
 }
