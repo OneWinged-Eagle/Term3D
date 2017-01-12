@@ -16,7 +16,7 @@ public class InputHandler : Bolt.EntityBehaviour<IPlayerState> // TODO: à retap
 	private GameObject modelsMenu;
 	private ModelsMenu modelsMenuScript;
 
-	private GameObject filesMenu;
+	public GameObject filesMenu;
 	private FilesMenu filesMenuScript;
 
 	public override void Attached()
@@ -36,11 +36,11 @@ public class InputHandler : Bolt.EntityBehaviour<IPlayerState> // TODO: à retap
 
 	public override void SimulateOwner()
 	{
-		if (Input.GetButtonDown("Pause"))
-			pauseMenu.SetActive(true);
+		if (Input.GetButtonDown("Pause") && !filesMenu.activeSelf && !modelsMenu.activeSelf)
+			pauseMenu.SetActive(!pauseMenu.activeSelf);
 
-		if (Input.GetButtonDown("ModelsMenu"))
-			modelsMenu.SetActive(true);
+		if (Input.GetButtonDown("ModelsMenu") && !filesMenu.activeSelf && !pauseMenu.activeSelf)
+			modelsMenu.SetActive(!modelsMenu.activeSelf);
 
 		RaycastHit hit;
 		Ray intersectionRay = Camera.main.ScreenPointToRay(new Vector3(Screen.width * 0.5f, Screen.height * 0.5f, 0.0f));

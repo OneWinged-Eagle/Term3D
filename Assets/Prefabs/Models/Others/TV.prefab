@@ -5,18 +5,18 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 440348}
-  - 33: {fileID: 3314000}
-  - 23: {fileID: 2375160}
-  - 64: {fileID: 6464746}
-  - 54: {fileID: 5462748}
-  - 114: {fileID: 11450256}
-  - 114: {fileID: 11464304}
-  - 114: {fileID: 11446836}
-  - 95: {fileID: 9592716}
-  - 114: {fileID: 114000011756035894}
+  - component: {fileID: 440348}
+  - component: {fileID: 3314000}
+  - component: {fileID: 2375160}
+  - component: {fileID: 6464746}
+  - component: {fileID: 5462748}
+  - component: {fileID: 11450256}
+  - component: {fileID: 11464304}
+  - component: {fileID: 11446836}
+  - component: {fileID: 9592716}
+  - component: {fileID: 114000011756035894}
   m_Layer: 0
   m_Name: TV
   m_TagString: OtherObject
@@ -33,10 +33,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &2375160
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -51,7 +51,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_Materials:
   - {fileID: 2100000, guid: 04a92c7826262a840a78a8009395367c, type: 2}
-  m_SubsetIndices: 
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
@@ -59,7 +61,7 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_SelectedWireframeHidden: 0
+  m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -99,6 +101,8 @@ MeshCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Convex: 1
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: c7c3d558c0575a84d978fefda4b33fea, type: 3}
 --- !u!95 &9592716
 Animator:

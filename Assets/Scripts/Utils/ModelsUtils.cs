@@ -23,6 +23,7 @@ public class ModelsUtils
 
 	public static readonly string[] Tags =
 	{
+		"Room",
 		"ImageObject",
 		"AudioObject",
 		"VideoObject",

@@ -111,8 +111,11 @@ public class MainMenu : Bolt.GlobalEventListener // TODO: à vérif' (@guillaume
 
 	public void ExitBtn()
 	{
-		BoltNetwork.ClosePortUPnP(PORT);
-		BoltLauncher.Shutdown();
+		if (BoltNetwork.isRunning)
+		{
+			BoltNetwork.ClosePortUPnP(PORT);
+			BoltLauncher.Shutdown();
+		}
 		Application.Quit();
 	}
 

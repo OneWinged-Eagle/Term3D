@@ -52,13 +52,14 @@ public class FilesMenu : Bolt.GlobalEventListener // TODO: à vérif' (@guillaum
 
 	public void FilesBtns(PathUtils.Path path)
 	{
+		Model.name = path.ProjectPath;
 		switch (FileType)
 		{
 		case ModelsUtils.FilesTypes.Image:
 			/*ImageObject imageObject = Model.AddComponent<ImageObject>();
 			imageObject.Image = (FileUtils.File)path;
 			imageObject.Apply();*/
-			Model.GetComponent<SendFile> ().sendFile ((FileUtils.File)path);
+			Model.GetComponent<SendFile>().sendFile((FileUtils.File)path);
 			Model.GetComponent<ImageObject>().Image = (FileUtils.File)path;
 			Model.GetComponent<ImageObject>().Apply();
 			break;

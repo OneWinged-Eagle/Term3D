@@ -5,9 +5,9 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 428350}
+  - component: {fileID: 428350}
   m_Layer: 0
   m_Name: SpawnPoint
   m_TagString: Untagged
@@ -20,9 +20,9 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 448418}
+  - component: {fileID: 448418}
   m_Layer: 0
   m_Name: Hook
   m_TagString: Untagged
@@ -35,13 +35,13 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 401726}
-  - 20: {fileID: 2020678}
-  - 124: {fileID: 12444350}
-  - 92: {fileID: 9281176}
-  - 81: {fileID: 8169388}
+  - component: {fileID: 401726}
+  - component: {fileID: 2020678}
+  - component: {fileID: 12444350}
+  - component: {fileID: 9281176}
+  - component: {fileID: 8169388}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -54,18 +54,18 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 407368}
-  - 33: {fileID: 3352748}
-  - 65: {fileID: 6581738}
-  - 23: {fileID: 2356926}
-  - 54: {fileID: 5490352}
-  - 114: {fileID: 11487834}
-  - 114: {fileID: 11456900}
-  - 114: {fileID: 11475642}
-  - 114: {fileID: 11452406}
-  - 114: {fileID: 11495198}
+  - component: {fileID: 407368}
+  - component: {fileID: 3352748}
+  - component: {fileID: 6581738}
+  - component: {fileID: 2356926}
+  - component: {fileID: 5490352}
+  - component: {fileID: 11487834}
+  - component: {fileID: 11456900}
+  - component: {fileID: 11475642}
+  - component: {fileID: 11452406}
+  - component: {fileID: 11495198}
   m_Layer: 0
   m_Name: CubePlayer
   m_TagString: Player
@@ -82,10 +82,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.01, y: 0.83, z: 0.01}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 407368}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &407368
 Transform:
   m_ObjectHideFlags: 1
@@ -95,13 +95,13 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 21.427307, y: 18.702806, z: 32.956898}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 401726}
   - {fileID: 428350}
   - {fileID: 448418}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &428350
 Transform:
   m_ObjectHideFlags: 1
@@ -111,10 +111,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.728, z: 3.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 407368}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &448418
 Transform:
   m_ObjectHideFlags: 1
@@ -124,10 +124,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0.0000010490733, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.728, z: 3.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 407368}
   m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &2020678
 Camera:
   m_ObjectHideFlags: 1
@@ -176,7 +176,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_Materials:
   - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  m_SubsetIndices: 
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
@@ -184,7 +186,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_SelectedWireframeHidden: 0
+  m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -263,6 +265,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Hook: {fileID: 171068}
   LenghtRay: 3
+  filesMenu: {fileID: 0}
 --- !u!114 &11475642
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -303,6 +306,7 @@ MonoBehaviour:
   RotateSpeed: 10
   CameraPlayer: {fileID: 179506}
   hook: {fileID: 171068}
+  inputHandler: {fileID: 0}
 --- !u!114 &11495198
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -5,17 +5,17 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 477958}
-  - 33: {fileID: 3338772}
-  - 23: {fileID: 2393940}
-  - 64: {fileID: 6423668}
-  - 54: {fileID: 5483890}
-  - 114: {fileID: 11400386}
-  - 114: {fileID: 11455826}
-  - 114: {fileID: 11442978}
-  - 114: {fileID: 11429286}
+  - component: {fileID: 477958}
+  - component: {fileID: 3338772}
+  - component: {fileID: 2393940}
+  - component: {fileID: 6423668}
+  - component: {fileID: 5483890}
+  - component: {fileID: 11400386}
+  - component: {fileID: 11455826}
+  - component: {fileID: 11442978}
+  - component: {fileID: 11429286}
   m_Layer: 0
   m_Name: LionStatue
   m_TagString: OtherObject
@@ -32,10 +32,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &2393940
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -50,7 +50,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_Materials:
   - {fileID: 2100000, guid: 953de7a60f0b1174f91fe55bd2dd06c1, type: 2}
-  m_SubsetIndices: 
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
@@ -58,7 +60,7 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_SelectedWireframeHidden: 0
+  m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -98,6 +100,8 @@ MeshCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Convex: 1
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 09d7480794017b24bb74b50fc337a3e7, type: 3}
 --- !u!114 &11400386
 MonoBehaviour:

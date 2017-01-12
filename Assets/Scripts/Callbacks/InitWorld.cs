@@ -11,30 +11,30 @@ public class InitWorld : Bolt.GlobalEventListener // TODO: à update les comm' (
 {
 	public override void SceneLoadLocalDone(string map)
 	{
-		BoltNetwork.Instantiate(BoltPrefabs.CubePlayer, new Vector3(30, 1, 30), Quaternion.identity);
+		SavesHandler.Load();
+
+		GameObject room = RoomUtils.GetRoom("\\");
 
 		if (BoltNetwork.isServer)
 		{
-			//PlayerObjectRegistry.CreateServerPlayer();
-			instantiateWorld();
-			SavesHandler.Load();
+			RoomUtils.Reset();
+			if (!room)
+				room = RoomUtils.CreateNewRoom("\\");
+			if (RoomUtils.Room == BoltPrefabs.Space)
+				Destroy(GameObject.Find("Directional Light"));
+			else
+				RenderSettings.skybox = null;
 		}
 		else if (BoltNetwork.isClient)
 		{
 			PathUtils.RootPath = PathUtils.GetPathFrom(Application.persistentDataPath) + "\\tmp";
 			PathUtils.CurrPath = PathUtils.RootPath;
 		}
-		else
-			; //WUT?
-	}
 
-	private void instantiateWorld()
-	{
-		RoomUtils.Reset();
-		RoomUtils.CreateNewRoom();
-		if (RoomUtils.Room == BoltPrefabs.Space)
-			Destroy(GameObject.Find("Directional Light"));
-		else
-			RenderSettings.skybox = null;
+		string name = "un gros nom à modifier par un genre de pseudo";
+
+		GameObject player = BoltNetwork.Instantiate(BoltPrefabs.CubePlayer, room.transform.Find("Spawn").transform.position, Quaternion.identity);
+		player.name = name;
+		player.transform.parent = room.transform;
 	}
 }
