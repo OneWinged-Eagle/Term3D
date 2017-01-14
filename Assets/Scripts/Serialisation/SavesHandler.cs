@@ -29,11 +29,8 @@ public class SavesHandler
 
 		foreach (GameObject gameObj in gameObjs)
 		{
-			string parentName = String.Empty;
-			if (gameObj.transform.parent)
-				parentName = gameObj.transform.parent.name;
 			objs[i++] = new SerializableObj(gameObj.name,
-					gameObj.GetComponent<BoltEntity>().prefabId, gameObj.transform.position, gameObj.transform.rotation.eulerAngles, parentName,
+					gameObj.GetComponent<BoltEntity>().prefabId, gameObj.transform.position, gameObj.transform.rotation.eulerAngles,
 					gameObj.GetComponent<ImageObject>(), gameObj.GetComponent<AudioObject>(), gameObj.GetComponent<VideoObject>(), gameObj.GetComponent<TextObject>(), gameObj.GetComponent<LinkObject>());
 		}
 		FileStream file = File.Open(Application.persistentDataPath + "/" + (String.IsNullOrEmpty(SaveName) ? "save" : SaveName) + ".dat", FileMode.OpenOrCreate);
@@ -53,10 +50,6 @@ public class SavesHandler
 			{
 				GameObject newObj = BoltNetwork.Instantiate(obj.ID, new Vector3(obj.PosX, obj.PosY, obj.PosZ), Quaternion.Euler(obj.RotX, obj.RotY, obj.RotZ));
 				newObj.name = obj.Name;
-
-				GameObject parentRoom = RoomUtils.GetRoom(obj.Parent);
-				if (parentRoom)
-					newObj.transform.parent = parentRoom.transform;
 			}
 
 			ToLoad = false;

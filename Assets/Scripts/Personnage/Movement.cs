@@ -25,6 +25,7 @@ public class Movement : Bolt.EntityBehaviour<IPlayerState> // TODO: mouvements d
 
 		state.Transform.SetTransforms(transform); // Assets/Scripts/Personnage/Movement.cs(20,33): warning CS0618: `Bolt.NetworkTransform.SetTransforms(UnityEngine.Transform)' is obsolete: `For setting the transform to replicate in Attached use the new IState.SetTransforms method instead, for changing the transform after it's been set use the new ChangeTransforms method'
 		state.HookTransform.SetTransforms(hook.transform);
+
 		base.Attached();
 	}
 

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 13576460}
   - component: {fileID: 2392292}
   - component: {fileID: 11490644}
+  - component: {fileID: 114800783813008936}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: OtherObject
@@ -118,3 +119,14 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 130344}
   m_IsPrefabParent: 1
+--- !u!114 &114800783813008936
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 130344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c10bb31e9db3141a23da4f64698070, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

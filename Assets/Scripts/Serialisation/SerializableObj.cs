@@ -17,8 +17,6 @@ public class SerializableObj
 	public float RotY { get; set; }
 	public float RotZ { get; set; }
 
-	public string Parent { get; set; }
-
 	public ImageObject Image { get; set; }// \
 	public AudioObject Audio { get; set; }//  \
 	public VideoObject Video { get; set; }//   |Faire une class mère et remplacer par celle-ci
@@ -26,7 +24,7 @@ public class SerializableObj
 	public LinkObject Link { get; set; }// /
 
 	public SerializableObj(string name,
-			Bolt.PrefabId id, Vector3 position, Vector3 eulerAngles, string parent,
+			Bolt.PrefabId id, Vector3 position, Vector3 eulerAngles,
 			ImageObject image, AudioObject audio, VideoObject video, TextObject text, LinkObject link)
 	{
 		Name = name;
@@ -38,7 +36,6 @@ public class SerializableObj
 		RotX = eulerAngles.x;
 		RotY = eulerAngles.y;
 		RotZ = eulerAngles.z;
-		Parent = parent;
 
 		Image = image;
 		Audio = audio;

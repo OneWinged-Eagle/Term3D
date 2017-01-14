@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2360044}
   - component: {fileID: 11420180}
   - component: {fileID: 5414664}
+  - component: {fileID: 114503829332139388}
   m_Layer: 0
   m_Name: Cube vert
   m_TagString: OtherObject
@@ -134,3 +135,14 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 131798}
   m_IsPrefabParent: 1
+--- !u!114 &114503829332139388
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 131798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c10bb31e9db3141a23da4f64698070, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

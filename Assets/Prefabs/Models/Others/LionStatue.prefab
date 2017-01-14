@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 11455826}
   - component: {fileID: 11442978}
   - component: {fileID: 11429286}
+  - component: {fileID: 114483141120249634}
   m_Layer: 0
   m_Name: LionStatue
   m_TagString: OtherObject
@@ -179,3 +180,14 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 157880}
   m_IsPrefabParent: 1
+--- !u!114 &114483141120249634
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 157880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c10bb31e9db3141a23da4f64698070, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

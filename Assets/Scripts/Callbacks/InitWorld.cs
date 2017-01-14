@@ -13,14 +13,15 @@ public class InitWorld : Bolt.GlobalEventListener // TODO: à update les comm' (
 	{
 		SavesHandler.Load();
 
-		GameObject room = RoomUtils.GetRoom("\\");
-
 		if (BoltNetwork.isServer)
 		{
 			RoomUtils.Reset();
-			if (!room)
-				room = RoomUtils.CreateNewRoom("\\");
-			if (RoomUtils.Room != BoltPrefabs.Space)
+
+			RoomUtils.CreateNewRoom("\\");
+
+			if (RoomUtils.Room == BoltPrefabs.Space)
+				Destroy(GameObject.Find("Directional Light"));
+			else
 				RenderSettings.skybox = null;
 		}
 		else if (BoltNetwork.isClient)
@@ -31,8 +32,7 @@ public class InitWorld : Bolt.GlobalEventListener // TODO: à update les comm' (
 
 		string name = "un gros nom à modifier par un genre de pseudo";
 
-		GameObject player = BoltNetwork.Instantiate(BoltPrefabs.CubePlayer, room.transform.Find("Spawn").transform.position, Quaternion.identity);
-		player.name = name;
-		player.transform.parent = room.transform;
+		GameObject player = BoltNetwork.Instantiate(BoltPrefabs.CubePlayer, new Vector3(0f, 0.5f, 0f), Quaternion.identity);
+		player.GetComponent<Movement>().state.Name = name;
 	}
 }

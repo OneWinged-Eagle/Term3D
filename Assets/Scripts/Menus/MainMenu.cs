@@ -13,6 +13,7 @@ public class MainMenu : Bolt.GlobalEventListener // TODO: à vérif' (@guillaume
 
 	public GameObject Menu;
 	public GameObject LaunchMenu;
+	public GameObject LoadMenu;
 	public GameObject JoinMenu;
 	public InputField ChooseFolderTxt;
 	public InputField IP;
@@ -33,6 +34,12 @@ public class MainMenu : Bolt.GlobalEventListener // TODO: à vérif' (@guillaume
 	{
 		Menu.SetActive(false);
 		LaunchMenu.SetActive(true);
+	}
+
+	public void LoadMenuBtn()
+	{
+		LaunchMenu.SetActive(false);
+		LoadMenu.SetActive(true);
 	}
 
 	public void JoinMenuBtn()
@@ -102,11 +109,17 @@ public class MainMenu : Bolt.GlobalEventListener // TODO: à vérif' (@guillaume
 		BoltLauncher.StartClient();
 	}
 
-	public void BackBtn()
+	public void BackBtn1()
 	{
 		Menu.SetActive(true);
 		LaunchMenu.SetActive(false);
 		JoinMenu.SetActive(false);
+	}
+
+	public void BackBtn2()
+	{
+		LaunchMenu.SetActive(true);
+		LoadMenu.SetActive(false);
 	}
 
 	public void ExitBtn()

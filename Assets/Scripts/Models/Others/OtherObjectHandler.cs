@@ -11,10 +11,6 @@ public class OtherObjectHandler : Bolt.EntityBehaviour<IOtherObjectState> {
 	public Vector3 tmpPos;
 	 public bool checkGrav = false;
 
-	public override void Attached()
-	{
-	}
-
 	public override void SimulateOwner()
 	{
 

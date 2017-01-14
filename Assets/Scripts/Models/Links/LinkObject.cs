@@ -15,7 +15,6 @@ public class LinkObject : Bolt.EntityBehaviour<ILinkObjectState>
 		PathUtils.CurrPath = Link.RealPath;
 		GameObject.Find("pwd").GetComponent<UnityEngine.UI.Text>().text = PathUtils.PathToProjectPath(PathUtils.CurrPath);
 		player.transform.position = room.transform.Find("Spawn").transform.position;
-		player.transform.parent = room.transform;
 	}
 
 	public void Apply()

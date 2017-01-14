@@ -16,9 +16,9 @@ public class AudioPlayer : Bolt.EntityBehaviour<IAudioObjectState> // TODO: à m
 		//audio.Pause();
 		gameObject.GetComponent<Renderer>().material.color = Color.red;
 
-		state.isPlayed = false;
-		state.AddCallback("isPlayed", colorPlayed);
-		Debug.Log(state.isPlayed);
+		state.IsPlayed = false;
+		state.AddCallback("IsPlayed", colorPlayed);
+		Debug.Log(state.IsPlayed);
 		//this.GetComponent<Renderer> ().material.color = Color.red;
 		base.Attached();
 	}
@@ -29,13 +29,13 @@ public class AudioPlayer : Bolt.EntityBehaviour<IAudioObjectState> // TODO: à m
 		ps = GetComponent<ParticleSystem>();
 		var em = ps.emission;
 
-		if (state.isPlayed == true)
+		if (state.IsPlayed == true)
 		{
 			audio.Play();
 			em.enabled = true;
 			this.GetComponent<Renderer>().material.color = Color.green;
 		}
-		else if (state.isPlayed == false)
+		else if (state.IsPlayed == false)
 		{
 			this.GetComponent<Renderer>().material.color = Color.red;
 			em.enabled = false;
@@ -58,14 +58,14 @@ public class AudioPlayer : Bolt.EntityBehaviour<IAudioObjectState> // TODO: à m
 		if (!isListen)
 		{
 			isListen = true;
-			state.isPlayed = true;
+			state.IsPlayed = true;
 			audio.Play();
 			//this.GetComponent<Renderer>().material.color = Color.green;
 		}
 		else
 		{
 			isListen = false;
-			state.isPlayed = false;
+			state.IsPlayed = false;
 			audio.Pause();
 			//this.GetComponent<Renderer>().material.color = Color.red;
 		}

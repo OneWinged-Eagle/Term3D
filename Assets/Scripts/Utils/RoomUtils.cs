@@ -29,7 +29,7 @@ public class RoomUtils
 	{
 		GameObject newRoom = BoltNetwork.Instantiate(Room,
 				new Vector3((100 * (nb % MAX)) + (50 * (nb % MAX)), 0, ((nb / MAX) * 100) + (nb / MAX) * 50), Quaternion.identity);
-		newRoom.name = name;
+		newRoom.GetComponent<BaseObject>().state.Name = name;
 		nb++;
 		return newRoom;
 	}

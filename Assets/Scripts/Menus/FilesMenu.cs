@@ -52,7 +52,7 @@ public class FilesMenu : Bolt.GlobalEventListener // TODO: à vérif' (@guillaum
 
 	public void FilesBtns(PathUtils.Path path)
 	{
-		Model.name = path.ProjectPath;
+		Model.GetComponent<BaseObject>().state.Name = path.ProjectPath;
 		switch (FileType)
 		{
 		case ModelsUtils.FilesTypes.Image:

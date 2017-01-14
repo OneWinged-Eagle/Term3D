@@ -61,7 +61,6 @@ public class ModelsMenu : Bolt.GlobalEventListener // TODO: à vérif' (@guillau
 		spawnObjectEvent.objectId = model.GetComponent<BoltEntity>().prefabId;
 		spawnObjectEvent.objectPos = Player.GetComponentInChildren<InputHandler>().Hook.transform.position;
 		spawnObjectEvent.objectRot = model.transform.rotation;
-		spawnObjectEvent.objectParent = Player.transform.parent.name;
 		spawnObjectEvent.Send();
 
 		CloseBtn();
@@ -70,10 +69,7 @@ public class ModelsMenu : Bolt.GlobalEventListener // TODO: à vérif' (@guillau
 	public override void OnEvent(spawnObject e)
 	{
 		if (BoltNetwork.isServer)
-		{
-			GameObject newObj = BoltNetwork.Instantiate(e.objectId, e.objectPos, e.objectRot);
-			newObj.transform.parent = RoomUtils.GetRoom(e.objectParent).transform;
-		}
+			BoltNetwork.Instantiate(e.objectId, e.objectPos, e.objectRot);
 		else if (BoltNetwork.isClient)
 			;
 	}

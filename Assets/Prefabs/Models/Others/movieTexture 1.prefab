@@ -29,6 +29,7 @@ GameObject:
   - component: {fileID: 114000014229356320}
   - component: {fileID: 114000011217337254}
   - component: {fileID: 114000012947439020}
+  - component: {fileID: 114581194392807644}
   m_Layer: 0
   m_Name: movieTexture 1
   m_TagString: Untagged
@@ -190,6 +191,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Hook: {fileID: 0}
+--- !u!114 &114581194392807644
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010012102784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c10bb31e9db3141a23da4f64698070, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!131 &131000011472731118
 GUITexture:
   m_ObjectHideFlags: 1
