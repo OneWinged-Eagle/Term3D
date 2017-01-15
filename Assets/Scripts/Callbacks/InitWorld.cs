@@ -11,13 +11,15 @@ public class InitWorld : Bolt.GlobalEventListener // TODO: à update les comm' (
 {
 	public override void SceneLoadLocalDone(string map)
 	{
+		bool loaded = SavesHandler.ToLoad;
 		SavesHandler.Load();
 
 		if (BoltNetwork.isServer)
 		{
 			RoomUtils.Reset();
 
-			RoomUtils.CreateNewRoom("\\");
+			if (!loaded)
+				RoomUtils.CreateNewRoom(Path.DirectorySeparatorChar.ToString());
 
 			if (RoomUtils.Room == BoltPrefabs.Space)
 				Destroy(GameObject.Find("Directional Light"));

@@ -52,7 +52,7 @@ public class FilesMenu : Bolt.GlobalEventListener // TODO: à vérif' (@guillaum
 				paths = dir.GetDirectories ();
 			else
 				paths = dir.GetFiles (ModelsUtils.Extensions [(int)FileType]);
-			
+
 			createContent (paths, paths.Length / 3 * MARGIN);
 		} else if (BoltNetwork.isClient) {
 			var param = paramEvent.Create ();
@@ -64,7 +64,7 @@ public class FilesMenu : Bolt.GlobalEventListener // TODO: à vérif' (@guillaum
 			param.Send ();
 		}
 	}
-		
+
 	public void sendPaths ()
 	{
 		var param = paramEvent.Create ();
@@ -96,13 +96,13 @@ public class FilesMenu : Bolt.GlobalEventListener // TODO: à vérif' (@guillaum
 
 	public override void OnEvent(paramEvent e)
 	{
-		if (BoltNetwork.isServer) 
+		if (BoltNetwork.isServer)
 		{
 			if (e.askFiles) {
 				sendPaths ();
 			}
-		} 
-		else if (BoltNetwork.isClient) 
+		}
+		else if (BoltNetwork.isClient)
 		{
 			if (!e.askFiles)
 				getPaths (e.filePath);
@@ -112,6 +112,7 @@ public class FilesMenu : Bolt.GlobalEventListener // TODO: à vérif' (@guillaum
 	public void FilesBtns(PathUtils.Path path)
 	{
 		Model.GetComponent<BaseObject>().state.Name = path.ProjectPath;
+		Model.GetComponent<BaseObject>().Path = path;
 		switch (FileType)
 		{
 		case ModelsUtils.FilesTypes.Image:

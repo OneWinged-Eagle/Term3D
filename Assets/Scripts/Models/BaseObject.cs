@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BaseObject : Bolt.EntityBehaviour<IBaseObjectState>
 {
+  public PathUtils.Path Path;
+
   public override void Attached()
   {
     state.Name = name;

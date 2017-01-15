@@ -9,6 +9,7 @@ using UnityEngine;
 ///</summary>
 public class DirectoryUtils
 {
+	[System.Serializable]
 	public class Directory : PathUtils.Path
 	{
 		public Directory(string path) : base(path) {}
