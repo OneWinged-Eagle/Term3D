@@ -80,6 +80,7 @@ public class InputHandler : Bolt.EntityBehaviour<IPlayerState> // TODO: à retap
 			{
 				if (Physics.Raycast(intersectionRay, out hit, LenghtRay))
 				{
+					Debug.Log ("fgdsgfdglkdsjlgkkdsfmldfskmlkdsffdg"+hit.collider.tag);
 					switch (hit.collider.tag)
 					{
 					case "ImageObject":
@@ -97,7 +98,7 @@ public class InputHandler : Bolt.EntityBehaviour<IPlayerState> // TODO: à retap
 						filesMenuScript.CreateFileList();
 						break;
 					case "VideoObject":
-						filesMenu.SetActive(true);
+						filesMenu.SetActive (true);
 						filesMenuScript.Model = hit.collider.gameObject;
 						filesMenuScript.FileType = ModelsUtils.FilesTypes.Video;
 						filesMenuScript.CreateFileList();
