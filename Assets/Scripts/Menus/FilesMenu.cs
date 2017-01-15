@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using System;
+using System.Text;
 
 ///<summary>
 ///Handle FilesMenu actions (browse and link files/directories to models)
@@ -40,14 +42,71 @@ public class FilesMenu : Bolt.GlobalEventListener // TODO: à vérif' (@guillaum
 
 	public void CreateFileList()
 	{
-		DirectoryUtils.Directory dir = new DirectoryUtils.Directory(PathUtils.CurrPath);
+
+
+
+		if (BoltNetwork.isServer) {
+			DirectoryUtils.Directory dir = new DirectoryUtils.Directory (PathUtils.CurrPath);
+			PathUtils.Path[] paths;
+			if (FileType == ModelsUtils.FilesTypes.Link)
+				paths = dir.GetDirectories ();
+			else
+				paths = dir.GetFiles (ModelsUtils.Extensions [(int)FileType]);
+			
+			createContent (paths, paths.Length / 3 * MARGIN);
+		} else if (BoltNetwork.isClient) {
+			var param = paramEvent.Create ();
+
+
+			param.askFiles = true;
+			param.filePath = "";
+
+			param.Send ();
+		}
+	}
+		
+	public void sendPaths ()
+	{
+		var param = paramEvent.Create ();
+
+		DirectoryUtils.Directory dir = new DirectoryUtils.Directory (PathUtils.CurrPath);
 		PathUtils.Path[] paths;
 		if (FileType == ModelsUtils.FilesTypes.Link)
-			paths = dir.GetDirectories();
+			paths = dir.GetDirectories ();
 		else
-			paths = dir.GetFiles(ModelsUtils.Extensions[(int)FileType]);
+			paths = dir.GetFiles (ModelsUtils.Extensions [(int)FileType]);
 
-		createContent(paths, paths.Length / 3 * MARGIN);
+
+		/*string pathsString = string.Join("#", paths.getProjectPath());
+			 * */
+		param.filePath = "pouetpouet";   // param.filePath = pathsString;
+		param.askFiles = false;
+
+
+		param.Send ();
+	}
+
+	public void getPaths(string filePaths)
+	{
+		//remetre les bails en array de path.utils.path ou je sais pas quoi j'ai rien compris
+
+//		createContent (paths, paths.Length / 3 * MARGIN);
+
+	}
+
+	public override void OnEvent(paramEvent e)
+	{
+		if (BoltNetwork.isServer) 
+		{
+			if (e.askFiles) {
+				sendPaths ();
+			}
+		} 
+		else if (BoltNetwork.isClient) 
+		{
+			if (!e.askFiles)
+				getPaths (e.filePath);
+		}
 	}
 
 	public void FilesBtns(PathUtils.Path path)

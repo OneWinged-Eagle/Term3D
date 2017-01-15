@@ -9,6 +9,8 @@ public class BaseObject : Bolt.EntityBehaviour<IBaseObjectState>
     state.Name = name;
     state.AddCallback("Name", NameChanged);
 
+		state.Transform.SetTransforms (transform);
+
     base.Attached();
   }
 

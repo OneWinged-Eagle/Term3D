@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using UnityEngine;
 
 ///<summary>
 ///Utility functions and classes for Directories
@@ -36,6 +37,7 @@ public class DirectoryUtils
 
 			foreach (string file in files)
 				filesList.Add(new FileUtils.File(file));
+
 
 			return filesList.ToArray();
 		}
