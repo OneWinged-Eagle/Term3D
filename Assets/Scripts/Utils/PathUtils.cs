@@ -8,6 +8,7 @@ using System.IO;
 ///</summary>
 public class PathUtils
 {
+	[System.Serializable]
 	public class Path
 	{
 		public string RealPath { get; private set; }

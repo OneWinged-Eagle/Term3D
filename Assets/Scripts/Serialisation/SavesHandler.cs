@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 
@@ -27,13 +28,16 @@ public class SavesHandler
 		SerializableObj[] objs = new SerializableObj[gameObjs.Count];
 		uint i = 0;
 
+		Debug.Log("test");
+
 		foreach (GameObject gameObj in gameObjs)
 		{
 			objs[i++] = new SerializableObj(gameObj.name,
 					gameObj.GetComponent<BoltEntity>().prefabId, gameObj.transform.position, gameObj.transform.rotation.eulerAngles,
-					gameObj.GetComponent<ImageObject>(), gameObj.GetComponent<AudioObject>(), gameObj.GetComponent<VideoObject>(), gameObj.GetComponent<TextObject>(), gameObj.GetComponent<LinkObject>());
+					gameObj.GetComponent<BaseObject>().Path);
 		}
-		FileStream file = File.Open(Application.persistentDataPath + "/" + (String.IsNullOrEmpty(SaveName) ? "save" : SaveName) + ".dat", FileMode.OpenOrCreate);
+		FileStream file = File.Open(Path.Combine(Application.persistentDataPath, (String.IsNullOrEmpty(SaveName) ? "save" : SaveName) + ".dat"), FileMode.OpenOrCreate);
+		formatter.Serialize(file, PathUtils.RootPath);
 		formatter.Serialize(file, objs);
 		file.Close();
 	}
@@ -42,7 +46,8 @@ public class SavesHandler
 	{
 		if (ToLoad)
 		{
-			FileStream file = File.Open(Application.persistentDataPath + "/" + (String.IsNullOrEmpty(SaveName) ? "save" : SaveName) + ".dat", FileMode.Open);
+			FileStream file = File.Open(Path.Combine(Application.persistentDataPath, (String.IsNullOrEmpty(SaveName) ? "save" : SaveName) + ".dat"), FileMode.Open);
+			formatter.Deserialize(file);
 			SerializableObj[] objs = (SerializableObj[])formatter.Deserialize(file);
 			file.Close();
 
@@ -50,9 +55,45 @@ public class SavesHandler
 			{
 				GameObject newObj = BoltNetwork.Instantiate(obj.ID, new Vector3(obj.PosX, obj.PosY, obj.PosZ), Quaternion.Euler(obj.RotX, obj.RotY, obj.RotZ));
 				newObj.name = obj.Name;
+
+				if (!String.IsNullOrEmpty(obj.Path.ProjectPath) && !String.IsNullOrEmpty(obj.Path.RealPath))
+				{
+					newObj.GetComponent<BaseObject>().state.Name = obj.Path.ProjectPath;
+					newObj.GetComponent<BaseObject>().Path = obj.Path;
+					switch (newObj.tag)
+					{
+					case "ImageObject":
+						newObj.GetComponent<ImageObject>().Image = new FileUtils.File(obj.Path.RealPath);
+						newObj.GetComponent<ImageObject>().Apply();
+						break;
+					case "AudioObject":
+						newObj.AddComponent<AudioObject>().Audio = new FileUtils.File(obj.Path.RealPath);
+						break;
+					case "VideoObject":
+						newObj.AddComponent<VideoObject>().Video = new FileUtils.File(obj.Path.RealPath);
+						break;
+					case "TextObject":
+						newObj.AddComponent<TextObject>().Text = new FileUtils.File(obj.Path.RealPath);
+						break;
+					case "LinkObject":
+						LinkObject linkObject = newObj.AddComponent<LinkObject>();
+						linkObject.Link = new DirectoryUtils.Directory(obj.Path.RealPath);
+						linkObject.Apply();
+						break;
+					}
+				}
 			}
 
 			ToLoad = false;
 		}
+	}
+
+	public static string GetRoot(string save)
+	{
+		FileStream file = File.Open(save, FileMode.Open);
+		string root = (string)formatter.Deserialize(file);
+		file.Close();
+
+		return root;
 	}
 }

@@ -736,7 +736,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 11444216}
-        m_MethodName: LoadBtn
+        m_MethodName: LoadMenuBtn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1168,9 +1168,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03c476ad7f0bef24a85aa550ef553860, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Btn: {fileID: 144246, guid: fa6c3941af4dfe54882c16b13295c267, type: 2}
   Menu: {fileID: 116514}
   LaunchMenu: {fileID: 1227508440355782}
   LoadMenu: {fileID: 1000011971233792}
+  Content: {fileID: 1279296548734486}
   JoinMenu: {fileID: 168050}
   ChooseFolderTxt: {fileID: 11452200}
   IP: {fileID: 11426032}
@@ -3978,7 +3980,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.000022888184}
+  m_AnchoredPosition: {x: 0, y: 0.00002670288}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224497783110352992
