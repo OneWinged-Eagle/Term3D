@@ -36,5 +36,6 @@ public class InitWorld : Bolt.GlobalEventListener // TODO: à update les comm' (
 
 		GameObject player = BoltNetwork.Instantiate(BoltPrefabs.CubePlayer, new Vector3(0f, 0.5f, 0f), Quaternion.identity);
 		player.GetComponent<Movement>().state.Name = name;
+		GameObject.Find("Chat").GetComponent<Chat>()._commandHandler._player = player;
 	}
 }
