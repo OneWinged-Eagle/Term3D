@@ -61,6 +61,7 @@ public class InputHandler : Bolt.EntityBehaviour<IPlayerState> // TODO: à retap
 						hit.transform.SendMessage("sendPlayPauseSignal", SendMessageOptions.DontRequireReceiver);
 						break;
 					case "VideoObject":
+						hit.transform.SendMessage("OpenCanvas", gameObject, SendMessageOptions.DontRequireReceiver);
 						break;
 					case "TextObject":
 						break;
@@ -97,7 +98,7 @@ public class InputHandler : Bolt.EntityBehaviour<IPlayerState> // TODO: à retap
 						filesMenuScript.CreateFileList();
 						break;
 					case "VideoObject":
-						filesMenu.SetActive(true);
+						filesMenu.SetActive (true);
 						filesMenuScript.Model = hit.collider.gameObject;
 						filesMenuScript.FileType = ModelsUtils.FilesTypes.Video;
 						filesMenuScript.CreateFileList();
