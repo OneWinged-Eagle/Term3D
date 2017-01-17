@@ -18,10 +18,13 @@ public class RoomUtils
 
 	public static GameObject GetRoom(string name)
 	{
-		GameObject gameObj = GameObject.Find("/" + name);
-
-		if (gameObj && gameObj.tag != "Room")
-			gameObj = null;
+		GameObject gameObj = null;
+		foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Room"))
+			if (obj.name == name)
+			{
+				gameObj = obj;
+				break;
+			}
 		return gameObj;
 	}
 

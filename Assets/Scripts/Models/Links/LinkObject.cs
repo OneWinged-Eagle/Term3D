@@ -11,6 +11,9 @@ public class LinkObject : Bolt.EntityBehaviour<ILinkObjectState>
 
 	public void Go(GameObject player)
 	{
+		if (!room)
+			room = RoomUtils.GetRoom(name);
+
 		if (room)
 		{
 			PathUtils.CurrPath = Link.RealPath;

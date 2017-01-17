@@ -42,9 +42,6 @@ public class FilesMenu : Bolt.GlobalEventListener // TODO: à vérif' (@guillaum
 
 	public void CreateFileList()
 	{
-
-
-
 		if (BoltNetwork.isServer) {
 			DirectoryUtils.Directory dir = new DirectoryUtils.Directory (PathUtils.CurrPath);
 			PathUtils.Path[] paths;
@@ -54,9 +51,10 @@ public class FilesMenu : Bolt.GlobalEventListener // TODO: à vérif' (@guillaum
 				paths = dir.GetFiles (ModelsUtils.Extensions [(int)FileType]);
 
 			createContent (paths, paths.Length / 3 * MARGIN);
-		} else if (BoltNetwork.isClient) {
+		}
+		else if (BoltNetwork.isClient)
+		{
 			var param = paramEvent.Create ();
-
 
 			param.askFiles = true;
 			param.filePath = "";
@@ -81,7 +79,6 @@ public class FilesMenu : Bolt.GlobalEventListener // TODO: à vérif' (@guillaum
 			 * */
 		param.filePath = "pouetpouet";   // param.filePath = pathsString;
 		param.askFiles = false;
-
 
 		param.Send ();
 	}
