@@ -61,6 +61,7 @@ public class InputHandler : Bolt.EntityBehaviour<IPlayerState> // TODO: à retap
 						hit.transform.SendMessage("sendPlayPauseSignal", SendMessageOptions.DontRequireReceiver);
 						break;
 					case "VideoObject":
+						hit.transform.SendMessage("OpenCanvas", gameObject, SendMessageOptions.DontRequireReceiver);
 						break;
 					case "TextObject":
 						break;
@@ -80,7 +81,6 @@ public class InputHandler : Bolt.EntityBehaviour<IPlayerState> // TODO: à retap
 			{
 				if (Physics.Raycast(intersectionRay, out hit, LenghtRay))
 				{
-					Debug.Log ("fgdsgfdglkdsjlgkkdsfmldfskmlkdsffdg"+hit.collider.tag);
 					switch (hit.collider.tag)
 					{
 					case "ImageObject":
