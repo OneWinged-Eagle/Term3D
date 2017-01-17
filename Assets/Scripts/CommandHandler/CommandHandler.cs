@@ -8,6 +8,7 @@ public class CommandHandler
 {
 	private Dictionary<string, Delegate> commands;
 	private UserInfo _user = new UserInfo();
+	public GameObject _player;
 
 	public CommandHandler()
 	{
@@ -79,6 +80,12 @@ public class CommandHandler
 		{
 			PathUtils.CurrPath = PathUtils.RootPath;
 			GameObject.Find("pwd").GetComponent<UnityEngine.UI.Text>().text = PathUtils.PathToProjectPath(PathUtils.CurrPath);
+			DirectoryUtils.Directory dir = new DirectoryUtils.Directory(PathUtils.CurrPath);
+			GameObject room;
+			room = RoomUtils.GetRoom(dir.ProjectPath);
+			if (!room)
+				room = RoomUtils.CreateNewRoom(dir.ProjectPath);
+			_player.transform.position = room.transform.Find("Spawn").transform.position;
 		}
 		else
 		{
@@ -87,9 +94,15 @@ public class CommandHandler
 			{
 				DirectoryUtils.Directory dir = new DirectoryUtils.Directory(path);
 				if (!dir.IsDirectory())
-					return dir.ProjectPath + " : No such file or directory.\n"; // TODO: plus verbose
+					return dir.ProjectPath + " : No such directory.\n"; // TODO: plus verbose
 				PathUtils.CurrPath = dir.RealPath;
 				GameObject.Find("pwd").GetComponent<UnityEngine.UI.Text>().text = PathUtils.PathToProjectPath(PathUtils.CurrPath);
+
+				GameObject room;
+				room = RoomUtils.GetRoom(dir.ProjectPath);
+				if (!room)
+					room = RoomUtils.CreateNewRoom(dir.ProjectPath);
+				_player.transform.position = room.transform.Find("Spawn").transform.position;
 			}
 			else
 			 return ("Cannot access " + args[0] + " : Permission denied.\n");
