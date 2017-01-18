@@ -20,7 +20,7 @@ public class VideoObject : Bolt.EntityBehaviour<IVideoObjectState>
 		player = Instantiate(Resources.Load ("Player")) as GameObject;
 		GameObject panel = player.transform.FindChild ("Video_On_Panel").gameObject;
 		vlc = panel.GetComponent<PlayVLC> ();
-		vlc.VideoPath = gameObject.name;
+		vlc.VideoPath = Video.RealPath;
 		if (BoltNetwork.isServer) 
 		{
 			//Lancer le serveur VLC
