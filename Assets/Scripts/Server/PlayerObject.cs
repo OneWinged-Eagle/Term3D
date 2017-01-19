@@ -26,12 +26,12 @@ public class PlayerObject // TODO: à retaper
 			//character = BoltNetwork.Instantiate(BoltPrefabs.Robot);
 			if (isServer)
 			{
-				Debug.Log(connection);
+				//Debug.Log(connection);
 				character.TakeControl();
 			}
 			else
 			{
-				Debug.Log("apoepazoepzaoepzaoepazoepzoepoazpea   " + connection);
+				//Debug.Log("apoepazoepzaoepzaoepazoepzoepoazpea   " + connection);
 				character.AssignControl(connection);
 			}
 		}

@@ -19,9 +19,9 @@ public class SendFile : Bolt.GlobalEventListener {
 	{
 		file = fileSend;
 		path = PathUtils.GetPathFrom (Application.persistentDataPath);
-		Debug.Log ("path" + path + "\\tmp" + file.ProjectPath);
-		Debug.Log ("hello path " + file.ProjectPath);
-		Debug.Log (Application.persistentDataPath + "/tmp" + file.ProjectPath);
+		//Debug.Log ("path" + path + "\\tmp" + file.ProjectPath);
+		//Debug.Log ("hello path " + file.ProjectPath);
+		//Debug.Log (Application.persistentDataPath + "/tmp" + file.ProjectPath);
 		var sendFileEvt = sendFileEvent.Create ();
 		sendFileEvt.projectPath = file.ProjectPath;
 		sendFileEvt.Send ();
@@ -30,7 +30,7 @@ public class SendFile : Bolt.GlobalEventListener {
 			byte[] data = File.ReadAllBytes (fileSend.RealPath);
 			BoltLog.Info ("data test");
 			foreach (var connection in BoltNetwork.connections) {
-				Debug.Log (connection);
+				//Debug.Log (connection);
 				connection.StreamBytes (fileChannel, data);
 			}
 
@@ -42,7 +42,7 @@ public class SendFile : Bolt.GlobalEventListener {
 	public override void StreamDataReceived(BoltConnection connection, UdpStreamData data)
 	{
 		path = PathUtils.GetPathFrom (Application.persistentDataPath);
-		Debug.Log ("path" + path + "\\tmp"+ projectPathEvt);
+		//Debug.Log ("path" + path + "\\tmp"+ projectPathEvt);
 
 		if (BoltNetwork.isClient) {
 			System.IO.File.WriteAllBytes (path + "\\tmp" + projectPathEvt, data.Data);
@@ -55,6 +55,6 @@ public class SendFile : Bolt.GlobalEventListener {
 	{
 		path = PathUtils.GetPathFrom (Application.persistentDataPath);
 		projectPathEvt = e.projectPath;
-		Debug.Log ("on a reçut l'event");
+		//Debug.Log ("on a reçut l'event");
 	}
 }

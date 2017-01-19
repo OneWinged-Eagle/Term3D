@@ -59,7 +59,7 @@ public class PlayAudioEvent : Bolt.GlobalEventListener // TODO: à merger avec l
 
 
 
-	Debug.Log ("coucou je recoit un event");
+	//Debug.Log ("coucou je recoit un event");
 //	Debug.Log ("le client demande du son au serveur");
 	}
 

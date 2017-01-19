@@ -12,7 +12,8 @@ public class MainMenu : Bolt.GlobalEventListener // TODO: à vérif' (@guillaume
 {
 	private const int PORT = 27000;
 
-	private const int MARGIN = 300;
+	private const int PERLINE = 3;
+	private const int MARGIN = 150;
 
 	public GameObject Btn;
 
@@ -45,9 +46,9 @@ public class MainMenu : Bolt.GlobalEventListener // TODO: à vérif' (@guillaume
 	private void getSaves()
 	{
 		string[] saves = System.IO.Directory.GetFiles(Application.persistentDataPath, "*.dat");
-		int height = saves.Length / 3 * MARGIN;
+		int height = saves.Length / PERLINE * MARGIN;
 
-		if (saves.Length % 3 != 0)
+		if (saves.Length % PERLINE != 0)
 			height += MARGIN;
 
 		RectTransform rectTransform = Content.gameObject.GetComponent<RectTransform>();
@@ -59,7 +60,7 @@ public class MainMenu : Bolt.GlobalEventListener // TODO: à vérif' (@guillaume
 			string save = saves[i];
 			GameObject btn = Instantiate(Btn) as GameObject;
 
-			btn.GetComponent<RectTransform>().anchoredPosition = new Vector2((i % 3 * MARGIN) - MARGIN, (height / 2 - MARGIN / 2) - (i / 3 * MARGIN));
+			btn.GetComponent<RectTransform>().anchoredPosition = new Vector2((i % PERLINE * MARGIN) - MARGIN, (height / 2 - MARGIN / 2) - (i / PERLINE * MARGIN));
 			btn.GetComponent<Button>().onClick.AddListener(delegate { LoadBtns(save); });
 			btn.GetComponentInChildren<Text>().text = System.IO.Path.GetFileNameWithoutExtension(save);
 			btn.transform.SetParent(Content.transform, false);
@@ -68,8 +69,6 @@ public class MainMenu : Bolt.GlobalEventListener // TODO: à vérif' (@guillaume
 
 	public void LoadMenuBtn()
 	{
-		LaunchMenu.SetActive(false);
-		LoadMenu.SetActive(true);
 		getSaves();
 	}
 
@@ -113,7 +112,7 @@ public class MainMenu : Bolt.GlobalEventListener // TODO: à vérif' (@guillaume
 		BoltLauncher.StartServer(new UdpKit.UdpEndPoint(UdpKit.UdpIPv4Address.Any, PORT));
 		// DISPLAY THE PUBLIC IP IN UI
 		string ServPublicIP = GetPublicIP();
-		Debug.Log("IP: " + ServPublicIP + "(PORT: " + PORT + ")");
+		//Debug.Log("IP: " + ServPublicIP + "(PORT: " + PORT + ")");
 	}
 
 	public void LoadBtns(string save)
@@ -137,12 +136,12 @@ public class MainMenu : Bolt.GlobalEventListener // TODO: à vérif' (@guillaume
 		BoltLauncher.StartServer(new UdpKit.UdpEndPoint(UdpKit.UdpIPv4Address.Any, PORT));
 		// DISPLAY THE PUBLIC IP IN UI
 		string ServPublicIP = GetPublicIP();
-		Debug.Log("IP: " + ServPublicIP + "(PORT: " + PORT + ")");
+		//Debug.Log("IP: " + ServPublicIP + "(PORT: " + PORT + ")");
 	}
 
 	public void JoinBtn()
 	{
-		Debug.Log(IP.text);
+		//Debug.Log(IP.text);
 		BoltLauncher.StartClient();
 	}
 

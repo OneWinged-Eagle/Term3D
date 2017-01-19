@@ -18,7 +18,7 @@ public class AudioPlayer : Bolt.EntityBehaviour<IAudioObjectState> // TODO: à m
 
 		state.IsPlayed = false;
 		state.AddCallback("IsPlayed", colorPlayed);
-		Debug.Log(state.IsPlayed);
+		//Debug.Log(state.IsPlayed);
 		//this.GetComponent<Renderer> ().material.color = Color.red;
 		base.Attached();
 	}
@@ -50,7 +50,7 @@ public class AudioPlayer : Bolt.EntityBehaviour<IAudioObjectState> // TODO: à m
 		string path = gameObject.GetComponent<AudioObject>().Audio.RealPath;
 
 		WWW testwww = new WWW("file://" + path);
-		Debug.Log("file://" + path);
+		//Debug.Log("file://" + path);
 
 		AudioClip monSon = testwww.audioClip;
 		audio.clip = monSon;
