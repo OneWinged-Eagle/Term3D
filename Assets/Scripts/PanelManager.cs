@@ -14,6 +14,11 @@ public class PanelManager : MonoBehaviour {
 
 	const string k_OpenTransitionName = "Open";
 	const string k_ClosedStateName = "Closed";
+    
+    public Animator GetAnimator()
+    {
+        return m_Open;
+    }
 
 	public void OnEnable()
 	{
@@ -37,14 +42,14 @@ public class PanelManager : MonoBehaviour {
 
 		CloseCurrent();
 
-		m_PreviouslySelected = newPreviouslySelected;
+		//m_PreviouslySelected = newPreviouslySelected;
 
 		m_Open = anim;
 		m_Open.SetBool(m_OpenParameterId, true);
 
 		GameObject go = FindFirstEnabledSelectable(anim.gameObject);
 
-		SetSelected(go);
+		//SetSelected(go);
 	}
 
 	static GameObject FindFirstEnabledSelectable (GameObject gameObject)

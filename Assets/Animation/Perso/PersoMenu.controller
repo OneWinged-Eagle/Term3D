@@ -5,7 +5,7 @@ AnimatorController:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: SettingsMenu
+  m_Name: PersoMenu
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: Open
@@ -94,7 +94,7 @@ AnimatorState:
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 8fb70f3506a535246be122751945de67, type: 2}
+  m_Motion: {fileID: 7400000, guid: fca4aba665b326e4497ef99f78056fdf, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -118,7 +118,7 @@ AnimatorState:
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 80ddf32a802416047aba2ba7b4872768, type: 2}
+  m_Motion: {fileID: 7400000, guid: 9be700bb987403245952d3cd3dc73206, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

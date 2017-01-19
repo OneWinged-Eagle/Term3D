@@ -12,37 +12,104 @@ public class InputHandler : Bolt.EntityBehaviour<IPlayerState> // TODO: à retap
 	public float LenghtRay;
 
 	private GameObject pauseMenu;
+    private GameObject mainPauseMenu;
 
 	private GameObject modelsMenu;
+    //private GameObject mainModelMenu;
+
 	private ModelsMenu modelsMenuScript;
 
 	public GameObject filesMenu;
 	private FilesMenu filesMenuScript;
 
+    private PanelManager panelManager;
+    private Animator escMain;
+    private Animator modelMain;
+
+    //Gestion menus ingame
+    private PanelManager    panelModelsManager;
+    private PanelManager    panelEscManager;
+    private GameObject      mainModelMenu;
+    private GameObject      mainEscMenu;
+
 	public override void Attached()
 	{
-		pauseMenu = GameObject.Find("PauseMenu");
-		pauseMenu.SetActive(false);
+        modelsMenu = GameObject.Find("ModelMenu");
+        modelsMenuScript = modelsMenu.GetComponent<ModelsMenu>();
+        modelsMenuScript.Player = gameObject;
 
-		modelsMenu = GameObject.Find("ModelsMenu");
-		modelsMenuScript = modelsMenu.GetComponent<ModelsMenu>();
-		modelsMenuScript.Player = gameObject;
-		modelsMenu.SetActive(false);
+        // Get des panels
+        panelModelsManager = GameObject.Find("MenuModelManager").GetComponent<PanelManager>();
+        panelEscManager = GameObject.Find("MenuEscManager").GetComponent<PanelManager>();
+        // Get des anime de bases
+        mainModelMenu = GameObject.Find("MainModelMenu");
+        mainEscMenu = GameObject.Find("MainEscMenu");
 
-		filesMenu = GameObject.Find("FilesMenu");
+        /*panelManager = GameObject.Find("GameMenuManager").GetComponent<PanelManager>();
+        escMain = GameObject.Find("MenuEscManager").GetComponent<PanelManager>();*/
+
+        //pauseMenu = GameObject.Find("EscMenu");
+        //mainPauseMenu = GameObject.Find("MainEscMenu");
+        //PanelManager pm = GameObject.Find("MenuEscManager").GetComponent<PanelManager>();
+        //pm.CloseCurrent();
+        //pauseMenu.SetActive(false);
+
+        //modelsMenu = GameObject.Find("ModelMenu");
+        //mainModelMenu = GameObject.Find("MainModelMenu");
+
+        //pm = GameObject.Find("MenuModelManager").GetComponent<PanelManager>();
+        //pm.CloseCurrent();
+        //modelsMenu.SetActive(false);
+
+        filesMenu = GameObject.Find("FilesMenu");
 		filesMenuScript = filesMenu.GetComponent<FilesMenu>();
 		filesMenu.SetActive(false);
 	}
 
 	public override void SimulateOwner()
 	{
-		if (Input.GetButtonDown("Pause") && !filesMenu.activeSelf && !modelsMenu.activeSelf)
-			pauseMenu.SetActive(!pauseMenu.activeSelf);
+        if (Input.GetButtonDown("Pause") && panelModelsManager.GetAnimator() == null)
+        {
+            if (panelEscManager.GetAnimator() != mainEscMenu.GetComponent<Animator>())
+                panelEscManager.OpenPanel(mainEscMenu.GetComponent<Animator>());
+            else
+                panelEscManager.CloseCurrent();
+        }
 
-		if (Input.GetButtonDown("ModelsMenu") && !filesMenu.activeSelf && !pauseMenu.activeSelf)
-			modelsMenu.SetActive(!modelsMenu.activeSelf);
+        if (Input.GetButtonDown("ModelsMenu") && panelEscManager.GetAnimator() == null)
+        {
+            if (panelModelsManager.GetAnimator() != mainModelMenu.GetComponent<Animator>())
+            {
+                panelModelsManager.OpenPanel(mainModelMenu.GetComponent<Animator>());
+            }
+            else
+            {
+                panelModelsManager.CloseCurrent();
+            }
+        }
+        //if (Input.GetButtonDown("Pause") && !filesMenu.activeSelf && !modelsMenu.activeSelf)
+        //    pauseMenu.SetActive(!pauseMenu.activeSelf);
 
-		RaycastHit hit;
+        /*if (Input.GetButtonDown("ModelsMenu"))
+        { 
+            //modelsMenu.SetActive(!modelsMenu.activeSelf);
+            PanelManager pm = GameObject.Find("MenuModelManager").GetComponent<PanelManager>();
+            Animator menu = mainModelMenu.GetComponent<Animator>();
+
+            if (pm.GetAnimator() != menu)
+            {
+                modelsMenu.SetActive(true);
+                mainModelMenu.SetActive(true);
+                pm.CloseCurrent();
+                pm.OpenPanel(menu);
+            }
+            else
+            {
+                pm.CloseCurrent();
+            }
+        }*/
+
+        RaycastHit hit;
 		Ray intersectionRay = Camera.main.ScreenPointToRay(new Vector3(Screen.width * 0.5f, Screen.height * 0.5f, 0.0f));
 
 		if (!pauseMenu.activeSelf && !modelsMenu.activeSelf && !filesMenu.activeSelf)
