@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 114000011399976620}
   - component: {fileID: 114097011598199676}
   - component: {fileID: 114709872749852374}
+  - component: {fileID: 114859020260417322}
   m_Layer: 0
   m_Name: Speaker
   m_TagString: AudioObject
@@ -221,6 +222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f87cc76deb53f5479d5492dc005abcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pathToFile: 
 --- !u!198 &19896882
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -2971,6 +2973,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   path: 
   projectPathEvt: 
+--- !u!114 &114859020260417322
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 158220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e231bd6b0efe70c4081c7b0a042d40f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pathToFile: 
 --- !u!224 &224000014092461772
 RectTransform:
   m_ObjectHideFlags: 1
