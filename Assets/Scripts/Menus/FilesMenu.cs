@@ -122,6 +122,7 @@ public class FilesMenu : Bolt.GlobalEventListener // TODO: à vérif' (@guillaum
 			imageObject.Apply();
 			break;
 		case ModelsUtils.FilesTypes.Audio:
+			Model.GetComponent<SendFile> ().sendFile((FileUtils.File)path);
 			Model.GetComponent<AudioObject>().Audio = (FileUtils.File)path;
 			break;
 		case ModelsUtils.FilesTypes.Video:
