@@ -61,6 +61,7 @@ public class InputHandler : Bolt.EntityBehaviour<IPlayerState> // TODO: à retap
 						hit.transform.SendMessage("sendPlayPauseSignal", SendMessageOptions.DontRequireReceiver);
 						break;
 					case "VideoObject":
+						Debug.Log ("OpenCanvas");
 						hit.transform.SendMessage("OpenCanvas", gameObject, SendMessageOptions.DontRequireReceiver);
 						break;
 					case "TextObject":
