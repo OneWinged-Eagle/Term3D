@@ -23,7 +23,7 @@ public class OtherObject : Bolt.EntityBehaviour<IOtherObjectState>
 
 	public void pickUp(GameObject hook)
 	{
-		Debug.Log ("ça rammasse");
+		//Debug.Log ("ça rammasse");
 		Hook = hook;
 		picked = true;
 		gameObject.GetComponent<Rigidbody>().useGravity = false;

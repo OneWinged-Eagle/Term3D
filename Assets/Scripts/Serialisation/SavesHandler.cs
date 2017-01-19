@@ -28,7 +28,7 @@ public class SavesHandler
 		SerializableObj[] objs = new SerializableObj[gameObjs.Count];
 		uint i = 0;
 
-		Debug.Log("test");
+		//Debug.Log("test");
 
 		foreach (GameObject gameObj in gameObjs)
 		{
@@ -63,20 +63,21 @@ public class SavesHandler
 					switch (newObj.tag)
 					{
 					case "ImageObject":
-						newObj.GetComponent<ImageObject>().Image = new FileUtils.File(obj.Path.RealPath);
-						newObj.GetComponent<ImageObject>().Apply();
+						ImageObject imageObject = newObj.GetComponent<ImageObject>();
+						imageObject.Image = new FileUtils.File(obj.Path.RealPath);
+						imageObject.Apply();
 						break;
 					case "AudioObject":
-						newObj.AddComponent<AudioObject>().Audio = new FileUtils.File(obj.Path.RealPath);
+						newObj.GetComponent<AudioObject>().Audio = new FileUtils.File(obj.Path.RealPath);
 						break;
 					case "VideoObject":
-						newObj.AddComponent<VideoObject>().Video = new FileUtils.File(obj.Path.RealPath);
+						newObj.GetComponent<VideoObject>().Video = new FileUtils.File(obj.Path.RealPath);
 						break;
 					case "TextObject":
-						newObj.AddComponent<TextObject>().Text = new FileUtils.File(obj.Path.RealPath);
+						newObj.GetComponent<TextObject>().Text = new FileUtils.File(obj.Path.RealPath);
 						break;
 					case "LinkObject":
-						LinkObject linkObject = newObj.AddComponent<LinkObject>();
+						LinkObject linkObject = newObj.GetComponent<LinkObject>();
 						linkObject.Link = new DirectoryUtils.Directory(obj.Path.RealPath);
 						linkObject.Apply();
 						break;

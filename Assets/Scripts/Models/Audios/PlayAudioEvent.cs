@@ -31,7 +31,7 @@ public class PlayAudioEvent : Bolt.GlobalEventListener // TODO: à merger avec l
 		//var test = PlayAudio.Create ();
 	//	test.isPlayed = true;
 
-		if (BoltNetwork.isServer) {
+		/*if (BoltNetwork.isServer) {
 			byte[] data = File.ReadAllBytes (@"d:\testin.ogg");
 			BoltLog.Info ("DATA TEST");
 			foreach (var connection in BoltNetwork.connections) {
@@ -42,7 +42,7 @@ public class PlayAudioEvent : Bolt.GlobalEventListener // TODO: à merger avec l
 			{
 				//var askServer = PlayAudio.Create();
 				//askServer.Send ();
-			}
+			}*/
 
 
 	}
@@ -59,7 +59,7 @@ public class PlayAudioEvent : Bolt.GlobalEventListener // TODO: à merger avec l
 
 
 
-	Debug.Log ("coucou je recoit un event");
+	//Debug.Log ("coucou je recoit un event");
 //	Debug.Log ("le client demande du son au serveur");
 	}
 

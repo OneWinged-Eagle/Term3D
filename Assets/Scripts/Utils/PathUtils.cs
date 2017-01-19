@@ -11,8 +11,8 @@ public class PathUtils
 	[System.Serializable]
 	public class Path
 	{
-		public string RealPath { get; private set; }
-		public string ProjectPath { get; private set; }
+		public string RealPath { get; set; }
+		public string ProjectPath { get; set; }
 
 		public bool IsFile()
 		{

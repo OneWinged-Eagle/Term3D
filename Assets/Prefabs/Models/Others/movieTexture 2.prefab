@@ -28,11 +28,11 @@ GameObject:
   - component: {fileID: 114000010226304796}
   - component: {fileID: 114000014229356320}
   - component: {fileID: 114000011217337254}
-  - component: {fileID: 114000013689500426}
   - component: {fileID: 114363462428525718}
+  - component: {fileID: 114355449762651240}
   m_Layer: 0
   m_Name: movieTexture 2
-  m_TagString: Untagged
+  m_TagString: OtherObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -168,17 +168,6 @@ MonoBehaviour:
   objControl: 0
   tmpPos: {x: 0, y: 0, z: 0}
   checkGrav: 0
---- !u!114 &114000013689500426
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010012102784}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d29e8514630c05c488eafb39aab0f050, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114000014229356320
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -191,6 +180,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Hook: {fileID: 0}
+--- !u!114 &114355449762651240
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010012102784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 124e88432b75ccf47aa7c224c14334b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  url: https://upload.wikimedia.org/wikipedia/commons/e/e6/Typing_example.ogv
 --- !u!114 &114363462428525718
 MonoBehaviour:
   m_ObjectHideFlags: 1

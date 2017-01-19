@@ -32,7 +32,7 @@ GameObject:
   - component: {fileID: 114300854741831964}
   m_Layer: 0
   m_Name: movieTexture
-  m_TagString: Untagged
+  m_TagString: OtherObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -179,6 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 124e88432b75ccf47aa7c224c14334b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  url: http://clips.vorwaerts-gmbh.de/big_buck_bunny.ogv
 --- !u!114 &114000014229356320
 MonoBehaviour:
   m_ObjectHideFlags: 1

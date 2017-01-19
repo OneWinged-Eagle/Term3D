@@ -91,7 +91,7 @@ public class Chat : Bolt.GlobalEventListener // TODO: à retaper
 
 	public override void OnEvent(messageEvent e)
 	{
-		Debug.Log(e.message);
+		//Debug.Log(e.message);
 		_scrollBar.value = 0.0f;
 		_logChat.Add(e.message);
 		_addText = true;

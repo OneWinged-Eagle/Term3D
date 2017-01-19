@@ -223,7 +223,22 @@ MonoBehaviour:
   objControl: 0
   tmpPos: {x: 0, y: 0, z: 0}
   checkGrav: 0
+<<<<<<< HEAD
 --- !u!114 &114878447175468692
+=======
+--- !u!114 &114738864953733740
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1542307100547612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7098ce9d2f1d22b4dbdf4d86df0d4b5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114822595446947448
+>>>>>>> f6b5eababa8cd510ab7796b15e8ca9a674fe05c0
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
