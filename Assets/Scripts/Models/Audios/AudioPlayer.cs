@@ -10,11 +10,12 @@ public class AudioPlayer : Bolt.EntityBehaviour<IAudioObjectState> // TODO: à m
 	bool isListen = false;
 	AudioSource audio;
 	ParticleSystem ps;
+	public string pathToFile;
+
 
 	public override void Attached()
 	{
 		//audio.Pause();
-		gameObject.GetComponent<Renderer>().material.color = Color.red;
 
 		state.IsPlayed = false;
 		state.AddCallback("IsPlayed", colorPlayed);
@@ -22,6 +23,7 @@ public class AudioPlayer : Bolt.EntityBehaviour<IAudioObjectState> // TODO: à m
 		//this.GetComponent<Renderer> ().material.color = Color.red;
 		base.Attached();
 	}
+
 
 	void colorPlayed()
 	{
@@ -33,11 +35,9 @@ public class AudioPlayer : Bolt.EntityBehaviour<IAudioObjectState> // TODO: à m
 		{
 			audio.Play();
 			em.enabled = true;
-			this.GetComponent<Renderer>().material.color = Color.green;
 		}
 		else if (state.IsPlayed == false)
 		{
-			this.GetComponent<Renderer>().material.color = Color.red;
 			em.enabled = false;
 			audio.Pause();
 		}
@@ -46,14 +46,14 @@ public class AudioPlayer : Bolt.EntityBehaviour<IAudioObjectState> // TODO: à m
 	public void PlayAndPause()
 	{
 		audio = GetComponent<AudioSource>();
-		//audio.clip = GetComponent<AudioObject>().GetComponent<AudioSource>();
-		string path = gameObject.GetComponent<AudioObject>().Audio.RealPath;
+		pathToFile = gameObject.GetComponent<AudioObject>().Audio.RealPath;
 
-		WWW testwww = new WWW("file://" + path);
-		Debug.Log("file://" + path);
-
-		AudioClip monSon = testwww.audioClip;
-		audio.clip = monSon;
+		WWW audioLoader = new WWW("file://" + pathToFile);
+		while (!audioLoader.isDone)
+			Debug.Log ("kek");
+		Debug.Log(audioLoader.GetAudioClip(true).name);
+		audio.clip = audioLoader.GetAudioClip(true);
+		audio.Play();
 
 		if (!isListen)
 		{
@@ -71,10 +71,22 @@ public class AudioPlayer : Bolt.EntityBehaviour<IAudioObjectState> // TODO: à m
 		}
 	}
 
+
+	public void playClient()
+	{
+		audio = GetComponent<AudioSource>();
+
+		WWW audioLoader = new WWW("file://" + pathToFile);
+		while (!audioLoader.isDone)
+			Debug.Log ("kek");
+		Debug.Log(audioLoader.GetAudioClip(true).name);
+		audio.clip = audioLoader.GetAudioClip(true);
+		audio.Play();
+	}
+
 	public void Stop()
 	{
 		isListen = false;
 		audio.Stop();
-		this.GetComponent<Renderer>().material.color = Color.grey;
 	}
 }

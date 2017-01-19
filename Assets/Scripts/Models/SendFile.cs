@@ -42,12 +42,17 @@ public class SendFile : Bolt.GlobalEventListener {
 	public override void StreamDataReceived(BoltConnection connection, UdpStreamData data)
 	{
 		path = PathUtils.GetPathFrom (Application.persistentDataPath);
-		Debug.Log ("path" + path + "\\tmp"+ projectPathEvt);
+		Debug.Log ("path " + path + "\\tmp"+ projectPathEvt);
 
 		if (BoltNetwork.isClient) {
 			System.IO.File.WriteAllBytes (path + "\\tmp" + projectPathEvt, data.Data);
-			gameObject.GetComponent<ImageObject> ().pathToFile = path + "\\tmp" + projectPathEvt;
-			gameObject.GetComponent<ImageObject> ().Apply ();
+			if (gameObject.GetComponent<ImageObject> ()) {
+				gameObject.GetComponent<ImageObject> ().pathToFile = path + "\\tmp" + projectPathEvt;
+				gameObject.GetComponent<ImageObject> ().Apply ();
+			} else if (gameObject.GetComponent<AudioPlayer> ()) {
+				gameObject.GetComponent<AudioPlayer> ().pathToFile = path + "\\tmp" + projectPathEvt;
+				gameObject.GetComponent<AudioPlayer> ().playClient ();
+			}
 		}
 	}
 
