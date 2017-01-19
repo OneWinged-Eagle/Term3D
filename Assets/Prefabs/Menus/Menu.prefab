@@ -5080,7 +5080,7 @@ MonoBehaviour:
   m_CaretColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_CustomCaretColor: 0
   m_SelectionColor: {r: 0.65882355, g: 0.80784315, b: 1, a: 0.7529412}
-  m_Text: C:\Users\Pox\Documents\wiki
+  m_Text: 
   m_CaretBlinkRate: 1.7
   m_CaretWidth: 1
   m_ReadOnly: 0
@@ -7484,13 +7484,13 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114077829159045646}
   toggleTransition: 1
   graphic: {fileID: 114359468231773424}
-  m_Group: {fileID: 0}
+  m_Group: {fileID: 114497587370013046}
   onValueChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  m_IsOn: 1
+  m_IsOn: 0
 --- !u!114 &114680836085024090
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8129,7 +8129,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: C:\Users\Pox\Documents\wiki
+  m_Text: 
 --- !u!114 &114809286040450330
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8273,6 +8273,17 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 95793510399968718}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 114925825802777302}
+        m_MethodName: LoadMenuBtn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -8581,13 +8592,13 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114681198262444336}
   toggleTransition: 1
   graphic: {fileID: 114392599780287540}
-  m_Group: {fileID: 0}
+  m_Group: {fileID: 114497587370013046}
   onValueChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  m_IsOn: 1
+  m_IsOn: 0
 --- !u!114 &114889202896759196
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8920,7 +8931,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03c476ad7f0bef24a85aa550ef553860, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Btn: {fileID: 0}
+  Btn: {fileID: 100004, guid: aefc7092d226e5a4f9b43b1d65458ca1, type: 2}
   Menu: {fileID: 0}
   LaunchMenu: {fileID: 0}
   LoadMenu: {fileID: 0}
@@ -9165,13 +9176,13 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114737311828053476}
   toggleTransition: 1
   graphic: {fileID: 114112647325096788}
-  m_Group: {fileID: 0}
+  m_Group: {fileID: 114497587370013046}
   onValueChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  m_IsOn: 1
+  m_IsOn: 0
 --- !u!114 &114970596836052820
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -28,7 +28,7 @@ public class InitWorld : Bolt.GlobalEventListener // TODO: à update les comm' (
 		}
 		else if (BoltNetwork.isClient)
 		{
-			PathUtils.RootPath = PathUtils.GetPathFrom(Application.persistentDataPath) + "\\tmp";
+			PathUtils.RootPath = PathUtils.GetPathFromRelative("tmp", Application.persistentDataPath);
 			PathUtils.CurrPath = PathUtils.RootPath;
 		}
 

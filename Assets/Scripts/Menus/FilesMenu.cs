@@ -42,9 +42,6 @@ public class FilesMenu : Bolt.GlobalEventListener // TODO: à vérif' (@guillaum
 
 	public void CreateFileList()
 	{
-
-
-
 		if (BoltNetwork.isServer) {
 			DirectoryUtils.Directory dir = new DirectoryUtils.Directory (PathUtils.CurrPath);
 			PathUtils.Path[] paths;
@@ -54,9 +51,10 @@ public class FilesMenu : Bolt.GlobalEventListener // TODO: à vérif' (@guillaum
 				paths = dir.GetFiles (ModelsUtils.Extensions [(int)FileType]);
 
 			createContent (paths, paths.Length / 3 * MARGIN);
-		} else if (BoltNetwork.isClient) {
+		}
+		else if (BoltNetwork.isClient)
+		{
 			var param = paramEvent.Create ();
-
 
 			param.askFiles = true;
 			param.filePath = "";
@@ -81,7 +79,6 @@ public class FilesMenu : Bolt.GlobalEventListener // TODO: à vérif' (@guillaum
 			 * */
 		param.filePath = "pouetpouet";   // param.filePath = pathsString;
 		param.askFiles = false;
-
 
 		param.Send ();
 	}
@@ -120,20 +117,22 @@ public class FilesMenu : Bolt.GlobalEventListener // TODO: à vérif' (@guillaum
 			imageObject.Image = (FileUtils.File)path;
 			imageObject.Apply();*/
 			Model.GetComponent<SendFile>().sendFile((FileUtils.File)path);
-			Model.GetComponent<ImageObject>().Image = (FileUtils.File)path;
-			Model.GetComponent<ImageObject>().Apply();
+			ImageObject imageObject = Model.GetComponent<ImageObject>();
+			imageObject.Image = (FileUtils.File)path;
+			imageObject.Apply();
 			break;
 		case ModelsUtils.FilesTypes.Audio:
-			Model.AddComponent<AudioObject>().Audio = (FileUtils.File)path;
+			Model.GetComponent<SendFile> ().sendFile((FileUtils.File)path);
+			Model.GetComponent<AudioObject>().Audio = (FileUtils.File)path;
 			break;
 		case ModelsUtils.FilesTypes.Video:
-			Model.AddComponent<VideoObject>().Video = (FileUtils.File)path;
+			Model.GetComponent<VideoObject>().Video = (FileUtils.File)path;
 			break;
 		case ModelsUtils.FilesTypes.Text:
-			Model.AddComponent<TextObject>().Text = (FileUtils.File)path;
+			Model.GetComponent<TextObject>().Text = (FileUtils.File)path;
 			break;
 		case ModelsUtils.FilesTypes.Link:
-			LinkObject linkObject = Model.AddComponent<LinkObject>();
+			LinkObject linkObject = Model.GetComponent<LinkObject>();
 			linkObject.Link = (DirectoryUtils.Directory)path;
 			linkObject.Apply();
 			break;

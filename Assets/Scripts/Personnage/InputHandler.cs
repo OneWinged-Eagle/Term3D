@@ -123,11 +123,12 @@ public class InputHandler : Bolt.EntityBehaviour<IPlayerState> // TODO: à retap
 					case "ImageObject":
 						break;
 					case "AudioObject":
-						Debug.Log("ça otuche" + hit.collider.tag);
+						//Debug.Log("ça otuche" + hit.collider.tag);
 						hit.transform.SendMessage("PlayAndPause", SendMessageOptions.DontRequireReceiver);
 						hit.transform.SendMessage("sendPlayPauseSignal", SendMessageOptions.DontRequireReceiver);
 						break;
 					case "VideoObject":
+						hit.transform.SendMessage("OpenCanvas", gameObject, SendMessageOptions.DontRequireReceiver);
 						break;
 					case "TextObject":
 						break;
@@ -135,7 +136,7 @@ public class InputHandler : Bolt.EntityBehaviour<IPlayerState> // TODO: à retap
 						hit.transform.SendMessage("Go", gameObject, SendMessageOptions.DontRequireReceiver);
 						break;
 					case "OtherObject":
-						Debug.Log ("ça otuche" + hit.collider.tag);
+						//Debug.Log ("ça otuche" + hit.collider.tag);
 						//hit.transform.SendMessage("pickUp", Hook, SendMessageOptions.DontRequireReceiver);
 						hit.transform.SendMessage("AskControl", GetComponent<BoltEntity>().networkId, SendMessageOptions.DontRequireReceiver);
 						break;
@@ -147,13 +148,12 @@ public class InputHandler : Bolt.EntityBehaviour<IPlayerState> // TODO: à retap
 			{
 				if (Physics.Raycast(intersectionRay, out hit, LenghtRay))
 				{
-					Debug.Log ("fgdsgfdglkdsjlgkkdsfmldfskmlkdsffdg"+hit.collider.tag);
 					switch (hit.collider.tag)
 					{
 					case "ImageObject":
 						filesMenu.SetActive(true);
-						Debug.Log(filesMenuScript.Model);
-						Debug.Log(hit.collider.gameObject);
+						//Debug.Log(filesMenuScript.Model);
+						//Debug.Log(hit.collider.gameObject);
 						filesMenuScript.Model = hit.collider.gameObject;
 						filesMenuScript.FileType = ModelsUtils.FilesTypes.Image;
 						filesMenuScript.CreateFileList();

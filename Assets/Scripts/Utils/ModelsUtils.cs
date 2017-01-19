@@ -46,7 +46,7 @@ public class ModelsUtils
 
 	public static readonly string[] VideosExtensions =
 	{
-		".mp4"
+		".mp4", ".avi", ".mpg", ".divx", ".wmv", ".ogv", ".flv", ".mkv"
 	};
 
 	public static readonly string[] TextsExtensions =

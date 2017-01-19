@@ -38,7 +38,7 @@ public class OtherObjectHandler : Bolt.EntityBehaviour<IOtherObjectState> {
 			}
 	}
 		if (BoltNetwork.isClient) {
-			Debug.Log ("je suis un client");
+			//Debug.Log ("je suis un client");
 		}
 	}
 

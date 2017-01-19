@@ -11,10 +11,17 @@ public class LinkObject : Bolt.EntityBehaviour<ILinkObjectState>
 
 	public void Go(GameObject player)
 	{
+		if (!room && name != "LinkObject")
+		{
+			room = RoomUtils.GetRoom(name);
+			Link.RealPath = PathUtils.GetPathFromRelative(name);
+			Link.ProjectPath = name;
+		}
+
 		if (room)
 		{
 			PathUtils.CurrPath = Link.RealPath;
-			GameObject.Find("pwd").GetComponent<UnityEngine.UI.Text>().text = PathUtils.PathToProjectPath(PathUtils.CurrPath);
+			GameObject.Find("pwd").GetComponent<UnityEngine.UI.Text>().text = Link.ProjectPath;
 			player.transform.position = room.transform.Find("Spawn").transform.position;
 		}
 	}

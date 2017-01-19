@@ -59,9 +59,11 @@ public class ModelsMenu : Bolt.GlobalEventListener // TODO: à vérif' (@guillau
 		GameObject model = ModelsList[fileType].Models[nb];
 
 		var spawnObjectEvent = spawnObject.Create();
+
 		spawnObjectEvent.objectId = model.GetComponent<BoltEntity>().prefabId;
 		spawnObjectEvent.objectPos = Player.GetComponentInChildren<InputHandler>().Hook.transform.position;
 		spawnObjectEvent.objectRot = model.transform.rotation;
+		spawnObjectEvent.objectName = ModelsUtils.Tags[fileType + 1];
 		spawnObjectEvent.Send();
 
 		CloseBtn();
@@ -70,9 +72,10 @@ public class ModelsMenu : Bolt.GlobalEventListener // TODO: à vérif' (@guillau
 	public override void OnEvent(spawnObject e)
 	{
 		if (BoltNetwork.isServer)
-			BoltNetwork.Instantiate(e.objectId, e.objectPos, e.objectRot);
-		else if (BoltNetwork.isClient)
-			;
+		{
+			GameObject obj = BoltNetwork.Instantiate(e.objectId, e.objectPos, e.objectRot);
+			obj.name = e.objectName;
+		}
 	}
 
 	public void BackBtn()

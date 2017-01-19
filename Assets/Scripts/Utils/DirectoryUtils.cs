@@ -51,8 +51,8 @@ public class DirectoryUtils
 			foreach (string directory in directories)
 				directoriesList.Add(new Directory(directory));
 
-			if (PathUtils.GetPathFrom(this.RealPath) != PathUtils.RootPath)
-				directoriesList.Add(new Directory(this.RealPath + "/.."));
+			if (PathUtils.GetPathFrom(RealPath) != PathUtils.RootPath)
+				directoriesList.Add(new Directory(PathUtils.GetPathFromRelative("..", RealPath)));
 
 			return directoriesList.ToArray();
 		}
