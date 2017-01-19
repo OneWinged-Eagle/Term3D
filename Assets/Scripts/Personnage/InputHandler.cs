@@ -112,7 +112,7 @@ public class InputHandler : Bolt.EntityBehaviour<IPlayerState> // TODO: à retap
         RaycastHit hit;
 		Ray intersectionRay = Camera.main.ScreenPointToRay(new Vector3(Screen.width * 0.5f, Screen.height * 0.5f, 0.0f));
 
-		if (!pauseMenu.activeSelf && !modelsMenu.activeSelf && !filesMenu.activeSelf)
+		if (true)
 		{
 			if (Input.GetButtonDown("Interact"))
 			{

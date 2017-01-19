@@ -27,7 +27,7 @@ public class PanelManager : MonoBehaviour {
 		if (initiallyOpen == null)
 			return;
 
-		OpenPanel(initiallyOpen);
+		//OpenPanel(initiallyOpen);
 	}
 
 	public void OpenPanel (Animator anim)
@@ -36,7 +36,7 @@ public class PanelManager : MonoBehaviour {
 			return;
 
 		anim.gameObject.SetActive(true);
-		var newPreviouslySelected = EventSystem.current.currentSelectedGameObject;
+		//var newPreviouslySelected = EventSystem.current.currentSelectedGameObject;
 
 		anim.transform.SetAsLastSibling();
 

@@ -28,7 +28,12 @@ public class MainMenu : Bolt.GlobalEventListener // TODO: à vérif' (@guillaume
 	public Toggle ForestRoomToggle;
 	public Toggle SpaceRoomToggle;
 
-	private void Start() {}
+	private void Start() {
+        PanelManager pm = GameObject.Find("MenuManager").GetComponent<PanelManager>();
+        Animator anim = GameObject.Find("MainMenu").GetComponent<Animator>();
+
+        pm.OpenPanel(anim);
+    }
 
 	private void Update() {}
 
