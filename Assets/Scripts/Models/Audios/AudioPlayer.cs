@@ -53,8 +53,8 @@ public class AudioPlayer : Bolt.EntityBehaviour<IAudioObjectState> // TODO: à m
 
 			WWW audioLoader = new WWW("file://" + pathToFile);
 			while (!audioLoader.isDone)
-				Debug.Log ("kek");
-			Debug.Log(audioLoader.GetAudioClip(true).name);
+				;//Debug.Log ("kek");
+			//Debug.Log(audioLoader.GetAudioClip(true).name);
 			audio.clip = audioLoader.GetAudioClip(true);
 			audio.Play();
 		}
@@ -82,8 +82,8 @@ public class AudioPlayer : Bolt.EntityBehaviour<IAudioObjectState> // TODO: à m
 
 		WWW audioLoader = new WWW("file://" + pathToFile);
 		while (!audioLoader.isDone)
-			Debug.Log ("kek");
-		Debug.Log(audioLoader.GetAudioClip(true).name);
+			;//Debug.Log ("kek");
+		//Debug.Log(audioLoader.GetAudioClip(true).name);
 		audio.clip = audioLoader.GetAudioClip(true);
 		audio.Play();
 	}

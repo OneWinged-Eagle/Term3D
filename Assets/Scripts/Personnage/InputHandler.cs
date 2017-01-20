@@ -97,7 +97,7 @@ public class InputHandler : Bolt.EntityBehaviour<IPlayerState> // TODO: à retap
 						hit.transform.SendMessage("sendPlayPauseSignal", SendMessageOptions.DontRequireReceiver);
 						break;
 					case "VideoObject":
-						Debug.Log ("OpenCanvas");
+						//Debug.Log ("OpenCanvas");
 						hit.transform.SendMessage("OpenCanvas", gameObject, SendMessageOptions.DontRequireReceiver);
 						break;
 					case "TextObject":
@@ -116,41 +116,41 @@ public class InputHandler : Bolt.EntityBehaviour<IPlayerState> // TODO: à retap
 			//pas propre ici a refaire
 			else if (Input.GetButtonDown("FilesMenu") && panelFilesManager.GetAnimator() == null)
 			{
-                if (Physics.Raycast(intersectionRay, out hit, LenghtRay))
+        if (Physics.Raycast(intersectionRay, out hit, LenghtRay))
 				{
-                    Debug.Log("FilesMenu");
-                    Debug.Log(hit.collider.tag);
-                    switch (hit.collider.tag)
+          //Debug.Log("FilesMenu");
+          //Debug.Log(hit.collider.tag);
+          switch (hit.collider.tag)
 					{
 					case "ImageObject":
-                        filesMenuScript.Model = hit.collider.gameObject;
+            filesMenuScript.Model = hit.collider.gameObject;
 						filesMenuScript.FileType = ModelsUtils.FilesTypes.Image;
 						filesMenuScript.CreateFileList();
-                        panelFilesManager.OpenPanel(mainFilesMenu.GetComponent<Animator>());
-                        break;
+            panelFilesManager.OpenPanel(mainFilesMenu.GetComponent<Animator>());
+            break;
 					case "AudioObject":
-						filesMenu.SetActive(true);
 						filesMenuScript.Model = hit.collider.gameObject;
 						filesMenuScript.FileType = ModelsUtils.FilesTypes.Audio;
 						filesMenuScript.CreateFileList();
+						panelFilesManager.OpenPanel(mainFilesMenu.GetComponent<Animator>());
 						break;
 					case "VideoObject":
-						filesMenu.SetActive (true);
 						filesMenuScript.Model = hit.collider.gameObject;
 						filesMenuScript.FileType = ModelsUtils.FilesTypes.Video;
 						filesMenuScript.CreateFileList();
+						panelFilesManager.OpenPanel(mainFilesMenu.GetComponent<Animator>());
 						break;
 					case "TextObject":
-						filesMenu.SetActive(true);
 						filesMenuScript.Model = hit.collider.gameObject;
 						filesMenuScript.FileType = ModelsUtils.FilesTypes.Text;
 						filesMenuScript.CreateFileList();
+						panelFilesManager.OpenPanel(mainFilesMenu.GetComponent<Animator>());
 						break;
 					case "LinkObject":
-						filesMenu.SetActive(true);
 						filesMenuScript.Model = hit.collider.gameObject;
 						filesMenuScript.FileType = ModelsUtils.FilesTypes.Link;
 						filesMenuScript.CreateFileList();
+						panelFilesManager.OpenPanel(mainFilesMenu.GetComponent<Animator>());
 						break;
 					case "OtherObject":
 						hit.transform.SendMessage("giveUpControl", GetComponent<BoltEntity>().networkId, SendMessageOptions.DontRequireReceiver);

@@ -1371,22 +1371,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1000011508931470
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4000013363921536}
-  - component: {fileID: 108000010032290792}
-  m_Layer: 0
-  m_Name: Directional light
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1000011558658766
 GameObject:
   m_ObjectHideFlags: 1
@@ -4696,7 +4680,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4000013008282920}
-  m_RootOrder: 19
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4000010451848160
 Transform:
@@ -4974,7 +4958,7 @@ Transform:
   - {fileID: 4000013038461614}
   - {fileID: 4000012402554248}
   m_Father: {fileID: 4000013008282920}
-  m_RootOrder: 17
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!4 &4000010792086470
 Transform:
@@ -5482,7 +5466,7 @@ Transform:
   - {fileID: 4000011060023162}
   - {fileID: 4000010640103980}
   m_Father: {fileID: 4000013008282920}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 90, y: 90, z: 0}
 --- !u!4 &4000011323222464
 Transform:
@@ -5534,7 +5518,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4000013008282920}
-  m_RootOrder: 18
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4000011362828124
 Transform:
@@ -5718,7 +5702,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4000013008282920}
-  m_RootOrder: 16
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4000011572317460
 Transform:
@@ -5731,7 +5715,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4000013008282920}
-  m_RootOrder: 15
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4000011600942690
 Transform:
@@ -6196,7 +6180,7 @@ Transform:
   - {fileID: 4000011635427244}
   - {fileID: 4000014149163988}
   m_Father: {fileID: 4000013008282920}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!4 &4000012154599214
 Transform:
@@ -6362,7 +6346,7 @@ Transform:
   - {fileID: 4000010022511334}
   - {fileID: 4000010639751508}
   m_Father: {fileID: 4000013008282920}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!4 &4000012323470670
 Transform:
@@ -6465,7 +6449,7 @@ Transform:
   - {fileID: 4000013079344074}
   - {fileID: 4000010899710080}
   m_Father: {fileID: 4000013008282920}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4000012498423714
 Transform:
@@ -6592,7 +6576,7 @@ Transform:
   - {fileID: 4000013468497248}
   - {fileID: 4000012977511542}
   m_Father: {fileID: 4000013008282920}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4000012602376514
 Transform:
@@ -6887,7 +6871,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000014062774618}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 39.42, y: 438.46716, z: -286.70074}
+  m_LocalPosition: {x: -42.128307, y: 70.6454, z: 56.15718}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224000013805390482}
@@ -6895,7 +6879,6 @@ Transform:
   - {fileID: 4000010455221018}
   - {fileID: 4000014235278626}
   - {fileID: 4000012162305562}
-  - {fileID: 4000013363921536}
   - {fileID: 4000012596206668}
   - {fileID: 4000012467281382}
   - {fileID: 4000012282431806}
@@ -7011,7 +6994,7 @@ Transform:
   - {fileID: 4000010343784464}
   - {fileID: 4000013277529412}
   m_Father: {fileID: 4000013008282920}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4000013146340264
 Transform:
@@ -7177,19 +7160,6 @@ Transform:
   m_Father: {fileID: 4000013845579288}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4000013363921536
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011508931470}
-  m_LocalRotation: {x: -0.8463058, y: -0.5085224, z: 0.1516942, w: -0.046480987}
-  m_LocalPosition: {x: -10.855001, y: 13.785, z: 19.715}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4000013008282920}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 13.4711, y: -167.5603, z: 119.4738}
 --- !u!4 &4000013373112738
 Transform:
   m_ObjectHideFlags: 1
@@ -7537,7 +7507,7 @@ Transform:
   - {fileID: 4000013034195874}
   - {fileID: 4000011855134240}
   m_Father: {fileID: 4000013008282920}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4000013858011682
 Transform:
@@ -7571,7 +7541,7 @@ Transform:
   - {fileID: 4000011670257834}
   - {fileID: 4000011519211250}
   m_Father: {fileID: 4000013008282920}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4000013923414428
 Transform:
@@ -7894,7 +7864,7 @@ Transform:
   - {fileID: 4000010738369672}
   - {fileID: 4000010941152354}
   m_Father: {fileID: 4000013008282920}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 90, y: 90, z: 0}
 --- !u!4 &4000014292635256
 Transform:
@@ -18749,40 +18719,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!108 &108000010032290792
-Light:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011508931470}
-  m_Enabled: 1
-  serializedVersion: 7
-  m_Type: 1
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.64
-  m_Range: 10
-  m_SpotAngle: 30
-  m_CookieSize: 10
-  m_Shadows:
-    m_Type: 0
-    m_Resolution: -1
-    m_CustomResolution: -1
-    m_Strength: 1
-    m_Bias: 0.05
-    m_NormalBias: 0.4
-    m_NearPlane: 0.2
-  m_Cookie: {fileID: 0}
-  m_DrawHalo: 0
-  m_Flare: {fileID: 0}
-  m_RenderMode: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_Lightmapping: 1
-  m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
-  m_ShadowRadius: 0
-  m_ShadowAngle: 0
 --- !u!108 &108000010277346350
 Light:
   m_ObjectHideFlags: 1
@@ -18793,7 +18729,7 @@ Light:
   serializedVersion: 7
   m_Type: 2
   m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_Intensity: 4.33
+  m_Intensity: 8
   m_Range: 100
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -18814,7 +18750,7 @@ Light:
     m_Bits: 4294967295
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 5.27
+  m_BounceIntensity: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!108 &108000012378824004
@@ -18827,7 +18763,7 @@ Light:
   serializedVersion: 7
   m_Type: 2
   m_Color: {r: 0.09688579, g: 0.24245317, b: 0.9411765, a: 1}
-  m_Intensity: 4.33
+  m_Intensity: 8
   m_Range: 100
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -18848,7 +18784,7 @@ Light:
     m_Bits: 4294967295
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 5.27
+  m_BounceIntensity: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!114 &114000010220378542
@@ -18952,7 +18888,7 @@ MonoBehaviour:
   m_Script: {fileID: -36112512, guid: 5b00bf8b25851d440940a40ec23344f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sceneGuid: 
+  _sceneGuid: c95711a9-126c-45ae-8c8e-5ebd229e80e3
   _serializerGuid: cd3a1e42-6318-427c-98b1-5a6191dd4e99
   _prefabId: 30
   _updateRate: 1
@@ -24546,15 +24482,9 @@ ParticleSystem:
           inSlope: 0
           outSlope: 0
           tangentMode: 0
-        - serializedVersion: 2
-          time: 1
-          value: 1
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
-        m_RotationOrder: 4
+        m_RotationOrder: 0
       minCurve:
         serializedVersion: 2
         m_Curve:
@@ -24564,16 +24494,10 @@ ParticleSystem:
           inSlope: 0
           outSlope: 0
           tangentMode: 0
-        - serializedVersion: 2
-          time: 1
-          value: 0
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
-        m_RotationOrder: 4
-      minMaxState: 0
+        m_RotationOrder: 0
+      minMaxState: 3
     startSizeZ:
       scalar: 1
       maxCurve:
@@ -24585,15 +24509,9 @@ ParticleSystem:
           inSlope: 0
           outSlope: 0
           tangentMode: 0
-        - serializedVersion: 2
-          time: 1
-          value: 1
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
-        m_RotationOrder: 4
+        m_RotationOrder: 0
       minCurve:
         serializedVersion: 2
         m_Curve:
@@ -24603,16 +24521,10 @@ ParticleSystem:
           inSlope: 0
           outSlope: 0
           tangentMode: 0
-        - serializedVersion: 2
-          time: 1
-          value: 0
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
-        m_RotationOrder: 4
-      minMaxState: 0
+        m_RotationOrder: 0
+      minMaxState: 3
     startRotationX:
       scalar: 1
       maxCurve:
@@ -55419,7 +55331,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -209174492
+  randomSeed: 839002386
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -58056,7 +57968,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1270859054
+  randomSeed: -1085008287
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -73561,7 +73473,7 @@ ParticleSystemRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_SelectedEditorRenderState: 3
+  m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -73611,7 +73523,7 @@ ParticleSystemRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_SelectedEditorRenderState: 3
+  m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -74011,7 +73923,7 @@ ParticleSystemRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_SelectedEditorRenderState: 3
+  m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
