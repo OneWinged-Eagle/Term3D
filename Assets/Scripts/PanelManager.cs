@@ -31,13 +31,13 @@ public class PanelManager : MonoBehaviour {
 			return;
 
 		anim.gameObject.SetActive(true);
-		var newPreviouslySelected = EventSystem.current.currentSelectedGameObject;
+		//var newPreviouslySelected = EventSystem.current.currentSelectedGameObject;
 
 		anim.transform.SetAsLastSibling();
 
 		CloseCurrent();
 
-		m_PreviouslySelected = newPreviouslySelected;
+		//m_PreviouslySelected = newPreviouslySelected;
 
 		m_Open = anim;
 		m_Open.SetBool(m_OpenParameterId, true);

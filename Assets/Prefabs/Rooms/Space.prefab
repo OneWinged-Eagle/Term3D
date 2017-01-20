@@ -18928,6 +18928,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 124e88432b75ccf47aa7c224c14334b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  url: 
 --- !u!114 &114000012049350484
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -18939,6 +18940,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f87cc76deb53f5479d5492dc005abcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pathToFile: 
 --- !u!114 &114000012058002636
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -18987,6 +18989,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f87cc76deb53f5479d5492dc005abcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pathToFile: 
 --- !u!114 &114000012102978862
 MonoBehaviour:
   m_ObjectHideFlags: 1
