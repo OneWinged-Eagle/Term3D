@@ -29,8 +29,11 @@ public class InputHandler : Bolt.EntityBehaviour<IPlayerState> // TODO: à retap
     //Gestion menus ingame
     private PanelManager    panelModelsManager;
     private PanelManager    panelEscManager;
+    private PanelManager    panelFilesManager;
+
     private GameObject      mainModelMenu;
     private GameObject      mainEscMenu;
+    private GameObject      mainFilesMenu;
 
 	public override void Attached()
 	{
@@ -41,32 +44,18 @@ public class InputHandler : Bolt.EntityBehaviour<IPlayerState> // TODO: à retap
         // Get des panels
         panelModelsManager = GameObject.Find("MenuModelManager").GetComponent<PanelManager>();
         panelEscManager = GameObject.Find("MenuEscManager").GetComponent<PanelManager>();
+        panelFilesManager = GameObject.Find("MenuFilesManager").GetComponent<PanelManager>();
         // Get des anime de bases
         mainModelMenu = GameObject.Find("MainModelMenu");
         mainEscMenu = GameObject.Find("MainEscMenu");
-
-        /*panelManager = GameObject.Find("GameMenuManager").GetComponent<PanelManager>();
-        escMain = GameObject.Find("MenuEscManager").GetComponent<PanelManager>();*/
-
-        //pauseMenu = GameObject.Find("EscMenu");
-        //mainPauseMenu = GameObject.Find("MainEscMenu");
-        //PanelManager pm = GameObject.Find("MenuEscManager").GetComponent<PanelManager>();
-        //pm.CloseCurrent();
-        //pauseMenu.SetActive(false);
-
-        //modelsMenu = GameObject.Find("ModelMenu");
-        //mainModelMenu = GameObject.Find("MainModelMenu");
-
-        //pm = GameObject.Find("MenuModelManager").GetComponent<PanelManager>();
-        //pm.CloseCurrent();
-        //modelsMenu.SetActive(false);
+        mainFilesMenu = GameObject.Find("MainFileMenu");
 
         filesMenu = GameObject.Find("FilesMenu");
-		filesMenuScript = filesMenu.GetComponent<FilesMenu>();
-		filesMenu.SetActive(false);
-	}
+        filesMenuScript = filesMenu.GetComponent<FilesMenu>();
 
-	public override void SimulateOwner()
+    }
+
+    public override void SimulateOwner()
 	{
         if (Input.GetButtonDown("Pause") && panelModelsManager.GetAnimator() == null)
         {
@@ -78,8 +67,9 @@ public class InputHandler : Bolt.EntityBehaviour<IPlayerState> // TODO: à retap
 
         if (Input.GetButtonDown("ModelsMenu") && panelEscManager.GetAnimator() == null)
         {
-            if (panelModelsManager.GetAnimator() != mainModelMenu.GetComponent<Animator>())
+            if (panelModelsManager.GetAnimator() == null)
             {
+                modelsMenu.SetActive(true);
                 panelModelsManager.OpenPanel(mainModelMenu.GetComponent<Animator>());
             }
             else
@@ -87,32 +77,11 @@ public class InputHandler : Bolt.EntityBehaviour<IPlayerState> // TODO: à retap
                 panelModelsManager.CloseCurrent();
             }
         }
-        //if (Input.GetButtonDown("Pause") && !filesMenu.activeSelf && !modelsMenu.activeSelf)
-        //    pauseMenu.SetActive(!pauseMenu.activeSelf);
-
-        /*if (Input.GetButtonDown("ModelsMenu"))
-        { 
-            //modelsMenu.SetActive(!modelsMenu.activeSelf);
-            PanelManager pm = GameObject.Find("MenuModelManager").GetComponent<PanelManager>();
-            Animator menu = mainModelMenu.GetComponent<Animator>();
-
-            if (pm.GetAnimator() != menu)
-            {
-                modelsMenu.SetActive(true);
-                mainModelMenu.SetActive(true);
-                pm.CloseCurrent();
-                pm.OpenPanel(menu);
-            }
-            else
-            {
-                pm.CloseCurrent();
-            }
-        }*/
 
         RaycastHit hit;
 		Ray intersectionRay = Camera.main.ScreenPointToRay(new Vector3(Screen.width * 0.5f, Screen.height * 0.5f, 0.0f));
 
-		if (true)
+		if (panelEscManager.GetAnimator() == null)
 		{
 			if (Input.GetButtonDown("Interact"))
 			{
@@ -144,20 +113,22 @@ public class InputHandler : Bolt.EntityBehaviour<IPlayerState> // TODO: à retap
 				}
 			}
 			//pas propre ici a refaire
-			else if (Input.GetButtonDown("FilesMenu"))
+			else if (Input.GetButtonDown("FilesMenu") && panelFilesManager.GetAnimator() == null)
 			{
-				if (Physics.Raycast(intersectionRay, out hit, LenghtRay))
+                filesMenu.SetActive(true);
+                panelFilesManager.CloseCurrent();
+                if (Physics.Raycast(intersectionRay, out hit, LenghtRay))
 				{
-					switch (hit.collider.tag)
+                    Debug.Log("FilesMenu");
+                    Debug.Log(hit.collider.tag);
+                    switch (hit.collider.tag)
 					{
 					case "ImageObject":
-						filesMenu.SetActive(true);
-						//Debug.Log(filesMenuScript.Model);
-						//Debug.Log(hit.collider.gameObject);
-						filesMenuScript.Model = hit.collider.gameObject;
+                        filesMenuScript.Model = hit.collider.gameObject;
 						filesMenuScript.FileType = ModelsUtils.FilesTypes.Image;
 						filesMenuScript.CreateFileList();
-						break;
+                        panelFilesManager.OpenPanel(mainFilesMenu.GetComponent<Animator>());
+                        break;
 					case "AudioObject":
 						filesMenu.SetActive(true);
 						filesMenuScript.Model = hit.collider.gameObject;

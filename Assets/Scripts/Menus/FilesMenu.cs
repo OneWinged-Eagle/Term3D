@@ -10,7 +10,7 @@ using System.Text;
 [BoltGlobalBehaviour()]
 public class FilesMenu : Bolt.GlobalEventListener // TODO: à vérif' (@guillaume)
 {
-	private const int MARGIN = 300;
+	private const int MARGIN = 190;
 
 	public GameObject Btn;
 	public GameObject Content;
@@ -34,7 +34,7 @@ public class FilesMenu : Bolt.GlobalEventListener // TODO: à vérif' (@guillaum
 			btn.GetComponent<RectTransform>().anchoredPosition = new Vector2((i % 3 * MARGIN) - MARGIN, (height / 2 - MARGIN / 2) - (i / 3 * MARGIN));
 			btn.GetComponent<Button>().onClick.AddListener(delegate { FilesBtns(path); });
 			if (FileType == ModelsUtils.FilesTypes.Image)
-				btn.GetComponentInChildren<Image>().sprite = TextureUtils.FileToSprite((FileUtils.File)path);
+				btn.transform.Find("Background").gameObject.GetComponentInChildren<Image>().sprite = TextureUtils.FileToSprite((FileUtils.File)path);
 			btn.GetComponentInChildren<Text>().text = path.GetName();
 			btn.transform.SetParent(Content.transform, false);
 		}

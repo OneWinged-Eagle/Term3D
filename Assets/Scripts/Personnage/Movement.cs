@@ -31,7 +31,7 @@ public class Movement : Bolt.EntityBehaviour<IPlayerState> // TODO: mouvements d
 
 	public override void SimulateOwner()
 	{
-		if (!inputHandler.filesMenu.activeSelf)
+		if (true)
 		{
 			transform.Translate(MoveSpeed * Input.GetAxis("Horizontal") * Time.deltaTime, 0f, MoveSpeed * Input.GetAxis("Vertical") * Time.deltaTime);
 			transform.Rotate(Input.GetAxis("Mouse Y") * Time.deltaTime * RotateSpeed, Input.GetAxis("Mouse X"), 0f);

@@ -66,6 +66,7 @@ public class ModelsMenu : Bolt.GlobalEventListener // TODO: à vérif' (@guillau
 		spawnObjectEvent.objectName = ModelsUtils.Tags[fileType + 1];
 		spawnObjectEvent.Send();
 
+        BackBtn();
 		CloseBtn();
 	}
 
@@ -80,12 +81,12 @@ public class ModelsMenu : Bolt.GlobalEventListener // TODO: à vérif' (@guillau
 
 	public void BackBtn()
 	{
-		ModelsSubMenu.SetActive(false);
+		//ModelsSubMenu.SetActive(false);
 
 		foreach (Transform child in Content.transform)
 			GameObject.Destroy(child.gameObject);
 
-		TypesMenu.SetActive(true);
+		//TypesMenu.SetActive(true);
 	}
 
 	public void CloseBtn()
