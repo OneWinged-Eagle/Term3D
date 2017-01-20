@@ -163,10 +163,9 @@ GameObject:
   - component: {fileID: 223176125230272822}
   - component: {fileID: 114005202943785724}
   - component: {fileID: 114252637634979946}
-  - component: {fileID: 114366658711344708}
   m_Layer: 5
   m_Name: Player
-  m_TagString: Player
+  m_TagString: VideoObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -589,6 +588,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7098ce9d2f1d22b4dbdf4d86df0d4b5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ip: 
 --- !u!114 &114306234844365300
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -624,17 +624,6 @@ MonoBehaviour:
   m_Text: 'Stop
 
 '
---- !u!114 &114366658711344708
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1531295286719734}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114426430831616464
 MonoBehaviour:
   m_ObjectHideFlags: 1
