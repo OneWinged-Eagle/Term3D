@@ -51,6 +51,8 @@ public class ModelsMenu : Bolt.GlobalEventListener // TODO: à vérif' (@guillau
 		GameObject[] models = ModelsList[fileType].Models;
 		createContent(models, models.Length / 3 * MARGIN, fileType);
 
+		Debug.Log("------------------------ " + Player);
+
 		//ModelsSubMenu.SetActive(true);
 	}
 
@@ -66,7 +68,7 @@ public class ModelsMenu : Bolt.GlobalEventListener // TODO: à vérif' (@guillau
 		spawnObjectEvent.objectName = ModelsUtils.Tags[fileType + 1];
 		spawnObjectEvent.Send();
 
-        BackBtn();
+    BackBtn();
 		CloseBtn();
 	}
 

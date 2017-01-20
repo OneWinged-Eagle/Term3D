@@ -34,8 +34,13 @@ public class InitWorld : Bolt.GlobalEventListener // TODO: à update les comm' (
 
 		string name = "un gros nom à modifier par un genre de pseudo";
 
+		if (BoltNetwork.isServer)
+			name = "server";
+		else if (BoltNetwork.isClient)
+			name = "client";
 		GameObject player = BoltNetwork.Instantiate(BoltPrefabs.CubePlayer, new Vector3(0f, 0.5f, 0f), Quaternion.identity);
 		player.GetComponent<Movement>().state.Name = name;
+		player.GetComponent<InputHandler>().modelsMenuScript.Player = player;
 		GameObject.Find("Chat").GetComponent<Chat>()._commandHandler._player = player;
 	}
 }

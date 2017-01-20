@@ -17,7 +17,7 @@ public class InputHandler : Bolt.EntityBehaviour<IPlayerState> // TODO: à retap
 	private GameObject modelsMenu;
     //private GameObject mainModelMenu;
 
-	private ModelsMenu modelsMenuScript;
+	public ModelsMenu modelsMenuScript;
 
 	public GameObject filesMenu;
 	private FilesMenu filesMenuScript;
@@ -39,7 +39,6 @@ public class InputHandler : Bolt.EntityBehaviour<IPlayerState> // TODO: à retap
 	{
         modelsMenu = GameObject.Find("ModelMenu");
         modelsMenuScript = modelsMenu.GetComponent<ModelsMenu>();
-        modelsMenuScript.Player = gameObject;
 
         // Get des panels
         panelModelsManager = GameObject.Find("MenuModelManager").GetComponent<PanelManager>();
