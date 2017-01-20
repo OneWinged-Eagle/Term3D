@@ -116,8 +116,6 @@ public class InputHandler : Bolt.EntityBehaviour<IPlayerState> // TODO: à retap
 			//pas propre ici a refaire
 			else if (Input.GetButtonDown("FilesMenu") && panelFilesManager.GetAnimator() == null)
 			{
-                filesMenu.SetActive(true);
-                panelFilesManager.CloseCurrent();
                 if (Physics.Raycast(intersectionRay, out hit, LenghtRay))
 				{
                     Debug.Log("FilesMenu");

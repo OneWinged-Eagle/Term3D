@@ -142,8 +142,12 @@ public class FilesMenu : Bolt.GlobalEventListener // TODO: à vérif' (@guillaum
 
 	public void CloseBtn()
 	{
-		foreach (Transform child in Content.transform)
+        PanelManager panelFilesManager = GameObject.Find("MenuFilesManager").GetComponent<PanelManager>();
+        // Get des anime de bases
+        //GameObject mainFilesMenu = GameObject.Find("MainFileMenu");
+        panelFilesManager.CloseCurrent();
+        foreach (Transform child in Content.transform)
 			GameObject.Destroy(child.gameObject);
-		gameObject.SetActive(false);
+		//gameObject.SetActive(false);
 	}
 }
