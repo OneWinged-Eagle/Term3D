@@ -39,7 +39,7 @@ public class MainMenu : Bolt.GlobalEventListener // TODO: à vérif' (@guillaume
 
 	public static string GetPublicIP()
 	{
-		return new System.Net.WebClient().DownloadString("https://api.ipify.org");
+		return new System.Net.WebClient().DownloadString("http://api.ipify.org");
 	}
 
 	public void LaunchMenuBtn()
