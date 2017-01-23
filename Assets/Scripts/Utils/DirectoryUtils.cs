@@ -2,12 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using UnityEngine;
 
 ///<summary>
 ///Utility functions and classes for Directories
 ///</summary>
 public class DirectoryUtils
 {
+	[System.Serializable]
 	public class Directory : PathUtils.Path
 	{
 		public Directory(string path) : base(path) {}
@@ -32,10 +34,11 @@ public class DirectoryUtils
 		{
 			List<string> extensionsList = new List<string>(extensions);
 			List<FileUtils.File> filesList = new List<FileUtils.File>();
-			string[] files = System.IO.Directory.GetFiles(RealPath).Where(s => extensionsList.Any(e => s.EndsWith(e))).ToArray();
+			string[] files = System.IO.Directory.GetFiles(RealPath).Where(s => extensionsList.Any(e => s.EndsWith(e, true, null))).ToArray();
 
 			foreach (string file in files)
 				filesList.Add(new FileUtils.File(file));
+
 
 			return filesList.ToArray();
 		}
@@ -47,6 +50,9 @@ public class DirectoryUtils
 
 			foreach (string directory in directories)
 				directoriesList.Add(new Directory(directory));
+
+			if (PathUtils.GetPathFrom(RealPath) != PathUtils.RootPath)
+				directoriesList.Add(new Directory(PathUtils.GetPathFromRelative("..", RealPath)));
 
 			return directoriesList.ToArray();
 		}

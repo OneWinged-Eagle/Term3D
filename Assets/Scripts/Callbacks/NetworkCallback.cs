@@ -16,7 +16,7 @@ public class NetworkCallback : Bolt.GlobalEventListener
     logMsgs.Insert(0, e.Message);
   }
 
-  private void OnGUI()
+  /*private void OnGUI()
   {
     int maxMsgs = Mathf.Min(5, logMsgs.Count);
 
@@ -24,5 +24,5 @@ public class NetworkCallback : Bolt.GlobalEventListener
     for (int i = 0; i < maxMsgs; i++)
       GUILayout.Label(logMsgs[i]);
     GUILayout.EndArea();
-  }
+  }*/
 }

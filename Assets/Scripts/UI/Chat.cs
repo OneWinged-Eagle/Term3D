@@ -15,7 +15,7 @@ public class Chat : Bolt.GlobalEventListener // TODO: à retaper
 	public Text _content; // TODO: variable utilisée uniquement dans displayMsg : à passer en variable locale ?
 	public Scrollbar _scrollBar;
 	// TODO: toutes les variables ci-dessus sont publiques, normal ? Peut-être à passer en properties ?
-	private CommandHandler _commandHandler;
+	public CommandHandler _commandHandler;
 
 	//chat entre clients ou non
 	public bool _reseau = false; // TODO: variable utilisée uniquement dans sendMsg : à passer en variable locale ?
@@ -91,7 +91,7 @@ public class Chat : Bolt.GlobalEventListener // TODO: à retaper
 
 	public override void OnEvent(messageEvent e)
 	{
-		Debug.Log(e.message);
+		//Debug.Log(e.message);
 		_scrollBar.value = 0.0f;
 		_logChat.Add(e.message);
 		_addText = true;

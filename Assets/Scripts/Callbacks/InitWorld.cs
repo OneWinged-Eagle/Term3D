@@ -11,30 +11,31 @@ public class InitWorld : Bolt.GlobalEventListener // TODO: à update les comm' (
 {
 	public override void SceneLoadLocalDone(string map)
 	{
-		BoltNetwork.Instantiate(BoltPrefabs.CubePlayer, new Vector3(30, 1, 30), Quaternion.identity);
+		bool loaded = SavesHandler.ToLoad;
+		SavesHandler.Load();
 
 		if (BoltNetwork.isServer)
 		{
-			//PlayerObjectRegistry.CreateServerPlayer();
-			instantiateWorld();
-			SavesHandler.Load();
+			RoomUtils.Reset();
+
+			if (!loaded)
+				RoomUtils.CreateNewRoom(Path.DirectorySeparatorChar.ToString());
+
+			if (RoomUtils.Room == BoltPrefabs.Space)
+				;//Destroy(GameObject.Find("Directional Light"));
+			else
+				RenderSettings.skybox = null;
 		}
 		else if (BoltNetwork.isClient)
 		{
-			PathUtils.RootPath = PathUtils.GetPathFrom(Application.persistentDataPath) + "\\tmp";
+			PathUtils.RootPath = PathUtils.GetPathFromRelative("tmp", Application.persistentDataPath);
 			PathUtils.CurrPath = PathUtils.RootPath;
 		}
-		else
-			; //WUT?
-	}
 
-	private void instantiateWorld()
-	{
-		RoomUtils.Reset();
-		RoomUtils.CreateNewRoom();
-		if (RoomUtils.Room == BoltPrefabs.Space)
-			Destroy(GameObject.Find("Directional Light"));
-		else
-			RenderSettings.skybox = null;
+		string name = "un gros nom à modifier par un genre de pseudo";
+
+		GameObject player = BoltNetwork.Instantiate(BoltPrefabs.CubePlayer, new Vector3(0f, 0.5f, 0f), Quaternion.identity);
+		player.GetComponent<Movement>().state.Name = name;
+		GameObject.Find("Chat").GetComponent<Chat>()._commandHandler._player = player;
 	}
 }

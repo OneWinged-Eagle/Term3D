@@ -55,14 +55,6 @@ public class PlayVLC : MonoBehaviour {
     [Header("Alternative: External video Path")]
     [Tooltip("Where is the video you want to play? Nearly all video formats are supported by VLC")]
     public string VideoPath = "";
-    
-    /* [Header("Playlist")]
-     public bool UseExternalInputField;
-     public InputField PathField;
-     public bool UsePlaylist = false;
-     public string[] PlayList;
-
-     Scheduled for Version 1.04*/
 
     [Header(" Display Modes - Direct3D recommended")]
     public RenderMode UsedRenderMode;
@@ -535,8 +527,7 @@ public class PlayVLC : MonoBehaviour {
             //------------------------------FILE--------------------------------------------------
 
             string usedVideoPath = "";
-			/*
-			 * Code inutile pour nous
+
             if (PlayFromStreamingAssets) {
                 if (StreamingAssetsVideoFilename.Length > 0) {
                     usedVideoPath = "\""+ Application.dataPath.Replace("/", "\\") + "\\StreamingAssets\\" +StreamingAssetsVideoFilename+"\"";
@@ -550,8 +541,8 @@ public class PlayVLC : MonoBehaviour {
                     Debug.LogError("ERROR: No video path set.");
                 }
             }
-            */
-			usedVideoPath = "http://127.0.0.1:4242"; //variable à rendre dynamique selon lien présent dans le VideoObject() parent. Doit prendre la forme d'un chemin de fichier qui sera ouvert par VLC. 
+
+			//usedVideoPath = "https://www.youtube.com/watch?v=0S64MLE1luY"; //variable à rendre dynamique selon lien présent dans le VideoObject() parent. Doit prendre la forme d'un chemin de fichier qui sera ouvert par VLC. 
 			// Eventuellement voir du côté de transform.root.gameObject().Video pour récupérer le videoObject du canvas une fois qu'il sera intégré!
             string _path = usedVideoPath + " --ignore-config --no-crashdump " + GetShortCutCodes();
 
