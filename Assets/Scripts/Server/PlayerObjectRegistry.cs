@@ -18,7 +18,7 @@ public static class PlayerObjectRegistry // TODO: à retaper
 		player = new PlayerObject();
 		player.connection = connection;
 
-		Debug.Log("ça passe ici lol");
+		//Debug.Log("ça passe ici lol");
 
 		if (player.connection != null)
 			player.connection.UserData = player;

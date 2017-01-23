@@ -7,7 +7,7 @@ using UnityEngine.UI;
 [BoltGlobalBehaviour()]
 public class ModelsMenu : Bolt.GlobalEventListener // TODO: à vérif' (@guillaume)
 {
-	private const int MARGIN = 300;
+	private const int MARGIN = 180;
 
 	public GameObject Btn;
 	public GameObject Content;
@@ -34,23 +34,24 @@ public class ModelsMenu : Bolt.GlobalEventListener // TODO: à vérif' (@guillau
 			GameObject model = models[i];
 			GameObject btn = Instantiate(Btn) as GameObject;
 
-			btn.GetComponent<RectTransform>().anchoredPosition = new Vector2((i % 3 * MARGIN) - MARGIN, (height / 2 - MARGIN / 2) - (i / 3 * MARGIN));
+			btn.GetComponent<RectTransform>().anchoredPosition = new Vector2((i % 3 * MARGIN) - MARGIN, (height / 2 - MARGIN / 2) - (i / 3 * MARGIN) - 30);
 			int nb = i; // it looks VERY stupid, but there's an explanation...
 			btn.GetComponent<Button>().onClick.AddListener(delegate { ModelsBtns(fileType, nb); });
-			btn.GetComponentInChildren<Image>().sprite = TextureUtils.GetSpriteFromAsset(model);
+			btn.transform.Find("Background").gameObject.GetComponentInChildren<Image>().sprite = TextureUtils.GetSpriteFromAsset(model);
 			btn.GetComponentInChildren<Text>().text = model.name;
+
 			btn.transform.SetParent(Content.transform, false);
 		}
 	}
 
 	public void TypesBtns(int fileType) // see enum FilesTypes in ModelsUtils
 	{
-		TypesMenu.SetActive(false);
+		//TypesMenu.SetActive(false);
 
 		GameObject[] models = ModelsList[fileType].Models;
 		createContent(models, models.Length / 3 * MARGIN, fileType);
 
-		ModelsSubMenu.SetActive(true);
+		//ModelsSubMenu.SetActive(true);
 	}
 
 	public void ModelsBtns(int fileType, int nb)
@@ -58,30 +59,34 @@ public class ModelsMenu : Bolt.GlobalEventListener // TODO: à vérif' (@guillau
 		GameObject model = ModelsList[fileType].Models[nb];
 
 		var spawnObjectEvent = spawnObject.Create();
+
 		spawnObjectEvent.objectId = model.GetComponent<BoltEntity>().prefabId;
 		spawnObjectEvent.objectPos = Player.GetComponentInChildren<InputHandler>().Hook.transform.position;
 		spawnObjectEvent.objectRot = model.transform.rotation;
+		spawnObjectEvent.objectName = ModelsUtils.Tags[fileType + 1];
 		spawnObjectEvent.Send();
 
+        BackBtn();
 		CloseBtn();
 	}
 
 	public override void OnEvent(spawnObject e)
 	{
 		if (BoltNetwork.isServer)
-			BoltNetwork.Instantiate(e.objectId, e.objectPos, e.objectRot);
-		else if (BoltNetwork.isClient)
-			;
+		{
+			GameObject obj = BoltNetwork.Instantiate(e.objectId, e.objectPos, e.objectRot);
+			obj.name = e.objectName;
+		}
 	}
 
 	public void BackBtn()
 	{
-		ModelsSubMenu.SetActive(false);
+		//ModelsSubMenu.SetActive(false);
 
 		foreach (Transform child in Content.transform)
 			GameObject.Destroy(child.gameObject);
 
-		TypesMenu.SetActive(true);
+		//TypesMenu.SetActive(true);
 	}
 
 	public void CloseBtn()

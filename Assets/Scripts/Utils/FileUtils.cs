@@ -6,6 +6,7 @@ using System.IO;
 ///</summary>
 public class FileUtils
 {
+	[System.Serializable]
 	public class File : PathUtils.Path
 	{
 		public File(string path) : base(path) {}

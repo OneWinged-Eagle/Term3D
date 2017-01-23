@@ -16,22 +16,23 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 4000010488208278}
-  - 33: {fileID: 33000010020443132}
-  - 65: {fileID: 65000014056467572}
-  - 23: {fileID: 23000013835554436}
-  - 131: {fileID: 131000011472731118}
-  - 114: {fileID: 114000010068755622}
-  - 54: {fileID: 54000014046935710}
-  - 114: {fileID: 114000010226304796}
-  - 114: {fileID: 114000014229356320}
-  - 114: {fileID: 114000011217337254}
-  - 114: {fileID: 114000013689500426}
+  - component: {fileID: 4000010488208278}
+  - component: {fileID: 33000010020443132}
+  - component: {fileID: 65000014056467572}
+  - component: {fileID: 23000013835554436}
+  - component: {fileID: 131000011472731118}
+  - component: {fileID: 114000010068755622}
+  - component: {fileID: 54000014046935710}
+  - component: {fileID: 114000010226304796}
+  - component: {fileID: 114000014229356320}
+  - component: {fileID: 114000011217337254}
+  - component: {fileID: 114363462428525718}
+  - component: {fileID: 114355449762651240}
   m_Layer: 0
   m_Name: movieTexture 2
-  m_TagString: Untagged
+  m_TagString: OtherObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45,10 +46,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -7.013352, y: -2.6869678, z: -1.3303196}
   m_LocalScale: {x: 1.6182616, y: 1.713922, z: 1.6007588}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &23000013835554436
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -63,7 +64,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_Materials:
   - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  m_SubsetIndices: 
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
@@ -71,7 +74,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_SelectedWireframeHidden: 0
+  m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -165,17 +168,6 @@ MonoBehaviour:
   objControl: 0
   tmpPos: {x: 0, y: 0, z: 0}
   checkGrav: 0
---- !u!114 &114000013689500426
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010012102784}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d29e8514630c05c488eafb39aab0f050, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114000014229356320
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -188,6 +180,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Hook: {fileID: 0}
+--- !u!114 &114355449762651240
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010012102784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 124e88432b75ccf47aa7c224c14334b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  url: https://upload.wikimedia.org/wikipedia/commons/e/e6/Typing_example.ogv
+--- !u!114 &114363462428525718
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010012102784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c10bb31e9db3141a23da4f64698070, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!131 &131000011472731118
 GUITexture:
   m_ObjectHideFlags: 1

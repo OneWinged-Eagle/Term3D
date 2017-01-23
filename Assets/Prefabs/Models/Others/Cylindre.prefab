@@ -5,16 +5,17 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 475722}
-  - 33: {fileID: 3356552}
-  - 136: {fileID: 13627650}
-  - 23: {fileID: 2330774}
-  - 114: {fileID: 11499748}
-  - 54: {fileID: 5422244}
-  - 114: {fileID: 11464950}
-  - 114: {fileID: 11461154}
+  - component: {fileID: 475722}
+  - component: {fileID: 3356552}
+  - component: {fileID: 13627650}
+  - component: {fileID: 2330774}
+  - component: {fileID: 11499748}
+  - component: {fileID: 5422244}
+  - component: {fileID: 11464950}
+  - component: {fileID: 11461154}
+  - component: {fileID: 114484149278408956}
   m_Layer: 0
   m_Name: Cylindre
   m_TagString: OtherObject
@@ -31,10 +32,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &2330774
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -49,7 +50,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_Materials:
   - {fileID: 2100000, guid: f6a02c997f5149f42b11a9c902fc746a, type: 2}
-  m_SubsetIndices: 
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
@@ -57,7 +60,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_SelectedWireframeHidden: 0
+  m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -159,3 +162,14 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 102204}
   m_IsPrefabParent: 1
+--- !u!114 &114484149278408956
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 102204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c10bb31e9db3141a23da4f64698070, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

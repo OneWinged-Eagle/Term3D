@@ -2,7 +2,6 @@
 using System.Collections;
 using Bolt;
 
-[System.Serializable]
 public class OtherObjectHandler : Bolt.EntityBehaviour<IOtherObjectState> {
 	 public BoltEntity objEntity;
 	 public  BoltEntity playerEntity;
@@ -10,10 +9,6 @@ public class OtherObjectHandler : Bolt.EntityBehaviour<IOtherObjectState> {
 	public bool objControl;
 	public Vector3 tmpPos;
 	 public bool checkGrav = false;
-
-	public override void Attached()
-	{
-	}
 
 	public override void SimulateOwner()
 	{
@@ -43,7 +38,7 @@ public class OtherObjectHandler : Bolt.EntityBehaviour<IOtherObjectState> {
 			}
 	}
 		if (BoltNetwork.isClient) {
-			Debug.Log ("je suis un client");
+			//Debug.Log ("je suis un client");
 		}
 	}
 
